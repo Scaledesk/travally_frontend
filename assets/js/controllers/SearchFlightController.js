@@ -1,9 +1,11 @@
 angular.module('Travally')
     .controller('SearchFlightController', function($http, $scope, $routeParams, $filter, $location, Flight, serverConfig) {
-        $scope.checkboxModel = {};
-        $scope.fareStop = {};
-
-
+        $scope.checkboxModel = {
+            "fareClass":""
+        };
+        $scope.fareStop = {
+            "stop":""
+        };
         $scope.source = $routeParams.source;
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
@@ -178,15 +180,8 @@ console.log($scope.passenger);
             }
         };
         $scope.filterFlightDetail=function(){
-            $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel,stop:$scope.fareStop})
+            $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
         }
-
-
-
-
-
-
-
 
     });
 

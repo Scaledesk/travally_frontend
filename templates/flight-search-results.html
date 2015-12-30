@@ -84,17 +84,17 @@
                         <h5 class="booking-filters-title">Stops <small>Price from</small></h5>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='fareStop' ng-true-value="'0'" ng-false-value="''" ng-click="filterFlightDetail()"> Non stop
+                                <input class="i-check" type="checkbox" ng-model='fareStop.stop' ng-true-value="'0'" ng-false-value="''" ng-click="filterFlightDetail()"> Non stop
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='fareStop' ng-true-value="'1'" ng-false-value="''" ng-click="filterFlightDetail()"> 1 stop
+                                <input class="i-check" type="checkbox" ng-model='fareStop.stop' ng-true-value="'1'" ng-false-value="''" ng-click="filterFlightDetail()"> 1 stop
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='fareStop' ng-true-value="'2'" ng-false-value="''" ng-click="filterFlightDetail()"> 2+ stop
+                                <input class="i-check" type="checkbox" ng-model='fareStop.stop' ng-true-value="'2'" ng-false-value="''" ng-click="filterFlightDetail()"> 2+ stop
                             </label>
                         </div>
                     </li>
@@ -104,17 +104,17 @@
                         <h5 class="booking-filters-title">Flight Class <small>Price from</small></h5>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='checkboxModel' ng-true-value="'E'" ng-false-value="''" ng-click="filterFlightDetail()"> Economy
+                                <input class="i-check" type="checkbox" ng-model='checkboxModel.fareClass' ng-true-value="'E'" ng-false-value="''" ng-click="filterFlightDetail()"> Economy
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='checkboxModel' ng-true-value="'B'" ng-false-value="''" ng-click="filterFlightDetail()"> Business
+                                <input class="i-check" type="checkbox" ng-model='checkboxModel.fareClass' ng-true-value="'B'" ng-false-value="''" ng-click="filterFlightDetail()"> Business
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='checkboxModel' ng-true-value="'F'" ng-false-value="''" ng-click="filterFlightDetail()"> First
+                                <input class="i-check" type="checkbox" ng-model='checkboxModel.fareClass' ng-true-value="'F'" ng-false-value="''" ng-click="filterFlightDetail()"> First
                             </label>
                         </div>
                     </li>
@@ -122,7 +122,7 @@
                         <h5 class="booking-filters-title">Airlines</h5>
                         <div class="checkbox">
                             <label>
-                                <input class="i-check" type="checkbox" ng-model='checkboxModel' ng-true-value="'F'" ng-false-value="''" ng-click="filterFlightDetail()" />Lufthansa
+                                <input class="i-check" type="checkbox" ng-model='checkboxModel.fareClass' ng-true-value="'F'" ng-false-value="''" ng-click="filterFlightDetail()" />Lufthansa
                             </label>
                         </div>
                         <div class="checkbox">
