@@ -1,0 +1,90 @@
+
+
+            <div class="row row-wrap" data-gutter="60">
+                <div class="col-md-12">
+                    <!--    <h4>Tabs</h4> -->
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li ng-class="{active:ss=='first'}"><a href="" ng-click="ss='first'" data-toggle="tab">First</a>
+                            </li>
+
+                            <li ng-class="{active:ss=='second'}"><a href="" ng-click="ss='second'" data-toggle="tab">Second</a>
+                            </li>
+
+                            <li ng-class="{active:ss=='third'}"><a href="" ng-click="ss='third'" data-toggle="tab">Third</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content ">
+
+                            <div ng-class="{'tab-pane fade in active':ss=='first'}" ng-show="ss=='first'" id="tab-1">
+                                <div class="gap"></div>
+                                <div class="col-md-12 ">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+
+
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="cc=='col' ? cc='' :cc='col'"><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
+                                                    <span style="margin-right:15px;">Mumbai</span> to <span style="margin-left:15px;">Kanpur</span> <span style="margin-left:15px;">Date: 21st Oct 2015</span></a></h4>
+                                            </div>
+                                            <div ng-class="{'panel-collapse collapse in active':cc=='col'}" ng-show="cc=='col'" id="collapse-1">
+                                                <div class="panel-body">Praesent dolor rutrum cras malesuada varius ac mi ornare odio quam nostra hendrerit cras a volutpat id rutrum dui pulvinar turpis justo hac lobortis per in ullamcorper est</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--<div class="panel-collapse collapse in" id="collapse-1">
+                                        <div class="panel-body"></div>
+
+                                    </div>-->
+                                    </div>
+                                </div>
+
+
+
+                                    <div ng-class="{'tab-pane fade in active':ss=='second'}" ng-show="ss=='second'" id="tab-2">
+                                        <div class="gap"></div>
+                                        <div class="col-md-12 ">
+                                        <div class="panel-group" id="accordion">
+                                            <div class="panel panel-default">
+
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="dd=='col' ? dd='' :dd='col'" ><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
+                                                        <span style="margin-right:15px;">Delhi</span> to <span style="margin-left:15px;">Kanpur</span> <span style="margin-left:15px;">Date: 21st Oct 2015</span></a></h4>
+                                                </div>
+
+                                                <div ng-class="{'panel-collapse collapse in active':dd=='col'}" ng-show="dd=='col'" id="collapse-2">
+                                                    <div class="panel-body">Praesent dolor rutrum cras malesuada varius ac mi ornare odio quam nostra hendrerit cras a volutpat id rutrum dui pulvinar turpis justo hac lobortis per in ullamcorper est</div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="panel-collapse collapse in" id="collapse-1">
+                                            <div class="panel-body"></div>
+
+                                        </div>-->
+                                    </div>
+                                    </div>
+
+
+
+                                    <div ng-class="{'tab-pane fade in active':ss=='third'}" ng-show="ss=='third'" id="tab-3">
+                                        <div class="gap"></div>
+                                        <div class="col-md-12 ">
+                                          <p class="mt10">Sodales porttitor sollicitudin ad porttitor ultricies erat per fusce blandit magna himenaeos pretium sagittis et lobortis feugiat consequat semper sed consequat phasellus sodales primis nam mus natoque bibendum nullam gravida</p>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>

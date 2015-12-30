@@ -1,0 +1,177 @@
+<div class="container">
+    <h1 class="page-title">Travally Profile</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <aside class="user-profile-sidebar">
+                <div class="user-profile-avatar text-center">
+                    <img src="{{profile.Image}}" alt="Image Alternative text" title="AMaze" />
+                    <h5>{{profile.Name}}</h5>
+                    Member Since {{profile.join_date.date |date:'MMM-yyyy'}}
+                </div>
+                <ul class="list user-profile-nav">
+
+                    <li><a href="" ng-click="changeAction('overview')"><i class="fa fa-user"></i>Overview</a>
+                    </li>
+                    <li><a href="" ng-click="changeAction('settings')"><i class="fa fa-cog"></i>Settings</a>
+                    </li>
+                    <li><a href=""><i class="fa fa-camera"></i>My Travel Photos</a>
+                    </li>
+                    <li><a href="" ng-click="changeAction('booking-history')"><i class="fa fa-clock-o"></i>Booking History</a>
+                    </li>
+                    <li><a href=""><i class="fa fa-credit-card"></i>Credit/Debit Cards</a>
+                    </li>
+                    <li><a href=""><i class="fa fa-heart-o"></i>Wishlist</a>
+                    </li>
+
+                </ul>
+            </aside>
+        </div>
+
+
+
+        <div class="col-md-9" ng-if="target === 'overview'" ng-include="src='/templates/my-overview.html'"></div>
+        <div class="col-md-9" ng-if="target === 'settings'" ng-include="src='/templates/my-profile-setting.html'"></div>
+        <div class="col-md-9" ng-if="target === 'booking-history'" ng-include="src='/templates/my-booking-history.html'"></div>
+
+
+
+        <!--<div class="col-md-9">
+            <h4>Total Traveled</h4>
+            <ul class="list list-inline user-profile-statictics mb30">
+                <li><i class="fa fa-dashboard user-profile-statictics-icon"></i>
+                    <h5>12540</h5>
+                    <p>Miles</p>
+                </li>
+                <li><i class="fa fa-globe user-profile-statictics-icon"></i>
+                    <h5>2%</h5>
+                    <p>World</p>
+                </li>
+                <li><i class="fa fa-building-o user-profile-statictics-icon"></i>
+                    <h5>15</h5>
+                    <p>Cityes</p>
+                </li>
+                <li><i class="fa fa-flag-o user-profile-statictics-icon"></i>
+                    <h5>3</h5>
+                    <p>Countries</p>
+                </li>
+                <li><i class="fa fa-plane user-profile-statictics-icon"></i>
+                    <h5>20</h5>
+                    <p>Trips</p>
+                </li>
+            </ul>
+        </div>-->
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--
+<div class="row">
+    <div class="container"><br/><br/>
+    <div class="col-lg-6">
+        <div class="text-center"><h1 class="" style="color: #30273a;font-size: 30px">Update Profile</h1></div>
+        <div ng-show="update_success">
+            <p>Updated Successful </p>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4">
+            Name:
+            </div>
+            <div class="col-md-8">
+            <input type="text" class="form-control" ng-model="user.name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4">
+                Address:
+            </div>
+            <div class="col-md-8">
+                <input type="text" class="form-control" ng-model="user.address"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4">
+                DOB:
+            </div>
+            <div class="col-md-8">
+                <input type="text" class="form-control" ng-model="user.dob"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4">
+                Image:
+            </div>
+            <div class="col-md-8">
+                <img src="{{profile.Image}}" style="height: 150px;width: 150px;"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-md-8">
+                <button class="btn-primary" ng-click="updateProfile(user)">Update</button>
+            </div>
+        </div>
+    </div>
+<div class="col-md-6">
+    <div class="text-center"><h1 class="" style="color: #30273a;font-size: 30px"> Change Password</h1></div>
+<div ng-show="password_change_success">
+    <p>Password Changed Successfully.</p>
+</div>
+<div ng-show="password_change_error">
+    <p>Password Can not be changed.</p>
+</div>
+    <div class="form-group">
+        <div class="col-lg-4">
+            Old Password:
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" ng-model="pass.old_password"/><br/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-4">
+            New Password:
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" ng-model="pass.new_password"/><br/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-4">
+            Confonfirm Password:
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" ng-model="pass.password_confirm"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-md-8">
+            <button class="btn-success" ng-click="changePassword(pass)">Update</button>
+        </div>
+    </div>
+
+
+</div>
+    </div>
+    </div>-->

@@ -1,0 +1,138 @@
+
+<div class="container ">
+    <h1 class="text-center" style="font-size: 40px; margin: 30px 0;">Login With Traveler</h1>
+</div>
+<div class="container">
+    <div class="row" data-gutter="60">
+        <div class="col-md-4 ">
+            <h3>Welcome to Traveler</h3>
+            <p>Ultricies vestibulum egestas ad cras mollis nam dictumst netus leo facilisis justo maecenas molestie ipsum felis mus cubilia hendrerit vestibulum accumsan consectetur convallis vitae nec sapien diam justo lobortis aenean</p>
+            <p>Lobortis tristique interdum curae luctus mattis nisl aenean diam suscipit</p>
+        </div>
+        <div class="col-md-4 custom-class">
+            <h3 class="text-center custom_title">Login</h3>
+            <form>
+                <div class="form-group form-group-icon-left">
+                    <!-- <label>Username or email</label> -->
+                    <input ng-focus="error = 0" ng-model="email" type="text" class="form-control custom-input" placeholder="Enter Your Email">
+                </div>
+                <div class="form-group form-group-icon-left">
+                    <!-- <label>Password</label> -->
+                    <input ng-focus="error = 0" ng-model="password" type="{{showpassword ? 'text' : 'password'}}" class="form-control custom-input"
+                           placeholder="Enter Your Password">
+                </div>
+
+                <div style="color:red" ng-show="error">Incorrect Email or Password</div>
+                <div style="color:red" ng-show="error_email_required">Email is required</div>
+                <div style="color:red" ng-show="error_password_required">Password is required</div>
+                <div style="color:red" ng-show="error_email_invalid">Email entered is invalid</div>
+
+                <button class="btn btn-primary custom-button" ng-disabled="disabled" ng-click="login()" type="button">{{login_text}}</button>
+                <h4 class="text-center custom-or">Or</h4>
+                <div class="text-center social-custom-btn">
+                    <button ng-click="authenticate('facebook')" class="custom-button-f" >Facebook</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button ng-click="authenticate('google')" class="custom-button-g">Google</button>
+                </div>
+                <div class="text-center">
+                    <p><a ng-href="/#/forgotPassword">Forgot Password</a> </p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="gap"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<div class="container ">
+    <h1 class="page-title">Login With Traveler</h1>
+</div>
+
+<div class="gap"></div>
+
+
+<div class="container">
+    <div class="row" data-gutter="60">
+        <div class="col-md-4 ">
+            <h3>Welcome to Traveler</h3>
+            <p>Ultricies vestibulum egestas ad cras mollis nam dictumst netus leo facilisis justo maecenas molestie ipsum felis mus cubilia hendrerit vestibulum accumsan consectetur convallis vitae nec sapien diam justo lobortis aenean</p>
+            <p>Lobortis tristique interdum curae luctus mattis nisl aenean diam suscipit</p>
+        </div>
+        <div class="col-md-4 custom-class">
+            <h3 class="text-center custom_title">Login</h3>
+            <form>
+                <div class="form-group form-group-icon-left">
+                    &lt;!&ndash; <label>Username or email</label> &ndash;&gt;
+                    <input ng-focus="error = 0" ng-model="email" type="text" class="form-control" placeholder="Enter Your Email">
+
+                </div>
+                <div class="form-group form-group-icon-left">
+                    &lt;!&ndash; <label>Password</label> &ndash;&gt;
+                    <input ng-focus="error = 0" ng-model="password" type="{{showpassword ? 'text' : 'password'}}" class="form-control"
+                           placeholder="Enter Your Password">
+                </div>
+
+
+
+                <button ng-mousedown="showpassword = 1" ng-mouseup="showpassword = 0">Show</button>
+                <div style="color:red" ng-show="error">Incorrect Email or Password</div>
+                <div style="color:red" ng-show="error_email_required">Email is required</div>
+                <div style="color:red" ng-show="error_password_required">Password is required</div>
+                <div style="color:red" ng-show="error_email_invalid">Email entered is invalid</div>
+                <button ng-disabled="disabled" ng-click="login()" type="button" class="btn btn-primary custom-button">
+                    {{login_text}}</button>
+
+                <h4 class="text-center custom-or">Or</h4>
+                <div class="text-center social-custom-btn">
+                    <button ng-click="authenticate('facebook')">Sign in with Facebook</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button ng-click="authenticate('google')">Sign in with Google</button>
+                </div>
+
+            </form>
+        </div>
+        &lt;!&ndash;  <div class="col-md-4">
+             <h3>New To Traveler?</h3>
+             <form>
+                 <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                     <label>Full Name</label>
+                     <input class="form-control" placeholder="e.g. John Doe" type="text" />
+                 </div>
+                 <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                     <label>Emai</label>
+                     <input class="form-control" placeholder="e.g. johndoe@gmail.com" type="text" />
+                 </div>
+                 <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                     <label>Password</label>
+                     <input class="form-control" type="password" placeholder="my secret password" />
+                 </div>
+                 <input class="btn btn-primary" type="submit" value="Sign up for Traveler" />
+             </form>
+         </div> &ndash;&gt;
+    </div>
+</div>
+
+
+
+<div class="gap"></div>-->
