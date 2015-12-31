@@ -18,8 +18,8 @@
                             <li ng-class="{active:tab=='flight'}"><a href="" data-toggle="tab" ng-click="tab = 'flight'"><i class="fa fa-plane"></i> <span >Flight</span></a>
                             </li>
 
-                          <!--  <li ng-class="{active:tab=='bus'}"><a href="" data-toggle="tab" ng-click="tab = 'bus'"><i class="fa fa-plane"></i> <span >Bus</span></a>
-                            </li>-->
+                            <li ng-class="{active:tab=='bus'}"><a href="" data-toggle="tab" ng-click="tab = 'bus'"><i class="fa fa-plane"></i> <span >Bus</span></a>
+                            </li>
 
                             <!--  <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-home"></i> <span >Rentals</span></a>
                              </li>
@@ -492,54 +492,59 @@
 
 
 
-                           <!-- <div ng-class="{'tab-pane fade in active':tab=='bus'}" ng-show="tab=='bus'" id="tab-4">
-                                <h2>Search for Cheap Rental Cars</h2>
+                            <div ng-class="{'tab-pane fade in active':tab=='bus'}" ng-show="tab=='bus'" id="tab-4">
+                                <h2>Search for Cheap Rental Bus</h2>
                                 <form>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                <label>Pick-up Location</label>
-                                                <input class="typeahead form-control" placeholder="City, Airport, U.S. Zip" type="text" />
+                                                <label>Source City</label>
+                                                <ui-select ng-model="BusSourceCity.selected"
+                                                           theme="bootstrap"
+                                                           ng-disabled="disabled"
+                                                           reset-search-input="true">
+                                                    <ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>
+                                                    <ui-select-choices repeat="b in BusSourceCity track by $index"
+                                                                       refresh="refreshBusSources($select.search)"
+                                                                       refresh-delay="0">
+                                                        <div ng-bind-html="b.CityName | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                <label>Drop-off Location</label>
-                                                <input class="typeahead form-control" placeholder="City, Airport, U.S. Zip" type="text" />
+                                                <label>Destination City</label>
+                                                <ui-select ng-model="BusDestinationCity.selected"
+                                                           theme="bootstrap"
+                                                           ng-disabled="disabled"
+                                                           reset-search-input="true">
+                                                    <ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>
+                                                    <ui-select-choices repeat="d in BusDestinationCity track by $index"
+                                                                       refresh="refreshBusDestinations($select.search)"
+                                                                       refresh-delay="0">
+                                                        <div ng-bind-html="d.CityName | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="input-daterange" data-date-format="M d, D">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                     <label>Pick-up Date</label>
-                                                    <input class="form-control" name="start" type="text" />
+                                                    <input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="BusSourceCity.date">
+                                                    {{BusSourceCity.date}}
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-clock-o input-icon input-icon-highlight"></i>
-                                                    <label>Pick-up Time</label>
-                                                    <input class="time-pick form-control" value="12:00 AM" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>Drop-off Date</label>
-                                                    <input class="form-control" name="end" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-clock-o input-icon input-icon-highlight"></i>
-                                                    <label>Drop-off Time</label>
-                                                    <input class="time-pick form-control" value="12:00 AM" type="text" />
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-lg" type="submit">Search for Rental Cars</button>
                                 </form>
-                            </div>-->
+                            </div>
 
 
 

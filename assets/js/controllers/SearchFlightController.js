@@ -44,7 +44,7 @@ console.log($scope.passenger);
             $scope.flightData = d.data.Result;
 
             angular.forEach($scope.flightData, function (flight, key) {
-                var getFareRule =  {
+                /*var getFareRule =  {
                     "SessionId":$scope.sessionId,
                     "Result":flight,
                     "MemberMobileNo": serverConfig.memberMobileNumber,
@@ -56,7 +56,7 @@ console.log($scope.passenger);
                  }).catch(function (response) {
                     console.log("getFareRule error");
                     console.log(response);
-                 });
+                 });*/
                 angular.forEach(flight.Segment, function (segment, key) {
                     airlineCode = segment.Airline.AirlineCode;
                     airlineName = segment.Airline.AirlineName;
@@ -182,7 +182,6 @@ console.log($scope.passenger);
         $scope.filterFlightDetail=function(){
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
         }
-
     });
 
 

@@ -1,6 +1,6 @@
 angular.module('Travally')
 // inject the Activation service into our controller
-    .controller('HomeController', function(TrainBetweenStation, Hotel, StationCode, $http, $scope, $location,$filter, Flight) {
+    .controller('HomeController', function(TrainBetweenStation, Hotel, StationCode, $http, $scope, $location,$filter, Flight, BusServices ) {
         //var d = $location.search().code;
         $scope.tab = 'train';
         $scope.selectedItem = {};
@@ -73,5 +73,37 @@ angular.module('Travally')
             var returnDate = flight.returnDate;
             var Adult = flight.passenger;
             $location.path('/flight-search/'+origin+'/'+destination+'/'+departureDate+'/'+Adult);
-        }
+        };
+
+        /**
+         * Get all cities for bus
+         * Code for bus search details
+         */
+
+        BusServices.getAllCities().then(function (responseCities) {
+            $scope.Bus_Cities = responseCities.data.WSBusCityList;
+        }).catch(function (response) {
+        });
+        $scope.BusSourceCity = {};
+        $scope.BusDestinationCity = {};
+
+        $scope.refreshBusSources = function(query){
+            if(query == null) return [];
+            if(query.length < 3) return [];
+            $scope.BusSourceCity = $filter('filter')($scope.Bus_Cities,{CityName:query})
+        };
+        $scope.refreshBusDestinations = function(query){
+            if(query == null) return [];
+            if(query.length < 3) return [];
+            $scope.BusDestinationCity = $filter('filter')($scope.Bus_Cities,{CityName:query})
+        };
+
+        $scope.searchBuses = function(Bus){
+            var sourceId = $scope.BusSourceCity.selected.CityId;
+            var sourceName = $scope.BusSourceCity.selected.CityName;
+            var destinationId = $scope.BusDestinationCity.selected.CityId;
+            var destinationName = $scope.BusDestinationCity.selected.CityName;
+            var sourceDate = Bus.date;
+            $location.path('/bus-search/'+sourceId+'/'+sourceName+'/'+destinationId+'/'+destinationName+'/'+sourceDate);
+        };
     });

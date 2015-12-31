@@ -49,5 +49,8 @@ angular.module('Travally').config(function($routeProvider){
       }).when('/bookingDetail', {
         templateUrl: "templates/flight-booking-details.html",
         controller: "BookingFlightController"
+      }).when('/bus-search/:SourceId/:DestinationId/:SourceName/:DestinationName/:DateOfJourney', {
+        templateUrl: "templates/bus-search-results.html",
+        controller: "SearchBusController"
       });
 });

@@ -31,63 +31,71 @@
                     </label>
                 </div>
             </form>
+
+
             <div class="gap gap-small"></div>
             <h3>Passengers</h3>
             <ul class="list booking-item-passengers">
-                <li>
+
+
+                <li ng-repeat="pp in bookVal.Passenger">
                     <div class="row">
                         <div class="col-md-3">
                             <label>Sex</label>
                             <div class="radio-inline radio-small">
                                 <label>
-                                    <input class="i-radio" type="radio" name="passenger-1-sex" />Male</label>
+                                    <input class="i-radio" type="radio" name="passenger-1-sex" ng-model="pp.gender=1" />Male</label>
                             </div>
                             <div class="radio-inline radio-small">
                                 <label>
-                                    <input class="i-radio" type="radio" name="passenger-1-sex" />Female</label>
+                                    <input class="i-radio" type="radio" name="passenger-1-sex" ng-model="pp.gender=0" />Female</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" />
+                                <input class="form-control" type="text" ng-model="pp.FirstName" />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Surname</label>
-                                <input class="form-control" type="text" />
+                                <input class="form-control" type="text" ng-model="pp.LastName"/>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <input class="date-pick-years form-control" type="text" />
+                                <input class="date-pick-years form-control" type="text" ng-model="pp.DateOfBirth" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-md-offset-3">
                             <div class="form-group">
-                                <label>Citizenship</label>
-                                <input class="form-control" type="text" />
+                                <label>Address Line1</label>
+                                <input class="form-control" type="text" ng-model="pp.AddressLine1"/>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Document Series</label>
-                                <input class="form-control" type="text" />
+                                <label>Address Line2</label>
+                                <input class="form-control" type="text" ng-model="pp.AddressLine2"/>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Expiry Date</label>
-                                <input class="date-pick-years form-control" type="text" />
+                                <label>Pin Code</label>
+                                <input class="date-pick-years form-control" type="text" ng-model="pp.PinCode" />
                             </div>
                         </div>
                     </div>
                 </li>
-                <li>
+
+
+
+
+<!--                <li>
                     <div class="row">
                         <div class="col-md-3">
                             <label>Sex</label>
@@ -139,8 +147,14 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li>-->
             </ul>
+
+
+
+
+
+
             <div class="gap gap-small"></div>
             <div class="row">
                 <div class="col-md-6">

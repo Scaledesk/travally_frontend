@@ -8,16 +8,6 @@ angular.module('Travally')
         };
         $scope.flightData = Flight.getFlightData();
         $scope.bookVal = Flight.getflightBookData();
-        console.log($scope.passenger);
-        console.log($scope.bookVal);
-        $scope.BookFlight = function(){
-            Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
-                console.log('booking Details');
-                console.log(bookingResponse);
-            }).catch(function (response) {
-                console.log(response);
-            });
-        };
         for (var i=1; i<$scope.passenger.adult; i++) {
             $scope.pp = {
                 "Title": "",
@@ -72,5 +62,16 @@ angular.module('Travally')
             };
             $scope.bookVal.Passenger.push($scope.pp);
         }
+
+        console.log($scope.passenger);
+        console.log($scope.bookVal);
+        $scope.BookFlight = function(){
+            Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
+                console.log('booking Details');
+                console.log(bookingResponse);
+            }).catch(function (response) {
+                console.log(response);
+            });
+        };
 
     });
