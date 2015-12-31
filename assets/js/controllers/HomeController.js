@@ -83,6 +83,7 @@ angular.module('Travally')
         BusServices.getAllCities().then(function (responseCities) {
             $scope.Bus_Cities = responseCities.data.WSBusCityList;
         }).catch(function (response) {
+
         });
         $scope.BusSourceCity = {};
         $scope.BusDestinationCity = {};
@@ -100,10 +101,11 @@ angular.module('Travally')
 
         $scope.searchBuses = function(Bus){
             var sourceId = $scope.BusSourceCity.selected.CityId;
-            var sourceName = $scope.BusSourceCity.selected.CityName;
             var destinationId = $scope.BusDestinationCity.selected.CityId;
+            var sourceName = $scope.BusSourceCity.selected.CityName;
             var destinationName = $scope.BusDestinationCity.selected.CityName;
-            var sourceDate = Bus.date;
-            $location.path('/bus-search/'+sourceId+'/'+sourceName+'/'+destinationId+'/'+destinationName+'/'+sourceDate);
+            var sourceDate = Bus.journeyDate;
+
+            $location.path('/bus-search/'+sourceId+'/'+destinationId+'/'+sourceName+'/'+destinationName+'/'+sourceDate);
         };
     });
