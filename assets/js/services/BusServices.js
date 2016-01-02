@@ -24,6 +24,18 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                 },
                 data: dt
             });
+        },
+        BookBus: function (dt) {
+            return $http({
+                method: 'POST',
+                url: 'http://api.jbspl.com/api/BusBooking/Book',
+                headers: {
+                    'x-UserName':serverConfig.user_name,
+                    'x-Password':serverConfig.password,
+                    'Content-Type': 'application/json'
+                },
+                data: dt
+            });
         }
     }
 });

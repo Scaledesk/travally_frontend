@@ -30,8 +30,22 @@ angular.module('Travally')
             $scope.SessionId = responseBuses.data.sessionId;
             angular.forEach($scope.Bus_Results, function (Buses, key) {
                 angular.forEach(Buses.BoardingPointsDetails, function (Boarding, key) {
+                    bus_id = Boarding.BusId;
+                    city_point_id = Boarding.CityPointId;
+                    boarding_point_landmark = Boarding.CityPointLandmark;
                     boarding_point_name = Boarding.CityPointName;
                     boarding_point_location = Boarding.CityPointLocation;
+                    boarding_point_address = Boarding.CityPointAddress;
+                    boarding_point_contact_number = Boarding.CityPointContactNumber;
+                    boarding_point_time = Boarding.CityPointTime;
+                    /*"CityPointId": 976614,
+                        "BusId": 0,
+                        "CityPointName": "CHARBAGH",
+                        "CityPointLocation": "CHARBAGH",
+                        "CityPointLandmark": null,
+                        "CityPointAddress": null,
+                        "CityPointContactNumber": null,
+                        "CityPointTime": "2016-01-15T21*/
                 });
                 angular.forEach(Buses.DroppingPointsDetails, function (Dropping, key) {
                     dropping_point_name = Dropping.CityPointName;
@@ -50,12 +64,17 @@ angular.module('Travally')
                 "source_name": responseBuses.data.SourceName,
                 "destination_name": responseBuses.data.DestinationName,
                 "date_of_journey" : responseBuses.data.DateOfJourney,
+                "boarding_point_id" : city_point_id,
+                "bus_id" : bus_id,
                 "boarding_point_name" : boarding_point_name,
                 "boarding_point_location" : boarding_point_location,
+                "boarding_point_landmark" : boarding_point_landmark,
+                "boarding_point_address" : boarding_point_address,
+                "boarding_point_contact_number" : boarding_point_contact_number,
+                "boarding_point_time" : boarding_point_time,
                 "duration":diff(Buses.DepartureTime,Buses.ArrivalTime),
                 "dropping_point_name" : dropping_point_name,
                 "dropping_point_location" : dropping_point_location,
-                "boarding_point_details" : Buses.BoardingPointsDetails,
                 "cancel_policy" : Buses.CancelPolicy,
                 "price" : Buses.Price
             };
@@ -86,10 +105,19 @@ angular.module('Travally')
                 "DepartureTime":data.departure_time,
                 "ArrivalTime":data.arrival_time,
                 "TotalFare":data.available_fares,
-                "BoardingPointdetails":data.boarding_point_details,
+                "BoardingPointdetails":{
+                    "CityPointId": data.boarding_point_id,
+                    "BusId": data.bus_id,
+                    "CityPointName": data.boarding_point_name,
+                    "CityPointLocation": data.boarding_point_location,
+                    "CityPointLandmark": data.boarding_point_landmark,
+                    "CityPointAddress": data.boarding_point_address,
+                    "CityPointContactNumber": data.boarding_point_contact_number ,
+                    "CityPointTime": data.boarding_point_time
+                },
                 "CancelPolicy":data.cancel_policy,
                 "PaxDetail":{
-                    "BusId":0,
+                    "BusId":data.bus_id,
                     "PaxId":1,
                     "Title":"Mr.",
                     "LastName":"Ahamad",
@@ -100,35 +128,35 @@ angular.module('Travally')
                     "Address":"Delhi",
                     "Gender":"Male"
                 },
-                "SeatsDetail":""/*[
+                "SeatsDetail":[
                     {
-                        "SeatId":0,
-                        "BusId":0,
-                        "SeatName":"A2",
-                        "SeatType":1,
-                        "RowNo":"000",
-                        "ColumnNo":"000",
-                        "SeatStatus":1,
-                        "SeatFare":100.0,
-                        "priceId":0,
-                        "Width":1,
-                        "Height":2,
-                        "IsLadies":false,
-                        "IsUpper":false,
+                        "SeatId":"",
+                        "BusId":data.bus_id,
+                        "SeatName":"",
+                        "SeatType":"",
+                        "RowNo":"",
+                        "ColumnNo":"",
+                        "SeatStatus":"",
+                        "SeatFare":"",
+                        "priceId":"",
+                        "Width":"",
+                        "Height":"",
+                        "IsLadies":"",
+                        "IsUpper":"",
                         "Price": {
-                            "TdsCommission":0.6,
-                            "PriceId":0,
-                            "PublishedFare":100.0,
-                            "AgentCommission":6.0,
-                            "SeviceTax":0.0,
-                            "Tax":0.0,
+                            "TdsCommission":"",
+                            "PriceId":"",
+                            "PublishedFare":"",
+                            "AgentCommission":"",
+                            "SeviceTax":"",
+                            "Tax":"",
                             "Currency":"",
-                            "RateOfExchange":1.0,
+                            "RateOfExchange":"",
                             "CurrencyCode":"INR",
-                            "Discount":0.0,
-                            "TdsRate":0.0
+                            "Discount":"",
+                            "TdsRate":""
                         }}
-                ]*/,
+                ],
                 "Currency":"INR",
                 "sessionId":$scope.SessionId,
                 "ProductTypeId":0,
@@ -139,13 +167,18 @@ angular.module('Travally')
                 "MemberMobilePin":serverConfig.memberMobilePin
             };
 
+            BusServices.BookBus(book).then(function (BookResponse) {
 
+                console.log(BookResponse);
+
+            }).catch(function (response) {
+
+                console.log(response);
+            });
         };
 
 
         function diff(start, end) {
-
-
             var date1 = new Date(start);
             var date2 = new Date(end);
             var diff = Math.abs(date2.getTime() - date1.getTime());
@@ -157,6 +190,11 @@ angular.module('Travally')
                 hours = hours + 24;
             return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
         }
+
+
+
+
+
 
 
         /*$scope.filterFlightDetail=function(){
