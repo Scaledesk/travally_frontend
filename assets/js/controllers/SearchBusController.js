@@ -5,6 +5,7 @@ angular.module('Travally')
         $scope.SourceName = $routeParams.SourceName;
         $scope.DestinationName = $routeParams.DestinationName;
         $scope.DateOfJourney = $routeParams.DateOfJourney;
+        $scope.page_type = "list";
 
 
         $scope.sortType     = "duration";
@@ -169,6 +170,8 @@ angular.module('Travally')
 
             BusServices.BookBus(book).then(function (BookResponse) {
 
+                $scope.book_response = BookResponse;
+                $scope.page_type = "book"
                 console.log(BookResponse);
 
             }).catch(function (response) {
