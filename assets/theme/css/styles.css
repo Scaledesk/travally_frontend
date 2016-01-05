@@ -51,6 +51,8 @@ h5 small,
   font-size: 50%;
   font-weight: inherit;
 }
+
+
 h1 {
   font-size: 51.98102000000001px;
 }
@@ -1904,8 +1906,8 @@ body {
 .bg-holder {
   position: relative;
   overflow: hidden;
-   
-    
+
+
 }
 .bg-holder > .bg-mask,
 .bg-holder > .bg-blur,
@@ -2510,7 +2512,7 @@ header#main-header {
   color: #ccc;
 }
 .nav-pills > li.active > a {
-   background: rgba(237, 131, 35, 0); 
+   background: rgba(237, 131, 35, 0);
  /* cursor: default; */
 }
 .nav-pills > li.active > a:hover {

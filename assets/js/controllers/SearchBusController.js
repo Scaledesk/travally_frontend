@@ -8,7 +8,6 @@ angular.module('Travally')
         $scope.page_type = "list";
         $scope.details = false;
 
-
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
 
@@ -77,7 +76,8 @@ angular.module('Travally')
                 "dropping_point_location" : dropping_point_location,
                 "cancel_policy" : Buses.CancelPolicy,
                 "dropping_point_details" : Buses.DroppingPointsDetails,
-                "price" : Buses.Price
+                "price" : Buses.Price,
+                "busDetailsView":false
             };
                 $scope.Bus_Result.push(busDetails);
             });
@@ -90,38 +90,46 @@ angular.module('Travally')
 
 
         $scope.showDetails =function(busses){
-            $scope.page_type = "book";
-            $scope.loading = "true";
-
-            var bb={
-                "BTBusSearchResult": {
-                    "RouteId": busses.route_id,
-                    "BusType": busses.bus_type,
-                    "ServiceName": busses.service_name,
-                    "TravelName": busses.travel_name,
-                    "Currency": "INR",
-                    "DepartureTime":busses.departure_time,
-                    "ArrivalTime": busses.arrival_time,
-                    "BusSource": busses.bus_source,
-                    "AvailableSeats": busses.available_seats,
-                    "AvailableFares": busses.available_fares,
-                    "CancelPolicy": busses.cancel_policy,
-                    "DroppingPointsDetails": busses.dropping_point_details,
-                    "Price": busses.price
-                },
-                "DateOfJourney": $scope.DateOfJourney,
-                "sessionId": $scope.SessionId,
-                "MemberMobileNo": serverConfig.memberMobileNumber,
-                "MemberMobilePin": serverConfig.memberMobilePin
-            };
-            BusServices.getSeatLayout(bb).then(function (seatLayout) {
-                $scope.loading = false;
-                $scope.seat_layout = seatLayout;
-                console.log(seatLayout);
-            }).catch(function (response) {
-                $scope.loading = false;
-                console.log(response);
-            });
+            //$scope.page_type = "book";
+            if(busses.busDetailsView == true){
+                busses.busDetailsView = false;
+            }
+            else{
+                busses.busDetailsView = true;
+            }
+            $scope.detailsLoading = "true";
+            if(busses.busDetailsView == true) {
+                var bb = {
+                    "BTBusSearchResult": {
+                        "RouteId": busses.route_id,
+                        "BusType": busses.bus_type,
+                        "ServiceName": busses.service_name,
+                        "TravelName": busses.travel_name,
+                        "Currency": "INR",
+                        "DepartureTime": busses.departure_time,
+                        "ArrivalTime": busses.arrival_time,
+                        "BusSource": busses.bus_source,
+                        "AvailableSeats": busses.available_seats,
+                        "AvailableFares": busses.available_fares,
+                        "CancelPolicy": busses.cancel_policy,
+                        "DroppingPointsDetails": busses.dropping_point_details,
+                        "Price": busses.price
+                    },
+                    "DateOfJourney": $scope.DateOfJourney,
+                    "sessionId": $scope.SessionId,
+                    "MemberMobileNo": serverConfig.memberMobileNumber,
+                    "MemberMobilePin": serverConfig.memberMobilePin
+                };
+                BusServices.getSeatLayout(bb).then(function (seatLayout) {
+                    $scope.detailsLoading = false;
+                    $scope.seat_layout = seatLayout;
+                    $scope.seatLayoutExample = "<h1>hello world</h1><br/><p>vgscvdghscvghscvghsdv<br/>gdchsgcfgshcvhs<br/>scdfsfcgfc</p>";
+                    console.log(seatLayout);
+                }).catch(function (response) {
+                    $scope.detailsLoading = false;
+                    console.log(response);
+                });
+            }
         };
         $scope.renderHtml = function (htmlCode) {
             return $sce.trustAsHtml(htmlCode);

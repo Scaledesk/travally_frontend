@@ -2,11 +2,31 @@ angular.module('Travally')
 // inject the Activation service into our controller
     .controller('HomeController', function(TrainBetweenStation, Hotel, StationCode, $http, $scope, $location,$filter, Flight, BusServices ) {
         //var d = $location.search().code;
+        $scope.$emit('LOAD')
         $scope.tab = 'train';
         $scope.selectedItem = {};
         $scope.master_stations = StationCode.get();
         $scope.source = {};
         $scope.destination = {};
+
+        $scope.cityData = Hotel.getCity();
+        $scope.city = {};
+        $scope.cityDestinaton = {};
+
+        $scope.flightSearchButtonText = "Search Flight";
+        $scope.flightSearchButton = false;
+
+        BusServices.getAllCities().then(function (responseCities) {
+            $scope.Bus_Cities = responseCities.data.WSBusCityList;
+            $scope.$emit('UNLOAD')
+        }).catch(function (response) {
+            $scope.$emit('UNLOAD')
+        });
+        $scope.BusSourceCity = {};
+        $scope.BusDestinationCity = {};
+
+
+
 
         $scope.refreshSources = function(query){
             console.log(query);
@@ -20,6 +40,11 @@ angular.module('Travally')
             $scope.destinations = $filter('filter')($scope.master_stations,{name:query})
         };
 
+
+        /**
+         * function for search train result
+         * @param formData
+         */
         $scope.search =function(formData){
             var source = $scope.source.selected.code;
             var dest = $scope.destination.selected.code;
@@ -32,9 +57,6 @@ angular.module('Travally')
         /**
          * function for city detail search for hotel and flight
          */
-        $scope.cityData = Hotel.getCity();
-        $scope.city = {};
-        $scope.cityDestinaton = {};
         $scope.refreshCity = function(query){
             if(query == null) return [];
             if(query.length < 3) return [];
@@ -45,7 +67,6 @@ angular.module('Travally')
             if(query.length < 3) return [];
             $scope.cityDestinaton = $filter('filter')($scope.cityData,{name:query})
         };
-
 
         /**
          * function for searching for hotel
@@ -58,9 +79,6 @@ angular.module('Travally')
             //var passenger = formData.passenger;
             $location.path('/hotel-details/'+city+'/'+check_in+'/'+check_out);
         };
-
-        $scope.flightSearchButtonText = "Search Flight";
-        $scope.flightSearchButton = false;
         /**
          * function for search flight details
          * @param flight
@@ -79,14 +97,6 @@ angular.module('Travally')
          * Get all cities for bus
          * Code for bus search details
          */
-
-        BusServices.getAllCities().then(function (responseCities) {
-            $scope.Bus_Cities = responseCities.data.WSBusCityList;
-        }).catch(function (response) {
-
-        });
-        $scope.BusSourceCity = {};
-        $scope.BusDestinationCity = {};
 
         $scope.refreshBusSources = function(query){
             if(query == null) return [];

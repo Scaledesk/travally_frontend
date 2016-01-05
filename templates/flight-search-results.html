@@ -186,7 +186,21 @@
                 </ul>
             </div>
 -->
-            <ul class="booking-list">
+            <div ng-show="loading">
+
+                <div id="floatingCirclesG">
+                    <div class="f_circleG" id="frotateG_01"></div>
+                    <div class="f_circleG" id="frotateG_02"></div>
+                    <div class="f_circleG" id="frotateG_03"></div>
+                    <div class="f_circleG" id="frotateG_04"></div>
+                    <div class="f_circleG" id="frotateG_05"></div>
+                    <div class="f_circleG" id="frotateG_06"></div>
+                    <div class="f_circleG" id="frotateG_07"></div>
+                    <div class="f_circleG" id="frotateG_08"></div>
+                </div>
+
+            </div>
+            <ul ng-hide="loading" class="booking-list">
                 <li ng-repeat="flight in flightResult | orderBy:sortType:sortReverse">
                     <div class="booking-item-container">
                         <div class="booking-item">
@@ -244,7 +258,7 @@
 
 
 
-            <p class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
             </p>
         </div>
 
@@ -256,8 +270,8 @@
                     <h4>Featured Posts</h4>
                     <ul class="thumb-list">
                         <li>
-                            <a href="#">
-                                <img src="img/viva_las_vegas_70x70.jpg" alt="Image Alternative text" title="Viva Las Vegas" />
+                            <a href="">
+                                <img src="assets/theme/img/viva_las_vegas_70x70.jpg" alt="Image Alternative text" title="Viva Las Vegas" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -266,8 +280,8 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="img/4_strokes_of_fun_70x70.jpg" alt="Image Alternative text" title="4 Strokes of Fun" />
+                            <a href="">
+                                <img src="assets/theme/img/4_strokes_of_fun_70x70.jpg" alt="Image Alternative text" title="4 Strokes of Fun" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -276,8 +290,8 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="img/cup_on_red_70x70.jpg" alt="Image Alternative text" title="Cup on red" />
+                            <a href="">
+                                <img src="assets/theme/img/cup_on_red_70x70.jpg" alt="Image Alternative text" title="Cup on red" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -327,4 +341,7 @@
     </div>
 </div>
 <div class="gap"></div>
-</div>
+
+
+
+

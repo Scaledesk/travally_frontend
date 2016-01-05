@@ -42,7 +42,6 @@ console.log($scope.passenger);
         Flight.searchFlight(flightData).then(function (d) {
             $scope.sessionId = d.data.SessionId;
             $scope.flightData = d.data.Result;
-
             angular.forEach($scope.flightData, function (flight, key) {
                 /*var getFareRule =  {
                     "SessionId":$scope.sessionId,
@@ -160,7 +159,6 @@ console.log($scope.passenger);
             else{
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
-                   //     fResult = flight;
                         getFareQuote = {
                             "sessionId":$scope.sessionId,
                             "Result":flight,

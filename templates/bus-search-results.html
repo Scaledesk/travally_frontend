@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="booking-title"> {{Bus_Result.length;}} Buses from {{SourceName}} to {{DestinationName}} on {{DateOfJourney | date : medium}} <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
+    <h3 class="booking-title" ng-hide="loading" > {{Bus_Result.length;}} Buses from {{SourceName}} to {{DestinationName}} on {{DateOfJourney | date : medium}} <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
     <form class="booking-item-dates-change mb30">
         <div class="row">
             <div class="col-md-3">
@@ -128,13 +128,29 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-7">
-            <ul ng-show="page_type=='list'" class="booking-list">
 
+
+
+        <div class="col-md-7">
+            <div ng-show="loading">
+
+                <div id="floatingCirclesG">
+                    <div class="f_circleG" id="frotateG_01"></div>
+                    <div class="f_circleG" id="frotateG_02"></div>
+                    <div class="f_circleG" id="frotateG_03"></div>
+                    <div class="f_circleG" id="frotateG_04"></div>
+                    <div class="f_circleG" id="frotateG_05"></div>
+                    <div class="f_circleG" id="frotateG_06"></div>
+                    <div class="f_circleG" id="frotateG_07"></div>
+                    <div class="f_circleG" id="frotateG_08"></div>
+                </div>
+
+            </div>
+
+            <ul ng-hide="loading" class="booking-list">
                 <li ng-repeat="busses in Bus_Result | orderBy:sortType:sortReverse">
                     <div class="booking-item-container">
 
-                        <!--{'tab-pane fade in active':tab=='flight'}-->
 
                         <div class="booking-item">
                             <div class="row">
@@ -166,49 +182,43 @@
                             </div>
                         </div>
 
-                        <div class="booking-item-details">
-                            <div ng-show="loading" class="row">
-                                <div class="alert-info">Loading...........</div>
+                        <div ng-show="busses.busDetailsView" class="booking-item">
+                            <div ng-show="detailsLoading" class="row">
+                                <div id="floatingCirclesG">
+                                    <div class="f_circleG" id="frotateG_01"></div>
+                                    <div class="f_circleG" id="frotateG_02"></div>
+                                    <div class="f_circleG" id="frotateG_03"></div>
+                                    <div class="f_circleG" id="frotateG_04"></div>
+                                    <div class="f_circleG" id="frotateG_05"></div>
+                                    <div class="f_circleG" id="frotateG_06"></div>
+                                    <div class="f_circleG" id="frotateG_07"></div>
+                                    <div class="f_circleG" id="frotateG_08"></div>
+                                </div>
                             </div>
-                            <div ng-hide="loading" class="row">
+                            <div ng-hide="detailsLoading" class="row">
                                 <div class="col-md-8">
 
-                                    <div ng-bind-html="seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout"></div>
+                                    <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
+                                    <div ng-bind-html="renderHtml(seatLayoutExample)"></div>
 
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 </li>
 
             </ul>
 
-            <div ng-show="page_type=='book'">
-                <div class="booking-item-details">
-                    <div ng-show="loading" class="row">
-                        <div class="alert-info">Loading...........</div>
-                    </div>
-                    <div ng-hide="loading" class="row">
-                        <div class="col-md-8">
-
-                            <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
-                            <div ng-bind-html="renderHtml(onlyTest)">
-
-                            </div>
-                            <!--<div ng:bind="seat_layout_html"></div>-->
-                            <!--<div ng:bind="seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout"></div>-->
-
-                        </div>
-                    </div>
-                </div>
-                {{book_response.data.Message.Description}}
-
-            </div>
-
-            <p class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
             </p>
         </div>
+
+
+        bus search layout
+
+
         <div class="col-md-2">
             <aside class="sidebar-right">
 
