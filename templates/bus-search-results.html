@@ -1,4 +1,4 @@
-<div ng-show="page_type=='list'" class="container">
+<div class="container">
     <h3 class="booking-title"> {{Bus_Result.length;}} Buses from {{SourceName}} to {{DestinationName}} on {{DateOfJourney | date : medium}} <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
     <form class="booking-item-dates-change mb30">
         <div class="row">
@@ -129,9 +129,13 @@
             </div>
         </div>
         <div class="col-md-7">
-            <ul class="booking-list">
+            <ul ng-show="page_type=='list'" class="booking-list">
+
                 <li ng-repeat="busses in Bus_Result | orderBy:sortType:sortReverse">
                     <div class="booking-item-container">
+
+                        <!--{'tab-pane fade in active':tab=='flight'}-->
+
                         <div class="booking-item">
                             <div class="row">
                                 <div class="col-md-2">
@@ -157,13 +161,51 @@
                                     <h5>{{busses.duration}} hour</h5>
                                 </div>
                                 <div class="col-md-3"><span class="booking-item-price">&#8377;{{busses.available_fares}}</span><span></span>
-                                    <p class="booking-item-flight-class">Class: {{busses.service_name}}</p><a class="btn btn-primary" ng-click="bookingDetails(busses)" href="">Select</a>
+                                    <p class="booking-item-flight-class">Class: {{busses.service_name}}</p><a class="btn btn-primary" ng-click="showDetails(busses)" ng-href="">Select</a>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="booking-item-details">
+                            <div ng-show="loading" class="row">
+                                <div class="alert-info">Loading...........</div>
+                            </div>
+                            <div ng-hide="loading" class="row">
+                                <div class="col-md-8">
+
+                                    <div ng-bind-html="seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </li>
+
             </ul>
+
+            <div ng-show="page_type=='book'">
+                <div class="booking-item-details">
+                    <div ng-show="loading" class="row">
+                        <div class="alert-info">Loading...........</div>
+                    </div>
+                    <div ng-hide="loading" class="row">
+                        <div class="col-md-8">
+
+                            <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
+                            <div ng-bind-html="renderHtml(onlyTest)">
+
+                            </div>
+                            <!--<div ng:bind="seat_layout_html"></div>-->
+                            <!--<div ng:bind="seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout"></div>-->
+
+                        </div>
+                    </div>
+                </div>
+                {{book_response.data.Message.Description}}
+
+            </div>
+
             <p class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
             </p>
         </div>
@@ -175,7 +217,7 @@
                     <ul class="thumb-list">
                         <li>
                             <a href="#">
-                                <img src="img/viva_las_vegas_70x70.jpg" alt="Image Alternative text" title="Viva Las Vegas" />
+                                <img src="assets/theme/img/viva_las_vegas_70x70.jpg" alt="Image Alternative text" title="Viva Las Vegas" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -185,7 +227,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img src="img/4_strokes_of_fun_70x70.jpg" alt="Image Alternative text" title="4 Strokes of Fun" />
+                                <img src="assets/theme/img/4_strokes_of_fun_70x70.jpg" alt="Image Alternative text" title="4 Strokes of Fun" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -195,7 +237,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img src="img/cup_on_red_70x70.jpg" alt="Image Alternative text" title="Cup on red" />
+                                <img src="assets/theme/img/cup_on_red_70x70.jpg" alt="Image Alternative text" title="Cup on red" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -205,50 +247,9 @@
                         </li>
                     </ul>
                 </div>
-
-
-                <div class="sidebar-widget">
-                    <h4>Gallery</h4>
-                    <div class="row row-no-gutter">
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                        <div class="col-md-4">
-
-                        </div>
-                    </div>
-                </div>
-
             </aside>
         </div>
     </div>
-</div>
-<div ng-show="page_type=='book'">
-{{book_response.data.Message.Description}}
-    hdghvdcgv chdcgdhvcgvcgdsvdgsvcdvsdcvsgcvgdvcgdvcgdvcgvsdgcvgcvdghvcgsdcvsdccdsvcgdvc
-    vcbdc v
-
 </div>
 
 

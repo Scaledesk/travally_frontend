@@ -36,6 +36,18 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                 },
                 data: dt
             });
-        }
+        },
+        getSeatLayout: function (dt) {
+        return $http({
+            method: 'POST',
+            url: 'http://api.jbspl.com/api/BusBooking/GetSeatLayOut',
+            headers: {
+                'x-UserName':serverConfig.user_name,
+                'x-Password':serverConfig.password,
+                'Content-Type': 'application/json'
+            },
+            data: dt
+        });
+    }
     }
 });
