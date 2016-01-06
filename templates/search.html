@@ -415,7 +415,25 @@
                         </a>
                     </li>
                 </ul>
-                <div class="tab-content">
+
+                <div ng-show="loading">
+
+                    <div id="floatingCirclesG">
+                        <div class="f_circleG" id="frotateG_01"></div>
+                        <div class="f_circleG" id="frotateG_02"></div>
+                        <div class="f_circleG" id="frotateG_03"></div>
+                        <div class="f_circleG" id="frotateG_04"></div>
+                        <div class="f_circleG" id="frotateG_05"></div>
+                        <div class="f_circleG" id="frotateG_06"></div>
+                        <div class="f_circleG" id="frotateG_07"></div>
+                        <div class="f_circleG" id="frotateG_08"></div>
+                    </div>
+
+                </div>
+
+
+
+                <div ng-hide="loading" class="tab-content">
                     <div class="tab-pane fade in active" id="tab-1">
                         <div class="booking-item-container">
                             <!--.type1 | filter:checkboxModel.type2 | filter:checkboxModel.type3 | filter:checkboxModel.type4-->

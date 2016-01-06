@@ -97,7 +97,6 @@ angular.module('Travally')
          * Get all cities for bus
          * Code for bus search details
          */
-
         $scope.refreshBusSources = function(query){
             if(query == null) return [];
             if(query.length < 3) return [];
