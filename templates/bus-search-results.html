@@ -160,12 +160,12 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="booking-item-flight-details">
-                                        <div class="booking-item-departure"><i class="fa fa-plane"></i>
+                                        <div class="booking-item-departure"><i class="fa fa-bus"></i>
                                             <h5>{{ busses.departure_time | date : 'h:mm a'}}</h5>
                                             <p class="booking-item-date">{{ busses.date_of_journey | date : medium}}</p>
                                             <p class="booking-item-destination">{{busses.boarding_point_location}}</p>
                                         </div>
-                                        <div class="booking-item-arrival"><i class="fa fa-plane fa-flip-vertical"></i>
+                                        <div class="booking-item-arrival"><i class="fa fa-bus "></i>
                                             <h5>{{ busses.arrival_time | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
                                             <p class="booking-item-destination">{{busses.dropping_point_location}}</p>
                                         </div>
@@ -252,13 +252,7 @@
 
             </ul>
         </div>
-
-            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
-            </p>
-        </div>
-
-
-        <div class="col-md-2">
+          <div class="col-md-2">
             <aside class="sidebar-right">
 
                 <div class="sidebar-widget">
@@ -298,6 +292,13 @@
                 </div>
             </aside>
         </div>
+
+            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+            </p>
+        </div>
+
+
+      
     </div>
 </div>
 
