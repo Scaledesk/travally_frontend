@@ -11005,4 +11005,22 @@ img.mfp-img {
   padding: 10px 60px ! important;
 }
 
+.bus_search_align{
+  margin: 12px 0 0 0;
+}
+.bus_search_align_2{
+  margin: 12px 0 0 0;
+}
+​
+.bus_search_btn{
+  background-color: #C96810;
+  border: none;
+  color: #fff;
+  padding: 10px 10px;
+}
+​
+.bus_search_align_1{
+  font-size: 18px;
+}
+
 

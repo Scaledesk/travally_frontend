@@ -129,8 +129,6 @@
             </div>
         </div>
 
-
-
         <div class="col-md-7">
             <div ng-show="loading">
 
@@ -182,7 +180,10 @@
                             </div>
                         </div>
 
-                        <div ng-show="busses.busDetailsView" class="booking-item">
+
+
+                        <!--<div ng-show="busses.busDetailsView" class="booking-item">
+
                             <div ng-show="detailsLoading" class="row">
                                 <div id="floatingCirclesG">
                                     <div class="f_circleG" id="frotateG_01"></div>
@@ -203,20 +204,64 @@
 
                                 </div>
                             </div>
+
+                        </div>-->
+
+
+
+
+                        <div ng-show="busses.busDetailsView" class="booking-item">
+
+                            <div ng-show="detailsLoading" class="row">
+                                <div id="floatingCirclesG">
+                                    <div class="f_circleG" id="frotateG_01"></div>
+                                    <div class="f_circleG" id="frotateG_02"></div>
+                                    <div class="f_circleG" id="frotateG_03"></div>
+                                    <div class="f_circleG" id="frotateG_04"></div>
+                                    <div class="f_circleG" id="frotateG_05"></div>
+                                    <div class="f_circleG" id="frotateG_06"></div>
+                                    <div class="f_circleG" id="frotateG_07"></div>
+                                    <div class="f_circleG" id="frotateG_08"></div>
+                                </div>
+                            </div>
+                            <div ng-hide="detailsLoading" class="row">
+                                <div class="col-md-7">
+                                    <h4>Select Your Seat</h4>
+                                </div>
+                                <div class="col-md-5">
+                                    <h4>Select Your Boarding Point</h4>
+                                    <select>
+                                        <option value="Place">New Delhi</option>
+                                        <option value="Place">Dehradun</option>
+                                    </select>
+                                    ​
+                                    <p class="bus_search_align">Seat No.</p>
+                                    <h4 class="bus_search_align_1">Not Selected</h4>
+                                    <p class="bus_search_align_2">Total Amount</p>
+                                    <h4>&#x20b9;0</h4>
+                                    <button class="bus_search_btn">Confirm Booking</button>
+                                </div>
+                                ​
+                                ​
+                            </div>
+
                         </div>
+
+
+
+
+
 
 
                     </div>
                 </li>
 
             </ul>
+        </div>
 
             <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
             </p>
         </div>
-
-
-        bus search layout
 
 
         <div class="col-md-2">
