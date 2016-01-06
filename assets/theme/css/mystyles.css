@@ -15,6 +15,8 @@
     background: url("/assets/theme/img/Preloader.gif") no-repeat 50% 50% transparent;
 }
 
+/*================Bus FOnt awesome Icon customization according to theme =======*/
+
 .booking-item-flight-details .booking-item-departure .fa-bus,
 .booking-item-flight-details .booking-item-arrival .fa-bus {
   float: left;
