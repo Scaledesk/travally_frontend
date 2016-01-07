@@ -10,10 +10,10 @@ angular.module('Travally')
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
         $scope.passenger = $routeParams.passenger;
-console.log($scope.source);
+/*console.log($scope.source);
 console.log($scope.destination);
 console.log($scope.departureDate);
-console.log($scope.passenger);
+console.log($scope.passenger);*/
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
         var flightData = {
@@ -114,9 +114,8 @@ console.log($scope.passenger);
         });
         $scope.bookingDetails = function(data) {
             if (!data.isLcc) {
-                window.localStorage['flight'] = data;
+                //window.localStorage['flight'] = data;
                 angular.forEach($scope.flightData, function (flight, key) {
-
                     if (flight.SegmentKey == data.key) {
                         window.localStorage['AdultCount'] = $scope.passenger;
                         window.localStorage['ChildCount'] = 0;
@@ -149,7 +148,6 @@ console.log($scope.passenger);
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
-                        console.log(data.key);
                         Flight.setflightBookData(bookVal);
                         Flight.setFlightData(data);
                         $location.path('/bookingDetail');
@@ -165,8 +163,8 @@ console.log($scope.passenger);
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
-                        console.log(flight.SegmentKey);
-                        console.log(data.key);
+                        /*console.log(flight.SegmentKey);
+                        console.log(data.key);*/
                         Flight.flightGetFareQuote(getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
                             console.log(fareQuoteResponse);
