@@ -8,38 +8,16 @@ angular.module('Travally')
         };
         $scope.flightData = Flight.getFlightData();
         $scope.bookVal = Flight.getflightBookData();
-        for (var i=1; i<$scope.passenger.adult; i++) {
-            $scope.pp = {
+        //console.log($scope.flightData);
+
+        angular.forEach($scope.flightData.FareBreakdown, function (f, key) {
+            p = {
                 "Title": "",
                 "FirstName": "",
                 "LastName": "",
                 "Type": 0,
-                "DateOfBirth": "",
-                "Fare": {
-                    "BaseFare": 0.0,
-                    "Tax": 0.0,
-                    "ServiceTax": 0.0,
-                    "AdditionalTxnFee": 0.0,
-                    "AgentCommission": 0.0,
-                    "TdsOnCommission": 0.0,
-                    "IncentiveEarned": 0.0,
-                    "TdsOnIncentive": 0.0,
-                    "PLBEarned": 0.0,
-                    "TdsOnPLB": 0.0,
-                    "PublishedPrice": 0.0,
-                    "AirTransFee": 0.0,
-                    "Currency": null,
-                    "Discount": 0.0,
-                    "ChargeBU": null,
-                    "OtherCharges": 0.0,
-                    "FuelSurcharge": 0.0,
-                    "TransactionFee": 0.0,
-                    "ReverseHandlingCharge": 0.0,
-                    "OfferedFare": 0.0,
-                    "AgentServiceCharge": 0.0,
-                    "AgentConvienceCharges": 0.0,
-                    "Markup": null
-                },
+                "DateOfBirth": "10-07-1991",
+                "Fare": f,
                 "Ssr": null,
                 "Gender": 1,
                 "PassportNumber": "",
@@ -49,23 +27,23 @@ angular.module('Travally')
                 "Phone": "",
                 "AddressLine1": "",
                 "AddressLine2": "",
-                "Email": "",
+                "Email": "javedahamad4@gmail.com",
                 "Meal": {
-                    "Code": "",
-                    "Description": ""
+                    "Code": "FPML",
+                    "Description": "Fruit Meal"
                 },
                 "Seat": {
-                    "Code": "",
-                    "Description": ""
+                    "Code": "A",
+                    "Description": "Aisle"
                 },
                 "FFAirline": "", "FFNumber": ""
             };
-            $scope.bookVal.Passenger.push($scope.pp);
-        }
+            $scope.bookVal.Passenger.push(p);
+        });
 
-        console.log($scope.passenger);
-        console.log($scope.bookVal);
+
         $scope.BookFlight = function(){
+            console.log($scope.bookVal);
             Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
                 console.log('booking Details');
                 console.log(bookingResponse);
@@ -73,5 +51,4 @@ angular.module('Travally')
                 console.log(response);
             });
         };
-
     });

@@ -10,13 +10,9 @@ angular.module('Travally')
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
         $scope.passenger = $routeParams.passenger;
-/*console.log($scope.source);
-console.log($scope.destination);
-console.log($scope.departureDate);
-console.log($scope.passenger);*/
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
-        var flightData = {
+        /*var flightData = {
             "Origin": $scope.source,
             "Destination": $scope.destination,
             "DepartureDate": $scope.departureDate,
@@ -25,8 +21,8 @@ console.log($scope.passenger);*/
             "CabinClass": 2,
             "PreferredCarrier": "",
             "AdultCount": $scope.passenger,
-            "ChildCount": 0,
-            "InfantCount": 0,
+            "ChildCount": 1,
+            "InfantCount": 1,
             "SeniorCount": 0,
             "PromotionalPlanType": 0,
             "PromotionalCode": null,
@@ -36,12 +32,45 @@ console.log($scope.passenger);*/
             "ReturnDateString": "",
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin
+        };*/
+        var flightDataDemo = {
+            "Origin":"BOM",
+            "Destination":"DEL",
+            "DepartureDate":"0001-01-01T00:00:00",
+            "Type":0,
+            "ReturnDate":"0001-01-01T00:00:00",
+            "CabinClass":0,"PreferredCarrier":"",
+            "AdultCount":1,
+            "ChildCount":1,
+            "InfantCount":1,
+            "SeniorCount":0,
+            "PromotionalPlanType":0,
+            "PromotionalCode":null,
+            "IsDirectFlight":false,
+            "FlightSegments":null,
+            "DepartureDateString":"10/01/2016",
+            "ReturnDateString":"",
+            "MemberMobileNo":serverConfig.memberMobileNumber,
+            "MemberMobilePin":serverConfig.memberMobilePin
         };
+
+
+
+
+
+
+
+
+
+
+
+
         $scope.flightResultData =[];
         $scope.$emit('LOAD')
-        Flight.searchFlight(flightData).then(function (d) {
+        Flight.searchFlight(flightDataDemo).then(function (d) {
             $scope.sessionId = d.data.SessionId;
             $scope.flightData = d.data.Result;
+            //console.log(d.data.Result);
             angular.forEach($scope.flightData, function (flight, key) {
                 /*var getFareRule =  {
                     "SessionId":$scope.sessionId,
@@ -102,6 +131,7 @@ console.log($scope.passenger);*/
                 "duration":flight.ObDuration,
                 "isLcc":flight.IsLcc,
                 "stop":stop,
+                "FareBreakdown":flight.FareBreakdown,
                 "key":flight.SegmentKey
             };
                 $scope.flightResultData.push(vv);
@@ -163,8 +193,8 @@ console.log($scope.passenger);*/
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
-                        /*console.log(flight.SegmentKey);
-                        console.log(data.key);*/
+                        //console.log(flight.SegmentKey);
+                        console.log(getFareQuote);
                         Flight.flightGetFareQuote(getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
                             console.log(fareQuoteResponse);

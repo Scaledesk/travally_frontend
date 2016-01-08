@@ -227,6 +227,8 @@
                             <div ng-hide="detailsLoading" class="row">
                                 <div class="col-md-7">
                                     <h4>Select Your Seat</h4>
+                                    <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
+                                    <!--<div ng-bind-html="renderHtml(seatLayoutExample)"></div>-->
                                 </div>
                                 <div class="col-md-5">
                                     <h4>Select Your Boarding Point</h4>
