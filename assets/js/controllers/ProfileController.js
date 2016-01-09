@@ -14,6 +14,9 @@ console.log($routeParams.target);
      */
         Profile.get().then(function (d) {
             $scope.profile = d.data.data;
+            if($scope.profile.Image==''){
+                $scope.profile.Image="assets/theme/img/BlankImages.png";
+            }
             $scope.user.name = $scope.profile.Name;
             $scope.user.address = $scope.profile.Address;
             $scope.user.dob = $scope.profile.DOB;

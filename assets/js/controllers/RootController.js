@@ -16,7 +16,9 @@ angular.module('Travally')
         {
             Profile.get().then(function(data){
                 $rootScope.user_profile = data.data.data;
-                console.log("aaa");
+                if($scope.user_profile.Image==''){
+                    $scope.user_profile.Image="assets/theme/img/BlankImages.png";
+                }
             });
         }
     });
