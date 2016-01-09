@@ -16,7 +16,7 @@ angular.module('Travally')
                 "FirstName": "",
                 "LastName": "",
                 "Type": 0,
-                "DateOfBirth": "10-07-1991",
+                "DateOfBirth":"",
                 "Fare": f,
                 "Ssr": null,
                 "Gender": 1,
@@ -46,7 +46,8 @@ angular.module('Travally')
             console.log($scope.bookVal);
             Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
                 console.log('booking Details');
-                console.log(bookingResponse);
+                $scope.bookingResponse = bookingResponse.data;
+                console.log(bookingResponse.data);
             }).catch(function (response) {
                 console.log(response);
             });

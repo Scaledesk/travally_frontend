@@ -41,8 +41,8 @@ angular.module('Travally')
             "ReturnDate":"0001-01-01T00:00:00",
             "CabinClass":0,"PreferredCarrier":"",
             "AdultCount":1,
-            "ChildCount":1,
-            "InfantCount":1,
+            "ChildCount":0,
+            "InfantCount":0,
             "SeniorCount":0,
             "PromotionalPlanType":0,
             "PromotionalCode":null,
@@ -187,15 +187,15 @@ angular.module('Travally')
             else{
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
-                        getFareQuote = {
+                        $scope.getFareQuote = {
                             "sessionId":$scope.sessionId,
                             "Result":flight,
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
                         //console.log(flight.SegmentKey);
-                        console.log(getFareQuote);
-                        Flight.flightGetFareQuote(getFareQuote).then(function (fareQuoteResponse) {
+                        //console.log(getFareQuote);
+                        Flight.flightGetFareQuote($scope.getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
                             console.log(fareQuoteResponse);
                         }).catch(function (response) {

@@ -129,7 +129,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <input class="date-pick-years form-control" ng-model="passenger.DateOfBirth" type="text" />
+                                <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="passenger.DateOfBirth">
+                                <!--<input class="date-pick-years form-control" ng-model="passenger.DateOfBirth" type="text" />-->
                             </div>
                         </div>
                     </div>
@@ -168,13 +169,13 @@
 
             <div class="gap gap-small"></div>
             <div class="row">
-                <div class="col-md-6">
+                <!--<div class="col-md-6">
                     <img class="pp-img" src="img/paypal.png" alt="Image Alternative text" title="Image Title" />
                     <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p><a class="btn btn-primary">Checkout via Paypal</a>
-                </div>
+                </div>-->
                 <div class="col-md-6">
                     <form class="cc-form">
-                        <div class="clearfix">
+                        <!--<div class="clearfix">
                             <div class="form-group form-group-cc-number">
                                 <label>Card Number</label>
                                 <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text" /><span class="cc-card-icon"></span>
@@ -197,8 +198,10 @@
                         <div class="checkbox checkbox-small">
                             <label>
                                 <input class="i-check" type="checkbox" checked/>Add to My Cards</label>
-                        </div>
-                        <input class="btn btn-primary" type="button" ng-click="BookFlight()" value="Proceed Payment" />
+                        </div>-->
+                        {{bookVal}}</form>
+                        <input class="btn btn-primary" type="button" ng-click="BookFlight()" value="Proceed Payment" /><br/><br/>
+                    {{bookingResponse}}
                     </form>
                 </div>
             </div>
