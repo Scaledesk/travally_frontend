@@ -48,7 +48,7 @@ angular.module('Travally')
             "PromotionalCode":null,
             "IsDirectFlight":false,
             "FlightSegments":null,
-            "DepartureDateString":"10/01/2016",
+            "DepartureDateString":"13/01/2016",
             "ReturnDateString":"",
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
@@ -142,6 +142,7 @@ angular.module('Travally')
             $scope.$emit('UNLOAD')
             console.log(response);
         });
+
         $scope.bookingDetails = function(data) {
             if (!data.isLcc) {
                 //window.localStorage['flight'] = data;
@@ -151,26 +152,40 @@ angular.module('Travally')
                         window.localStorage['ChildCount'] = 0;
                         window.localStorage['InfantCount'] = 0;
                         window.localStorage['SeniorCount'] = 0;
+
+                        /*"Remarks": "test",
+                         "InstantTicket": true,
+                         "Fare": flight.Fare,
+                         "Passenger": [],
+                         "Origin": data.origin,
+                         "Destination": data.destination,
+                         "Segment": flight.Segment,
+                         "FareType": "PUB",
+                         "FareRule": flight.FareRule,
+                         "Source": 0,
+                         */
+
+
                         bookVal = {
-                            "Remarks": "",
-                            "InstantTicket": true,
-                            "Fare": flight.Fare,
-                            "Passenger": [],
+                            "Remarks":"test",
+                            "InstantTicket":true,
+                            "Fare":flight.Fare,
+                            "Passenger":[],
                             "Origin": data.origin,
                             "Destination": data.destination,
                             "Segment": flight.Segment,
-                            "FareType": "PUB",
+                            "FareType":"PUB",
                             "FareRule": flight.FareRule,
-                            "Source": 0,
-                            "PaymentInformation": {
-                                "PaymentInformationId": "",
-                                "InvoiceNumber": "",
-                                "PaymentId": "",
-                                "Amount": "",
-                                "IPAddress": "",
-                                "TrackId": "",
-                                "PaymentGateway": "",
-                                "PaymentModeType": ""
+                            "Source":3,
+                            "PaymentInformation":{
+                                "PaymentInformationId":0,
+                                "InvoiceNumber":0,
+                                "PaymentId":"0",
+                                "Amount":0.0,
+                                "IPAddress":"127.0.0.1",
+                                "TrackId":0,
+                                "PaymentGateway":4,
+                                "PaymentModeType":2
                             },
                             "SessionId": $scope.sessionId,
                             "PromotionalPlanType": flight.PromotionalPlanType,
@@ -193,8 +208,7 @@ angular.module('Travally')
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
-                        //console.log(flight.SegmentKey);
-                        //console.log(getFareQuote);
+
                         Flight.flightGetFareQuote($scope.getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
                             console.log(fareQuoteResponse);
@@ -209,6 +223,5 @@ angular.module('Travally')
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
         }
     });
-
 
 
