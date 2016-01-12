@@ -1,12 +1,13 @@
-angular.module('Travally').factory('Hotel', function($http) {
+angular.module('Travally').factory('Hotel', function($http, serverConfig) {
     return {
         search : function(dt) {
             return $http({
                 method: 'POST',
-                url: 'https://apim-gateway.mmtcloud.com/mmt-htlsearch/1.0/search/v1.0/hotelSearch?responseFormat=json',
+                url: 'http://api.jbspl.com/api/HotelBooking/Search',
                 headers: {
-                    'Content-Type': 'application/xml',
-                    'Authorization':'Basic QUZGMzIyNjAzOmljZWNyZWFt'
+                    'x-UserName':serverConfig.user_name,
+                    'x-Password':serverConfig.password,
+                    'Content-Type': 'application/json'
                 },
                 data: dt
             });

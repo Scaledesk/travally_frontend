@@ -1,49 +1,65 @@
 angular.module('Travally')
 // inject the Activation service into our controller
     .controller('SearchHotelController', function($http, $scope, Hotel,$routeParams,$filter, $location) {
-        var city = $routeParams.city;
+        var city_id = $routeParams.city_id;
+        var city_name = $routeParams.city_name;
+        var country_code = $routeParams.country_id;
         $scope.check_in = $routeParams.check_in;
         $scope.check_out = $routeParams.check_out;
-        $scope.cityData = Hotel.getCity();
-        $scope.city = {};
-        $scope.refreshCity = function(query){
+
+
+
+        $scope.hotelCityData = Hotel.getHotelCity();
+        $scope.hotelCity = {};
+        $scope.refreshHotelCity = function(query){
             if(query == null) return [];
             if(query.length < 3) return [];
-            $scope.city = $filter('filter')($scope.cityData,{name:query})
+            $scope.hotelCity = $filter('filter')($scope.hotelCityData,{city_name:query})
         };
-        angular.forEach($scope.cityData, function(c, key) {
-            if(c.code == city){
-                $scope.city.selected = c;
+        angular.forEach($scope.hotelCityData, function(c, key) {
+            if(c.city_id == city_id){
+                $scope.hotelCity.selected = c;
             }
         });
-        console.log(city);
+
+
+
+
+        console.log(city_id);
+        console.log(city_name);
+        console.log(country_code);
         console.log($scope.check_in);
         console.log($scope.check_out);
-        $scope.starRating = {
+
+        var hotelRequest = {
+            "CheckInDate":$scope.check_in,
+            "CheckOutDate":$scope.check_out,
+            "CountryName":country_code,
+            "IsDomestic":true,
+            "CityReference":city_name,
+            "CityId":city_id,
+            "NoOfRooms":1,
+            "RoomGuest":[
+                {
+                    "NoOfAdults":1,
+                    "NoOfChild":0,
+                    "ChildAge":[]
+
+                }
+            ],
+            "HotelName":"",
+            "Rating":"",
+            "MemberMobileNo":"9983772777",
+            "MemberMobilePin":"6366"
         };
 
-        var hotelRequest = '<MMTHotelSearchRequest><POS><Requestor type="B2C" idContext="AFF" id="AFF322603" channel="B2Cweb"/> <Source iSOCurrency="INR"/> </POS> <ResultTransformer> ' +
-            '<GuestRecommendationEnabled maxRecommendations="1">true</GuestRecommendationEnabled> ' +
-            '<PriceBreakupEnabled>true</PriceBreakupEnabled> <CancellationPolicyRulesReq text="yes"/> ' +
-            '</ResultTransformer> <ResultPreferences> <ResultPreference> <Pagination paginate="false" page="1" limit="10"/> </ResultPreference> </ResultPreferences> ' +
-            '<SearchCriteria> <Criterion> ' +
-            '<Area> <CityCode>' + city + '</CityCode> <CountryCode>IN</CountryCode> </Area> ' +
-            '<RoomStayCandidates> <RoomStayCandidate> <GuestCounts> <GuestCount count="1" ageQualifyingCode="10"/> </GuestCounts> </RoomStayCandidate> ' +
-            '<RoomStayCandidate> <GuestCounts> <GuestCount count="1" ageQualifyingCode="10"/>' +
-            ' <GuestCount count="1" ageQualifyingCode="8"> <Ages> <Age>4</Age> </Ages> </GuestCount> </GuestCounts> ' +
-            '</RoomStayCandidate> </RoomStayCandidates> ' +
-            '<StayDateRanges> <StayDateRange start="' + $scope.check_in + '" end="' + $scope.check_out + '"/> </StayDateRanges>' +
-            ' <SupplierCodes> <SupplierCode>EPXX0001</SupplierCode> </SupplierCodes> </Criterion> </SearchCriteria>' +
-            ' </MMTHotelSearchRequest>';
-
         $scope.hotelResult = [];
-        // function for search hotels
+
             $scope.$emit('LOAD')
-            Hotel.search(hotelRequest).then(
-                function (data) {
-                    //console.log(data);
+            Hotel.search(hotelRequest).then(function (data) {
+                    console.log(data);
                     $scope.hotels = data;
-                    angular.forEach($scope.hotels.data.HotelSearchResults.Hotels, function (hotel, key) {
+                    /*angular.forEach($scope.hotels.data.HotelSearchResults.Hotels, function (hotel, key) {
                         var mVal = '';
                         var room_service = 'No';
                         var travel = 'No';
@@ -149,63 +165,11 @@ angular.module('Travally')
                         };
                         $scope.hotelResult.push(temp);
                         $scope.$emit('UNLOAD')
-                    });
+                    });*/
+
                     $scope.$emit('UNLOAD')
-                },
-                function (data) {
-                    // $scope.hotels = data;
+                }).catch(function (data) {
+                    console.log(data);
                     $scope.$emit('UNLOAD')
                 });
-            //$scope.$emit('UNLOAD')
-            //$scope.loading = fals
-
-        var getCountryRequest = '<MMTStaticCountrySearchRequest Offset="0" Rows="100">' +
-            '<POS>' +
-            '<Requestor type="AFF" idContext="AFF" id="AFF322603" channel="AFF"/>' +
-            '<Source iSOCurrency="INR"/>' +
-            '<Token>AFF322603</Token>' +
-            '</POS>' +
-            '<RequestCountryParams>' +
-            '</RequestCountryParams>' +
-            '</MMTStaticCountrySearchRequest>';
-
-        var getCityRequest = '<MMTStaticCitySearchRequest Offset="0" Rows="100">' +
-            '<POS>' +
-            '<Requestor type="AFF" idContext="AFF" id="AFF322603" channel="AFF"/>' +
-            '<Source iSOCurrency="INR"/>' +
-            '<Token>AFF322603</Token>' +
-            '</POS>' +
-            '<RequestCityParams>' +
-            '<Country>India</Country>' +
-            '<CountryCode>IN</CountryCode>' +
-            '<Name/>' +
-            '</RequestCityParams>' +
-            '<RequiredFields>' +
-            'country, countryCode' +
-            '</RequiredFields>' +
-            '</MMTStaticCitySearchRequest>';
-
-
-
-        // function for getting all countries
-        $scope.getCountry = function () {
-            Hotel.getCountry(getCountryRequest).then(
-                function (data) {
-                    $scope.countries = data;
-                },
-                function (data) {
-                    // $scope.countries = data;
-                });
-        };
-
-        // function for getting city
-        $scope.getCity = function () {
-            Hotel.getCity(getCityRequest).then(
-                function (data) {
-                    $scope.cities = data;
-                },
-                function (data) {
-                    // $scope.cities = data;
-                });
-        };
     });

@@ -13,6 +13,32 @@ angular.module('Travally')
         $scope.city = {};
         $scope.cityDestinaton = {};
 
+
+
+
+        $scope.hotelCityData = Hotel.getHotelCity();
+        $scope.hotelCity = {};
+        /**
+         * function for refreshing hotel city details
+         * @param query
+         * @returns {Array}
+         */
+        $scope.refreshHotelCity = function(query){
+            if(query == null) return [];
+            if(query.length < 3) return [];
+            $scope.hotelCity = $filter('filter')($scope.hotelCityData,{city_name:query})
+        };
+
+
+
+
+
+
+
+
+
+
+
         $scope.flightSearchButtonText = "Search Flight";
         $scope.flightSearchButton = false;
 
@@ -68,16 +94,19 @@ angular.module('Travally')
             $scope.cityDestinaton = $filter('filter')($scope.cityData,{name:query})
         };
 
+
         /**
          * function for searching for hotel
          * @param hotel
          */
         $scope.searchHotel =function(hotel){
-            var city = $scope.city.selected.code;
+            var city_id = $scope.hotelCity.selected.city_id;
+            var city_name = $scope.hotelCity.selected.city_name;
+            var country_code = $scope.hotelCity.selected.country_id;
             var check_in = hotel.check_in;
             var check_out = hotel.check_out;
             //var passenger = formData.passenger;
-            $location.path('/hotel-details/'+city+'/'+check_in+'/'+check_out);
+            $location.path('/hotel-details/'+city_id+'/'+city_name+'/'+country_code+'/'+check_in+'/'+check_out);
         };
         /**
          * function for search flight details

@@ -90,8 +90,11 @@
                     <button class="btn btn-primary btn-lg" type="submit">Search for Hotels</button>
                 </form>
             </div>
+
+
+
             <span ng-hide="loading">
-            <h3 class="booking-title">{{hotelResult.length;}} hotels in {{city.selected.name}} on {{check_in | date:'MMM d'}} to {{check_out | date:'MMM d'}} for 1 adult</h3>
+            <h3 class="booking-title">{{hotelResult.length;}} hotels in {{hotelCity.selected.city_name}} on {{check_in | date:'MMM d'}} to {{check_out | date:'MMM d'}} for 1 adult</h3>
             </span>
             <form class="booking-item-dates-change mb40">
                 <div class="row">
@@ -99,15 +102,15 @@
                         <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                             <label>Where</label>
 
-                            <ui-select ng-model="city.selected"
+                            <ui-select ng-model="hotelCity.selected"
                                        theme="bootstrap"
                                        ng-disabled="disabled"
                                        reset-search-input="true">
-                                <ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>
-                                <ui-select-choices repeat="c in city track by $index"
-                                                   refresh="refreshCity($select.search)"
+                                <ui-select-match placeholder="Enter city name">{{$select.selected.city_name}}</ui-select-match>
+                                <ui-select-choices repeat="c in hotelCity track by $index"
+                                                   refresh="refreshHotelCity($select.search)"
                                                    refresh-delay="0">
-                                    <div ng-bind-html="c.name | highlight: $select.search"></div>
+                                    <div ng-bind-html="c.city_name | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
 
@@ -419,7 +422,7 @@
                         </ul>
                     </aside>
                 </div>
-                <div class="col-md-9">
+                <div ng-hide="loading" class="col-md-9">
                     <div class="nav-drop booking-sort">
                         <h5 class="booking-sort-title"><a ng-href="">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a ng-href=""></h5>
                         <ul class="nav-drop-menu">
@@ -436,13 +439,17 @@
                         </ul>
                     </div>
                     <ul class="booking-list">
-                        <li dir-paginate="hotel in hotelResult | filter: starRating:strict | itemsPerPage: 6" pagination-id="hotel">
+
+                        <li>
+
+                        </li>
+                        <!--<li dir-paginate="hotel in hotelResult | filter: starRating:strict | itemsPerPage: 6" pagination-id="hotel">
                             <a class="booking-item" href="#">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="booking-item-img-wrap">
                                             <img src="{{hotel.media.src}}" alt="Image not found" title="hotel PORTO BAY RIO INTERNACIONAL rooftop pool" />
-                                            <!--<div class="booking-item-img-num"><i class="fa fa-picture-o"></i>23</div>-->
+                                            &lt;!&ndash;<div class="booking-item-img-num"><i class="fa fa-picture-o"></i>23</div>&ndash;&gt;
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -461,13 +468,13 @@
                                             </ul><span class="booking-item-rating-number"><b >{{hotel.total_rating_value}}</b> of 5</span><small>({{hotel.total_recommendation}} reviews)</small>
                                         </div>
                                         <h5 class="booking-item-title">{{hotel.hotel_name}} {{hotel.star_rating}} star</h5>
-                                        <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{hotel.hotel_name}}</p><small class="booking-item-last-booked">Latest booking: 48 minutes ago<!--{{hotel.room_service}}{{hotel.travel}}{{hotel.restaurant}}{{hotel.parking}}{{hotel.wi_fi}}--></small>
+                                        <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{hotel.hotel_name}}</p><small class="booking-item-last-booked">Latest booking: 48 minutes ago&lt;!&ndash;{{hotel.room_service}}{{hotel.travel}}{{hotel.restaurant}}{{hotel.parking}}{{hotel.wi_fi}}&ndash;&gt;</small>
                                     </div>
                                     <div class="col-md-3"><span class="booking-item-price-from"></span><span class="booking-item-price">&#8377;{{hotel.rate.amount}}  </span><span>/person</span><br/><span class="btn btn-primary">Book Now</span>
                                     </div>
                                 </div>
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                     <div class="row">
                         <div class="col-md-6">
@@ -476,33 +483,27 @@
 
                             <dir-pagination-controls template-url="assets/js/includes/angular-utils-pagination/dirPagination.tpl.html" pagination-id="hotel"></dir-pagination-controls>
 
-                            <!--<ul class="pagination">
-                                <li class="active"><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li><a href="#">6</a>
-                                </li>
-                                <li><a href="#">7</a>
-                                </li>
-                                <li class="dots">...</li>
-                                <li><a href="#">43</a>
-                                </li>
-                                <li class="next"><a href="#">Next Page</a>
-                                </li>
-                            </ul>-->
                         </div>
                         <div class="col-md-6 text-right">
                             <p>Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div ng-show="loading">
+
+                    <div id="floatingCirclesG">
+                        <div class="f_circleG" id="frotateG_01"></div>
+                        <div class="f_circleG" id="frotateG_02"></div>
+                        <div class="f_circleG" id="frotateG_03"></div>
+                        <div class="f_circleG" id="frotateG_04"></div>
+                        <div class="f_circleG" id="frotateG_05"></div>
+                        <div class="f_circleG" id="frotateG_06"></div>
+                        <div class="f_circleG" id="frotateG_07"></div>
+                        <div class="f_circleG" id="frotateG_08"></div>
+                    </div>
+
                 </div>
             </div>
             <div class="gap"></div>

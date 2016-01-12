@@ -15,7 +15,6 @@
 
     </div>
 </div>
-
 <div ng-hide="loading">
 <div class="top-area show-onload">
     <div class="bg-holder full">
@@ -273,18 +272,18 @@
                                         <label>Where are you going?</label>
                                         <!--<input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" ng-model="hotel.city" />-->
 
-                                        <ui-select ng-model="city.selected"
+                                        <ui-select ng-model="hotelCity.selected"
                                                    theme="bootstrap"
                                                    ng-disabled="disabled"
                                                    reset-search-input="true">
-                                            <ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>
-                                            <ui-select-choices repeat="c in city track by $index"
-                                                               refresh="refreshCity($select.search)"
+                                            <ui-select-match placeholder="Enter city name">{{$select.selected.city_name}}</ui-select-match>
+                                            <ui-select-choices repeat="c in hotelCity track by $index"
+                                                               refresh="refreshHotelCity($select.search)"
                                                                refresh-delay="0">
-                                                <div ng-bind-html="c.name | highlight: $select.search"></div>
+                                                <div ng-bind-html="c.city_name | highlight: $select.search"></div>
                                             </ui-select-choices>
                                         </ui-select>
-
+{{hotelCity.selected}}
 
                                     </div>
                                     <div class="input-daterange" data-date-format="M d, D">

@@ -19,7 +19,7 @@ angular.module('Travally').config(function($routeProvider){
       }).when('/contact-us', {
         templateUrl: "templates/contact-us.html",
         controller: "ContactController"
-      }).when('/hotel-details/:city/:check_in/:check_out', {
+      }).when('/hotel-details/:city_id/:city_name/:country_id/:check_in/:check_out', {
         templateUrl: "templates/hotels-search-results-3.html",
         controller: "SearchHotelController"
       }).when('/login', {
