@@ -651,6 +651,2345 @@ angular.module('Travally').factory('Hotel', function($http) {
                 {"code":"ZAN","name":"Zangskar"},
                 {"code":"ZBK","name":"zwqyp"}
             ];
+        },
+        getHotelCity : function(){
+            return [
+                {
+                    "city_id": 10375,
+                    "city_name": "Ahmedabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10376,
+                    "city_name": "Gurgaon",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10377,
+                    "city_name": "Jalandhar City",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10378,
+                    "city_name": "Thiruvananthapuram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10379,
+                    "city_name": "Chhota Shimla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10380,
+                    "city_name": "Agatti Island",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10381,
+                    "city_name": "Alappuzha",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10382,
+                    "city_name": "Anjuna and Vagator Beaches",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10383,
+                    "city_name": "Badrinath",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10384,
+                    "city_name": "Bagdogra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10385,
+                    "city_name": "Baliganja",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10386,
+                    "city_name": "Balihati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10387,
+                    "city_name": "Bamangachhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10388,
+                    "city_name": "Bangaram Island",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10389,
+                    "city_name": "Bantra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10390,
+                    "city_name": "Batanagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10391,
+                    "city_name": "Bangalore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10392,
+                    "city_name": "Bhubaneswar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10393,
+                    "city_name": "Candolim Beach - Fort Aguada",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10394,
+                    "city_name": "Car Nicobar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10395,
+                    "city_name": "Chak Badrinath",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10396,
+                    "city_name": "Chamrail",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10397,
+                    "city_name": "Chanditala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10398,
+                    "city_name": "Chennai (Madras)",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10399,
+                    "city_name": "Chharabra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10400,
+                    "city_name": "Chhatrapati Shivaji International Airport (BOM)",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10401,
+                    "city_name": "Chikkamagaluru",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10402,
+                    "city_name": "Chitpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10403,
+                    "city_name": "Chittur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10404,
+                    "city_name": "Colva Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10405,
+                    "city_name": "Corbett National Park",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10406,
+                    "city_name": "Covelong Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10407,
+                    "city_name": "Darjeeling",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10408,
+                    "city_name": "Dehradun",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10409,
+                    "city_name": "Delhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10410,
+                    "city_name": "Delhi area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10411,
+                    "city_name": "Desert National Park",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10412,
+                    "city_name": "Dhikuli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10413,
+                    "city_name": "Dum Dum",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10414,
+                    "city_name": "Fort - Churchgate",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10415,
+                    "city_name": "Gir National Park",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10416,
+                    "city_name": "Golabari",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10417,
+                    "city_name": "Guwahati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10418,
+                    "city_name": "Hyderabad area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10419,
+                    "city_name": "Jaipur area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10420,
+                    "city_name": "Janai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10421,
+                    "city_name": "Jeypore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10422,
+                    "city_name": "Junagadm",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10423,
+                    "city_name": "Kabini",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10424,
+                    "city_name": "Kanatal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10425,
+                    "city_name": "Kappad Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10426,
+                    "city_name": "Khar - Bandra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10427,
+                    "city_name": "Kochi area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10428,
+                    "city_name": "Kozhikode area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10429,
+                    "city_name": "Kukas",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10430,
+                    "city_name": "Kumarakom",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10431,
+                    "city_name": "Kumbhalgarh Fort",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10432,
+                    "city_name": "Mahikpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10433,
+                    "city_name": "Mangaluru",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10434,
+                    "city_name": "Mapusa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10435,
+                    "city_name": "Mount Abu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10436,
+                    "city_name": "Mudumalai Wildlife Sanctuary",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10437,
+                    "city_name": "Mukteshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10438,
+                    "city_name": "Mumbai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10439,
+                    "city_name": "Mumbai (Bombay) area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10440,
+                    "city_name": "Muttukadu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10441,
+                    "city_name": "Mysuru",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10442,
+                    "city_name": "Naddi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10443,
+                    "city_name": "Nagarhole National Park",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10444,
+                    "city_name": "Nangi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10445,
+                    "city_name": "Naoabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10446,
+                    "city_name": "Navi Mumbai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10447,
+                    "city_name": "Nedumbassery",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10448,
+                    "city_name": "Nibra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10449,
+                    "city_name": "Noida",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10450,
+                    "city_name": "North Delhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10451,
+                    "city_name": "North Dum-Dum",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10452,
+                    "city_name": "Palakkad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10453,
+                    "city_name": "Panchkula",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10454,
+                    "city_name": "Panchur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10455,
+                    "city_name": "Paradeep",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10456,
+                    "city_name": "Periwar Tiger Reserve",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10457,
+                    "city_name": "Phinga",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10458,
+                    "city_name": "Poovar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10459,
+                    "city_name": "Puducherry",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10460,
+                    "city_name": "Ramagundam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10461,
+                    "city_name": "Ranthambore National Park",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10462,
+                    "city_name": "Rathdana",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10463,
+                    "city_name": "Rohet",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10464,
+                    "city_name": "Rohet Jodhpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10465,
+                    "city_name": "Rourkela",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10466,
+                    "city_name": "Sam Sand Dunes",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10467,
+                    "city_name": "Samode",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10468,
+                    "city_name": "Santa Cruz Domestic Airport (BOM)",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10469,
+                    "city_name": "Shimla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10470,
+                    "city_name": "South Delhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10471,
+                    "city_name": "South Dum-Dum",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10472,
+                    "city_name": "Thakurpukur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10473,
+                    "city_name": "Thekkady",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10474,
+                    "city_name": "Thiruvananthapuram area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10475,
+                    "city_name": "Tiruchirapally",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10476,
+                    "city_name": "Tirupur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10477,
+                    "city_name": "Udaipur area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10478,
+                    "city_name": "Udhagamandalam (Ooty)",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10479,
+                    "city_name": "Uttarpara-Kotrung",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10480,
+                    "city_name": "Vagator Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10481,
+                    "city_name": "Willingdon Island",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10482,
+                    "city_name": "Agra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10483,
+                    "city_name": "Ajabgarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10484,
+                    "city_name": "Aligarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10485,
+                    "city_name": "Alipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10486,
+                    "city_name": "Along",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10487,
+                    "city_name": "Alwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10488,
+                    "city_name": "Amer",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10489,
+                    "city_name": "Anjuna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10490,
+                    "city_name": "Attibele",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10491,
+                    "city_name": "Aurangabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10492,
+                    "city_name": "Baihar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10493,
+                    "city_name": "Bally",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10494,
+                    "city_name": "Balurghat",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10495,
+                    "city_name": "Bara Bazar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10496,
+                    "city_name": "Baroda",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10497,
+                    "city_name": "Benaulim",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10498,
+                    "city_name": "Beypore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10499,
+                    "city_name": "Bharatpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10500,
+                    "city_name": "Bhatinda",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10501,
+                    "city_name": "Bilaspur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10502,
+                    "city_name": "Candolim",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10503,
+                    "city_name": "Cavelossim",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10504,
+                    "city_name": "Chakdaha",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10505,
+                    "city_name": "Chamba",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10506,
+                    "city_name": "Chhatarpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10507,
+                    "city_name": "Chiplun",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10508,
+                    "city_name": "Coonoor",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10509,
+                    "city_name": "Cuddapah",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10510,
+                    "city_name": "Dalhousie",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10511,
+                    "city_name": "Delwara",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10512,
+                    "city_name": "Dhanbad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10513,
+                    "city_name": "Dimapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10514,
+                    "city_name": "Dungarpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10515,
+                    "city_name": "Durgapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10516,
+                    "city_name": "Faridabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10517,
+                    "city_name": "Gajner",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10518,
+                    "city_name": "Gandhidham",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10519,
+                    "city_name": "Ghaziabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10520,
+                    "city_name": "Gopalpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10521,
+                    "city_name": "Gorakhpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10522,
+                    "city_name": "Goregaon",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10523,
+                    "city_name": "Guna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10524,
+                    "city_name": "Gwalior",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10525,
+                    "city_name": "Haridwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10526,
+                    "city_name": "Idukki",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10527,
+                    "city_name": "Jadabpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10528,
+                    "city_name": "Jagdalpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10529,
+                    "city_name": "Jaipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10530,
+                    "city_name": "Jalandhar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10531,
+                    "city_name": "Jodhpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10532,
+                    "city_name": "Jorhat",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10533,
+                    "city_name": "Juhu Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10534,
+                    "city_name": "Kailashahar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10535,
+                    "city_name": "Kamalpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10536,
+                    "city_name": "Kangra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10537,
+                    "city_name": "Kanpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10538,
+                    "city_name": "Katra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10539,
+                    "city_name": "Keshod",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10540,
+                    "city_name": "Khajuraho",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10541,
+                    "city_name": "Khandala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10542,
+                    "city_name": "Khar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10543,
+                    "city_name": "Kolhapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10544,
+                    "city_name": "Kollam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10545,
+                    "city_name": "Kosi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10546,
+                    "city_name": "Kota",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10547,
+                    "city_name": "Kottayam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10548,
+                    "city_name": "Kovalam Beach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10549,
+                    "city_name": "Krishnapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10550,
+                    "city_name": "Kulu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10551,
+                    "city_name": "Kumbakonam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10552,
+                    "city_name": "Lonavale",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10553,
+                    "city_name": "Ludhiana",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10554,
+                    "city_name": "Madgaon",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10555,
+                    "city_name": "Madhyamgram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10556,
+                    "city_name": "Manali",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10557,
+                    "city_name": "Manesar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10558,
+                    "city_name": "Masinigudi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10559,
+                    "city_name": "Mohan",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10560,
+                    "city_name": "Mukteswar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10561,
+                    "city_name": "Munnar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10562,
+                    "city_name": "Mussoorie",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10563,
+                    "city_name": "Muzaffarpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10564,
+                    "city_name": "Nagappattinam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10565,
+                    "city_name": "Nagpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10566,
+                    "city_name": "Nalagarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10567,
+                    "city_name": "Nanded",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10568,
+                    "city_name": "Narendranagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10569,
+                    "city_name": "Nasik",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10570,
+                    "city_name": "Neyveli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10571,
+                    "city_name": "Orchha",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10572,
+                    "city_name": "Palampur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10573,
+                    "city_name": "Panchgani",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10574,
+                    "city_name": "Pantnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10575,
+                    "city_name": "Paravur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10576,
+                    "city_name": "Patna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10577,
+                    "city_name": "Porbandar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10578,
+                    "city_name": "Pushkar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10579,
+                    "city_name": "Rae Bareli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10580,
+                    "city_name": "Raipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10581,
+                    "city_name": "Rajpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10582,
+                    "city_name": "Rajsamand",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10583,
+                    "city_name": "Ramnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10584,
+                    "city_name": "Ranchi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10585,
+                    "city_name": "Ratnagiri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10586,
+                    "city_name": "Rewa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10587,
+                    "city_name": "Rishikesh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10588,
+                    "city_name": "Rupsi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10589,
+                    "city_name": "Sadri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10590,
+                    "city_name": "Salem",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10591,
+                    "city_name": "Sankrail",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10592,
+                    "city_name": "Sarenga",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10593,
+                    "city_name": "Sarsa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10594,
+                    "city_name": "Sawai Madhopur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10595,
+                    "city_name": "Secunderabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10596,
+                    "city_name": "Shahdara",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10597,
+                    "city_name": "Shirdi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10598,
+                    "city_name": "Sibpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10599,
+                    "city_name": "Silchar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10600,
+                    "city_name": "Sohna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10601,
+                    "city_name": "Sonarpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10602,
+                    "city_name": "Srinagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10603,
+                    "city_name": "Tala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10604,
+                    "city_name": "Tangra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10605,
+                    "city_name": "Tehri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10606,
+                    "city_name": "Tezpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10607,
+                    "city_name": "Tirupati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10608,
+                    "city_name": "Udaipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10609,
+                    "city_name": "Udaipur- Ahar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10610,
+                    "city_name": "Udaipur-Sikar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10611,
+                    "city_name": "Ujjain",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10612,
+                    "city_name": "Varanasi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10613,
+                    "city_name": "Varkala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10614,
+                    "city_name": "Vasco Da Gama",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10615,
+                    "city_name": "Vicchio",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10616,
+                    "city_name": "Port Blair",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10617,
+                    "city_name": "Hyderabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10618,
+                    "city_name": "Nellore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10619,
+                    "city_name": "Rajahmundry",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10620,
+                    "city_name": "Vijayawada",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10621,
+                    "city_name": "Vishakhapatnam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10622,
+                    "city_name": "Warangal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10623,
+                    "city_name": "Dibrugarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10624,
+                    "city_name": "Gauhati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10625,
+                    "city_name": "Darbhanga",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10626,
+                    "city_name": "Gaya",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10627,
+                    "city_name": "Jamshedpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10628,
+                    "city_name": "Chandigarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10629,
+                    "city_name": "Silvassa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10630,
+                    "city_name": "New Delhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10631,
+                    "city_name": "Abu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10632,
+                    "city_name": "Bhavnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10633,
+                    "city_name": "Bhuj",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10634,
+                    "city_name": "Gandhinagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10635,
+                    "city_name": "Jamnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10636,
+                    "city_name": "Kandla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10637,
+                    "city_name": "Rajkot",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10638,
+                    "city_name": "Surat",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10639,
+                    "city_name": "Vadodara",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10640,
+                    "city_name": "Rohtak",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10641,
+                    "city_name": "Simla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10642,
+                    "city_name": "Jammu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10643,
+                    "city_name": "Leh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10644,
+                    "city_name": "Ernakulam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10645,
+                    "city_name": "Kochi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10646,
+                    "city_name": "Kozhikode",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10647,
+                    "city_name": "Trivandrum",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10648,
+                    "city_name": "Bhopal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10649,
+                    "city_name": "Indore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10650,
+                    "city_name": "Jabalpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10651,
+                    "city_name": "Amravati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10652,
+                    "city_name": "Pune",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10653,
+                    "city_name": "Imphal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10654,
+                    "city_name": "Shillong",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10655,
+                    "city_name": "Belgaum",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10656,
+                    "city_name": "Bellary",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10657,
+                    "city_name": "Hassan",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10658,
+                    "city_name": "Hubli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10659,
+                    "city_name": "Mysore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10660,
+                    "city_name": "Nelamangala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10661,
+                    "city_name": "Yelahanka",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10662,
+                    "city_name": "Kohima",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10663,
+                    "city_name": "Puri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10664,
+                    "city_name": "Pondicherry",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10665,
+                    "city_name": "Amritsar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10666,
+                    "city_name": "Patiala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10667,
+                    "city_name": "Sasan",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10668,
+                    "city_name": "Ajmer",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10669,
+                    "city_name": "Bikaner",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10670,
+                    "city_name": "Jaisalmer",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10671,
+                    "city_name": "Chennai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10672,
+                    "city_name": "Coimbatore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10673,
+                    "city_name": "Kanchipuram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10674,
+                    "city_name": "Madurai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10675,
+                    "city_name": "Mamallapuram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10676,
+                    "city_name": "Thanjavur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10677,
+                    "city_name": "Agartala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10678,
+                    "city_name": "Allahabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10679,
+                    "city_name": "Almora",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10680,
+                    "city_name": "Bareilly",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10681,
+                    "city_name": "Dehra Dun",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10682,
+                    "city_name": "Lucknow",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10683,
+                    "city_name": "Mathura",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10684,
+                    "city_name": "Moradabad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10685,
+                    "city_name": "Baranagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10686,
+                    "city_name": "Behala",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10687,
+                    "city_name": "Diamond Harbour",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10688,
+                    "city_name": "Dumjor",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10689,
+                    "city_name": "Garden Reach",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10690,
+                    "city_name": "Haora",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10691,
+                    "city_name": "Kamarhati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10692,
+                    "city_name": "Khardah",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10693,
+                    "city_name": "Kolkata",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10694,
+                    "city_name": "Konnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10695,
+                    "city_name": "Panihati",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10696,
+                    "city_name": "Rishra",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10697,
+                    "city_name": "Shrirampur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10698,
+                    "city_name": "Titagarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10699,
+                    "city_name": "Gangtok",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10700,
+                    "city_name": "Itanagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10701,
+                    "city_name": "Aizawl",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10702,
+                    "city_name": "Daman",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10703,
+                    "city_name": "Diu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10704,
+                    "city_name": "Goa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10705,
+                    "city_name": "Marmagao",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 10706,
+                    "city_name": "Panaji",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35423,
+                    "city_name": "Bambora",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35424,
+                    "city_name": "Bodh Gaya",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35425,
+                    "city_name": "Khimsar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35428,
+                    "city_name": "Phalodi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35429,
+                    "city_name": "Ranakpur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 35430,
+                    "city_name": "Chittaurgarh",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37158,
+                    "city_name": "Calcutta",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37159,
+                    "city_name": "Bombay",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37160,
+                    "city_name": "Bengaluru",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37161,
+                    "city_name": "Mangalore",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37162,
+                    "city_name": "Puttaprathe",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37163,
+                    "city_name": "tezu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37164,
+                    "city_name": "moga",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37165,
+                    "city_name": "Ranipet",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37166,
+                    "city_name": "Manipal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37167,
+                    "city_name": "Havelock Island",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37168,
+                    "city_name": "Siliguri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37169,
+                    "city_name": "Mahabaleshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37170,
+                    "city_name": "Yamunotri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37171,
+                    "city_name": "Ranikhet",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37172,
+                    "city_name": "Kausani",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37173,
+                    "city_name": "Kovalam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37208,
+                    "city_name": "Kalpatta",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37243,
+                    "city_name": "Uttarkashi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37247,
+                    "city_name": "Panvel",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37249,
+                    "city_name": "Binsar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37270,
+                    "city_name": "Uttorda",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37326,
+                    "city_name": "Chomu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37360,
+                    "city_name": "Madapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37373,
+                    "city_name": "Kotagiri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37375,
+                    "city_name": "Puthenthope",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37388,
+                    "city_name": "Sulthan Bathery",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37417,
+                    "city_name": "Omkareshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37445,
+                    "city_name": "Karaikkudi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37496,
+                    "city_name": "Jabalpur area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37515,
+                    "city_name": "Chalsa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37549,
+                    "city_name": "Karwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37563,
+                    "city_name": "Yercaud",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37564,
+                    "city_name": "Pench National Park area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37598,
+                    "city_name": "Parwanoo",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37602,
+                    "city_name": "Kushinagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37615,
+                    "city_name": "Bhimtal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37616,
+                    "city_name": "Guruvayur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37655,
+                    "city_name": "Bhijhariya",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37666,
+                    "city_name": "Shivpuri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37688,
+                    "city_name": "Umaria",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37740,
+                    "city_name": "Malabar Hill",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37761,
+                    "city_name": "Kasaragod",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37853,
+                    "city_name": "Kutta",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37862,
+                    "city_name": "Sriperumbudur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37907,
+                    "city_name": "Sanchi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 37968,
+                    "city_name": "Vagamon",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38039,
+                    "city_name": "Srimangla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38165,
+                    "city_name": "Bekal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38196,
+                    "city_name": "Bhopal area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38225,
+                    "city_name": "Malpe",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38226,
+                    "city_name": "Neeleshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38238,
+                    "city_name": "Kothamangalam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38269,
+                    "city_name": "Guduvancheri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38338,
+                    "city_name": "Rajula",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38416,
+                    "city_name": "Kasagorod area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38439,
+                    "city_name": "Pahalgam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38460,
+                    "city_name": "Mandawa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38534,
+                    "city_name": "Kalimpong",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38552,
+                    "city_name": "Puttaparthi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38597,
+                    "city_name": "Marchula",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38598,
+                    "city_name": "Khejarla",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38695,
+                    "city_name": "Suntikoppa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38698,
+                    "city_name": "Behror",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38702,
+                    "city_name": "Satna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38703,
+                    "city_name": "Rewari",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38720,
+                    "city_name": "Kodungallur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38721,
+                    "city_name": "Hunsur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38784,
+                    "city_name": "Bageshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38789,
+                    "city_name": "Tuticorin area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38794,
+                    "city_name": "Bengaluru (Bangalore)",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38920,
+                    "city_name": "Tiruvannamalai",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38936,
+                    "city_name": "Thane",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38955,
+                    "city_name": "Gulmarg",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 38983,
+                    "city_name": "Phagwara",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39047,
+                    "city_name": "Bidadi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39156,
+                    "city_name": "Pelling",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39219,
+                    "city_name": "Kushalnagar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39224,
+                    "city_name": "Korampallam",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39230,
+                    "city_name": "Bandipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39253,
+                    "city_name": "Nagercoil",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39260,
+                    "city_name": "Kasauli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39264,
+                    "city_name": "Maheshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39301,
+                    "city_name": "Ramoji Film City",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39330,
+                    "city_name": "Bandhavgarh National Park area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39378,
+                    "city_name": "Athirapally",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39452,
+                    "city_name": "Shamirpet",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39460,
+                    "city_name": "Lavasa",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39513,
+                    "city_name": "Pali",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39603,
+                    "city_name": "Kodakaikanal",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39614,
+                    "city_name": "Bhedaghat",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39628,
+                    "city_name": "Rameshwaram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39630,
+                    "city_name": "Falaknuma",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39634,
+                    "city_name": "Thodupuzha",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39685,
+                    "city_name": "Sardar Samand",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39701,
+                    "city_name": "Darjeeling area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39728,
+                    "city_name": "Thrissur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39736,
+                    "city_name": "Gaya area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39742,
+                    "city_name": "Balrampur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39818,
+                    "city_name": "Dahej",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39868,
+                    "city_name": "Kashipur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39896,
+                    "city_name": "Lumbini area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39931,
+                    "city_name": "Chail",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 39977,
+                    "city_name": "Pachmarhi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40106,
+                    "city_name": "Kanha",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40107,
+                    "city_name": "Panna",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40116,
+                    "city_name": "Nedumangad",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40145,
+                    "city_name": "Fatehpur Sikri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40174,
+                    "city_name": "Tuticorin",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40215,
+                    "city_name": "Kanyakumari",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40267,
+                    "city_name": "Belapur",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40382,
+                    "city_name": "Hoskote",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40390,
+                    "city_name": "Gorakhpur area",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40438,
+                    "city_name": "Velankanni",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40457,
+                    "city_name": "Raichak",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40478,
+                    "city_name": "Madikeri",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40506,
+                    "city_name": "Auli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40555,
+                    "city_name": "Baddi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40629,
+                    "city_name": "Devanahalli",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40649,
+                    "city_name": "Kuchwahi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40678,
+                    "city_name": "Ponnampet",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40682,
+                    "city_name": "Bheeramballi",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 40769,
+                    "city_name": "Ankaleshwar",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1764,
+                    "city_name": "Calicut",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1765,
+                    "city_name": "Ootacamund",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1766,
+                    "city_name": "Mahabalipuram",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1767,
+                    "city_name": "Alleppey",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1768,
+                    "city_name": "Tamilnadu",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1769,
+                    "city_name": "Nainital",
+                    "country_id": "IN"
+                },
+                {
+                    "city_id": 1771,
+                    "city_name": "Vapi",
+                    "country_id": "IN"
+                }
+            ];
         }
 
 

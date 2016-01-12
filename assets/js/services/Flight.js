@@ -21326,7 +21326,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
         searchGetFareRule: function (dt) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/api/AirlineBooking/GetFareRule',
+            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/GetFareRule',
             headers: {
                 'x-UserName':serverConfig.user_name,
                 'x-Password':serverConfig.password,
@@ -21346,6 +21346,18 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             },
             data: bookData
         });
+    },
+            flightTicket: function (bookData) {
+            return $http({
+                  method: 'POST',
+                  url: 'http://api.jbspl.com/Staging/api/AirlineBooking/Ticket',
+                  headers: {
+                      'x-UserName':serverConfig.user_name,
+                      'x-Password':serverConfig.password,
+                      'Content-Type': 'application/json'
+                  },
+                  data: bookData
+            });
     },
         flightGetFareQuote: function (bookData) {
         return $http({
