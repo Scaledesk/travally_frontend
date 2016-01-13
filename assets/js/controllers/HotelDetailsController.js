@@ -13,6 +13,7 @@ angular.module('Travally')
     };
         Hotel.getHotelDetails(h).then(function (data) {
 
+            $scope.hotelDetail = data.data.HotelDetail
 
 
         }).catch(function (data) {

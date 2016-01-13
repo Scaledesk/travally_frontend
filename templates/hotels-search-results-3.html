@@ -425,8 +425,52 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="booking-item-rating">
-                                    <ul class="icon-group booking-item-rating-stars">
+
+
+
+
+                                    <!--<ANY ng-switch-when="matchValue2">...</ANY>
+                                    <ANY ng-switch-default>...</ANY>-->
+
+
+                                <div ng-switch="{{hotel.HotelInfo.Rating}}" class="booking-item-rating">
+                                    <ul ng-switch-when="1" class="icon-group booking-item-rating-stars">
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                    </ul>
+                                    <ul ng-switch-when="2" class="icon-group booking-item-rating-stars">
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                    </ul>
+                                    <ul ng-switch-when="3" class="icon-group booking-item-rating-stars">
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                        <li><i class="fa fa-star-o"></i>
+                                        </li>
+                                    </ul>
+                                    <ul ng-switch-when="4" class="icon-group booking-item-rating-stars">
                                         <li><i class="fa fa-star"></i>
                                         </li>
                                         <li><i class="fa fa-star"></i>
@@ -437,8 +481,22 @@
                                         </li>
                                         <li><i class="fa fa-star-o"></i>
                                         </li>
-                                    </ul><span class="booking-item-rating-number"><b >{{hotel.HotelInfo.Rating}}</b> of 5</span><small></small>
+                                    </ul>
+                                    <ul ng-switch-when="5" class="icon-group booking-item-rating-stars">
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                        <li><i class="fa fa-star"></i>
+                                        </li>
+                                    </ul>
+                                    <span class="booking-item-rating-number"><b >{{hotel.HotelInfo.Rating}}</b> of 5</span><small></small>
                                 </div>
+
                                 <h5 class="booking-item-title">{{hotel.HotelInfo.HotelName}}</h5>
                                 <p class="booking-item-address"><i class="fa fa-map-marker"></i>{{hotel.HotelInfo.HotelLocation}}</p><small class="booking-item-last-booked"></small>
                             </div>
