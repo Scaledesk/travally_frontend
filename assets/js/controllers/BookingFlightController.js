@@ -68,53 +68,93 @@ angular.module('Travally')
         });
 
         $scope.BookFlight = function(){
-            $scope.$emit('LOAD')
-            console.log($scope.bookVal);
-            Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
-                console.log('booking Details');
-                $scope.bookingResponse = bookingResponse.data;
-                if($scope.bookingResponse.BookingId != null) {
-                    console.log('if');
-                    var ticket = {
-                        "BookingID": $scope.bookingResponse.BookingId,
-                        "Origin": $scope.bookVal.Origin,
-                        "Destination": $scope.bookVal.Destination,
-                        "Segment": $scope.bookVal.Segment,
-                        "FareType": $scope.bookVal.FareType,
-                        "FareRule": $scope.bookVal.FareRule,
-                        "Fare": $scope.bookVal.Fare,
-                        "Passenger": $scope.bookVal.Passenger,
-                        "Remarks": $scope.bookVal.Remarks,
-                        "InstantTicket": $scope.bookVal.InstantTicket,
-                        "PaymentInformation": $scope.bookVal.PaymentInformation,
-                        "Source": $scope.bookVal.Source,
-                        "SessionId": $scope.bookVal.SessionId,
-                        "IsOneWayBooking": true,
-                        "CorporateCode": "",
-                        "TourCode": "",
-                        "Endorsement": "",
-                        "PromotionalPlanType": $scope.bookVal.PromotionalPlanType,
-                        "MemberMobileNo": $scope.bookVal.MemberMobileNo,
-                        "MemberMobilePin": $scope.bookVal.MemberMobilePin
-                    };
-                        console.log(ticket);
-                    Flight.flightTicket(ticket).then(function (ticketResponse) {
-                        $scope.ticketDetails = ticketResponse.data;
-                        $scope.$emit('UNLOAD')
-                    }).catch(function (response) {
-                        $scope.$emit('UNLOAD')
-                        console.log(response);
-                    });
-                }
-                else{
-                    console.log('else');
-                    console.log($scope.bookingResponse);
+
+            if($scope.flightData.isLcc){
+                $scope.$emit('LOAD')
+                $scope.ticket = {
+                    "BookingID": "",
+                    "Origin": $scope.bookVal.Origin,
+                    "Destination": $scope.bookVal.Destination,
+                    "Segment": $scope.bookVal.Segment,
+                    "FareType": $scope.bookVal.FareType,
+                    "FareRule": $scope.bookVal.FareRule,
+                    "Fare": $scope.bookVal.Fare,
+                    "Passenger": $scope.bookVal.Passenger,
+                    "Remarks": $scope.bookVal.Remarks,
+                    "InstantTicket": $scope.bookVal.InstantTicket,
+                    "PaymentInformation": $scope.bookVal.PaymentInformation,
+                    "Source": $scope.bookVal.Source,
+                    "SessionId": $scope.bookVal.SessionId,
+                    "IsOneWayBooking": true,
+                    "CorporateCode": "",
+                    "TourCode": "",
+                    "Endorsement": "",
+                    "PromotionalPlanType": $scope.bookVal.PromotionalPlanType,
+                    "MemberMobileNo": $scope.bookVal.MemberMobileNo,
+                    "MemberMobilePin": $scope.bookVal.MemberMobilePin
+                };
+                console.log($scope.ticket);
+                Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
+                    console.log("ticket response");
+                    $scope.ticketDetails = ticketResponse.data;
                     $scope.$emit('UNLOAD')
-                }
-            }).catch(function (response) {
-                $scope.$emit('UNLOAD')
-                console.log(response);
-            });
+                }).catch(function (response) {
+                    $scope.$emit('UNLOAD')
+                    console.log(response);
+                });
+
+            }
+           else {
+                $scope.$emit('LOAD')
+                //console.log($scope.bookVal);
+                Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
+                    console.log('booking Details');
+                    $scope.bookingResponse = bookingResponse.data;
+                    if ($scope.bookingResponse.BookingId != null) {
+                        console.log('if');
+                        var ticket = {
+                            "BookingID": $scope.bookingResponse.BookingId,
+                            "Origin": $scope.bookVal.Origin,
+                            "Destination": $scope.bookVal.Destination,
+                            "Segment": $scope.bookVal.Segment,
+                            "FareType": $scope.bookVal.FareType,
+                            "FareRule": $scope.bookVal.FareRule,
+                            "Fare": $scope.bookVal.Fare,
+                            "Passenger": $scope.bookVal.Passenger,
+                            "Remarks": $scope.bookVal.Remarks,
+                            "InstantTicket": $scope.bookVal.InstantTicket,
+                            "PaymentInformation": $scope.bookVal.PaymentInformation,
+                            "Source": $scope.bookVal.Source,
+                            "SessionId": $scope.bookVal.SessionId,
+                            "IsOneWayBooking": true,
+                            "CorporateCode": "",
+                            "TourCode": "",
+                            "Endorsement": "",
+                            "PromotionalPlanType": $scope.bookVal.PromotionalPlanType,
+                            "MemberMobileNo": $scope.bookVal.MemberMobileNo,
+                            "MemberMobilePin": $scope.bookVal.MemberMobilePin
+                        };
+                        console.log(ticket);
+                        Flight.flightTicket(ticket).then(function (ticketResponse) {
+                            $scope.ticketDetails = ticketResponse.data;
+                            $scope.$emit('UNLOAD')
+                        }).catch(function (response) {
+                            $scope.$emit('UNLOAD')
+                            console.log(response);
+                        });
+                    }
+                    else {
+                        console.log('else');
+                        console.log($scope.bookingResponse);
+                        $scope.$emit('UNLOAD')
+                    }
+
+                }).catch(function (response) {
+                    $scope.$emit('UNLOAD')
+                    console.log(response);
+                });
+            }
+
         };
     });
 

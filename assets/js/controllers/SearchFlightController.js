@@ -54,21 +54,13 @@ angular.module('Travally')
             "MemberMobilePin":serverConfig.memberMobilePin
         };
 
-
-
-
-
-
-
-
-
-
-
-
         $scope.flightResultData =[];
         $scope.$emit('LOAD')
         Flight.searchFlight(flightDataDemo).then(function (d) {
             $scope.sessionId = d.data.SessionId;
+
+            $scope.fff = d;
+
             $scope.flightData = d.data.Result;
             //console.log(d.data.Result);
             angular.forEach($scope.flightData, function (flight, key) {
@@ -202,15 +194,56 @@ angular.module('Travally')
             else{
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
+
+                        console.log(flight.SegmentKey);
+                        console.log(data.key);
+
                         $scope.getFareQuote = {
                             "sessionId":$scope.sessionId,
-                            "Result":flight,
+                            "Result":[flight],
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
-
                         Flight.flightGetFareQuote($scope.getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
+
+                            $scope.fareQuoteResponse = fareQuoteResponse.data;
+
+                            if($scope.fareQuoteResponse.Status.Description = "Successful"){
+                                bookVal = {
+                                    "Remarks":"test",
+                                    "InstantTicket":true,
+                                    "Fare":$scope.fareQuoteResponse.Result.Fare,
+                                    "Passenger":[],
+                                    "Origin": data.origin,
+                                    "Destination": data.destination,
+                                    "Segment": $scope.fareQuoteResponse.Result.Segment,
+                                    "FareType":"PUB",
+                                    "FareRule": $scope.fareQuoteResponse.Result.FareRule,
+                                    "Source":$scope.fareQuoteResponse.Result.Source,
+                                    "PaymentInformation":{
+                                        "PaymentInformationId":0,
+                                        "InvoiceNumber":0,
+                                        "PaymentId":"0",
+                                        "Amount":0.0,
+                                        "IPAddress":"127.0.0.1",
+                                        "TrackId":0,
+                                        "PaymentGateway":4,
+                                        "PaymentModeType":2
+                                    },
+                                    "SessionId": $scope.sessionId,
+                                    "PromotionalPlanType": $scope.fareQuoteResponse.Result.PromotionalPlanType,
+                                    "SegmentKey": data.key,
+                                    "MemberMobileNo": serverConfig.memberMobileNumber,
+                                    "MemberMobilePin": serverConfig.memberMobilePin
+                                };
+
+                                Flight.setflightBookData(bookVal);
+                                Flight.setFlightData(data);
+                                $location.path('/bookingDetail');
+
+                            }
+
                             console.log(fareQuoteResponse);
                         }).catch(function (response) {
                             console.log(response);

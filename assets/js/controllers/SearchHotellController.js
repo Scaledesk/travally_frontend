@@ -58,7 +58,8 @@ angular.module('Travally')
             $scope.$emit('LOAD')
             Hotel.search(hotelRequest).then(function (data) {
                     console.log(data);
-                    $scope.hotels = data;
+                    $scope.hotels = data.data.Result;
+
                     /*angular.forEach($scope.hotels.data.HotelSearchResults.Hotels, function (hotel, key) {
                         var mVal = '';
                         var room_service = 'No';
