@@ -12,15 +12,16 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
                 data: dt
             });
         },
-        getCountry : function(countryData) {
+        getHotelDetails : function(dt) {
             return $http({
                 method: 'POST',
-                url: 'https://apim-gateway.mmtcloud.com/mmt-htlsearch/1.0/staticsearch/v1.0/countryData?responseFormat=json',
+                url: 'http://api.jbspl.com/api/HotelBooking/GetHotelDetails',
                 headers: {
-                    'Content-Type': 'application/xml',
-                    'Authorization':'Basic QUZGMzIyNjAzOmljZWNyZWFt'
+                    'x-UserName':serverConfig.user_name,
+                    'x-Password':serverConfig.password,
+                    'Content-Type': 'application/json'
                 },
-                data: countryData
+                data: dt
             });
         },
         getCity : function() {
@@ -2991,17 +2992,13 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
                     "country_id": "IN"
                 }
             ];
+        },
+        setSelectedHotel: function (data) {
+            selectedHotel = data;
+        },
+        getSelectedHotel: function() {
+            return selectedHotel;
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }

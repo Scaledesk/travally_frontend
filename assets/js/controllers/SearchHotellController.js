@@ -59,6 +59,7 @@ angular.module('Travally')
             Hotel.search(hotelRequest).then(function (data) {
                     console.log(data);
                     $scope.hotels = data.data.Result;
+                $scope.sessionId = data.data.SessionId;
 
                     /*angular.forEach($scope.hotels.data.HotelSearchResults.Hotels, function (hotel, key) {
                         var mVal = '';
@@ -173,4 +174,21 @@ angular.module('Travally')
                     console.log(data);
                     $scope.$emit('UNLOAD')
                 });
+        
+            $scope.hotelDetails = function(selectedHotel){
+            Hotel.setSelectedHotel(selectedHotel);
+            var index = selectedHotel.Index;
+
+                /*var city_id = $routeParams.city_id;
+                var city_name = $routeParams.city_name;
+                var country_code = $routeParams.country_id;
+                $scope.check_in = $routeParams.check_in;
+                $scope.check_out = $routeParams.check_out;*/
+
+                console.log(index);
+                console.log($scope.sessionId);
+                $location.path('/hotelDetails/'+index+'/'+$scope.sessionId+'/');
+
+
+        }
     });
