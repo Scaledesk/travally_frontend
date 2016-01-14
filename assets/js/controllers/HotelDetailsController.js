@@ -1,10 +1,12 @@
 angular.module('Travally')
     .controller('HotelDetailsController', function($http, $scope, Hotel,$routeParams,$filter, $location) {
         $scope.hotel = Hotel.getSelectedHotel();
+
         var index = $routeParams.index;
          $scope.sessionId = $routeParams.sessionId;
         console.log($scope.hotel);
         $scope.selected = $scope.hotel.RoomDetails[0];
+        $scope.selectedRoomIndex = $scope.selected.Index;
         var h = {
             "SessionId": $scope.sessionId,
             "Index": index,
@@ -86,6 +88,15 @@ angular.module('Travally')
             });
 
         };
+        $scope.selectRooms = function(room){
+            $scope.selected = room;
+            $scope.selectedRoomIndex = room.Index;
+
+        };
+
+
+
+
         console.log(index);
         console.log($scope.sessionId);
     });
