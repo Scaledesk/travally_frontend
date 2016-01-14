@@ -24,6 +24,18 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
                 data: dt
             });
         },
+        hotelBook : function(dt) {
+            return $http({
+                method: 'POST',
+                url: 'http://api.jbspl.com/api/HotelBooking/Book',
+                headers: {
+                    'x-UserName':serverConfig.user_name,
+                    'x-Password':serverConfig.password,
+                    'Content-Type': 'application/json'
+                },
+                data: dt
+            });
+        },
         getCity : function() {
             return [
                 {"code":"DEL","name":"New Delhi And NCR"},
