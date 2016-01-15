@@ -1,5 +1,5 @@
 angular.module('Travally')
-    .controller('SearchFlightController', function($http, $scope, $routeParams, $filter, $location, Flight, serverConfig) {
+    .controller('SearchFlightController', function($http, $scope, $routeParams, $filter, $location, Flight, $rootScope, serverConfig) {
         $scope.checkboxModel = {
             "fareClass":""
         };
@@ -59,7 +59,7 @@ angular.module('Travally')
         Flight.searchFlight(flightDataDemo).then(function (d) {
             $scope.sessionId = d.data.SessionId;
 
-            $scope.fff = d;
+            $rootScope.flightSearch = d;
 
             $scope.flightData = d.data.Result;
             //console.log(d.data.Result);
@@ -204,9 +204,13 @@ angular.module('Travally')
                             "MemberMobileNo": serverConfig.memberMobileNumber,
                             "MemberMobilePin": serverConfig.memberMobilePin
                         };
+
+                        $rootScope.getFareQuoteRequest = $scope.getFareQuote;
+
                         Flight.flightGetFareQuote($scope.getFareQuote).then(function (fareQuoteResponse) {
                             console.log('getFare Quote');
                             $scope.fareQuoteResponse = fareQuoteResponse.data;
+                            $rootScope.getFareQuoteResponse = fareQuoteResponse;
                             if($scope.fareQuoteResponse.Status.Description = "Successful") {
 
                                 var getFareRule = {

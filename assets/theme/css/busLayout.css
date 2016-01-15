@@ -1,0 +1,254 @@
+
+.busSeat {
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    float: left;
+    width: 90%;
+    height: 100px;
+}
+
+.outerseat {
+    border: 1px solid #ccc;
+    width: 410px;
+    margin: 10px;
+    float: left;
+    height: 180px;
+}
+
+.busSeatlft {
+    width: 30px;
+    float: left;
+    margin: 10px 0px 10px 20px;
+}
+
+.busSeatlft .upper {
+    width: 15px;
+    height: 60px;
+    background-position: -69px -83px;
+    cursor: default;
+}
+
+.busSeatrgt {
+    width: 300px;
+    float: left;
+    margin-left: 15px;
+}
+
+.busSeatlft .lower {
+    width: 15px;
+    height: 60px;
+    background-position: -38px -83px;
+    cursor: default;
+}
+
+.seatcontainer {
+    clear: both;
+    height: 104px;
+    z-index: 2;
+    zoom: 1;
+    word-spacing: normal;
+    position: relative;
+}
+
+.nseat, .snseat, .bseat, .rseat, .sseat, .srseat, .hseat, .bhseat, .rhseat, .shseat, .srhseat, .vseat, .bvseat, .rvseat, .svseat, .srvseat, .lower, .upper {
+    float: left;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: url(assets/theme/img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
+    cursor: pointer
+}
+
+.outerlowerseat {
+    border: 1px solid #ccc;
+    width: 410px;
+    margin: 10px;
+    float: left;
+    height: 180px;
+}
+
+.clr {
+    clear: both;
+}
+
+.bseat {
+    background-position: 0px -40px;
+    cursor: default;
+}
+
+/*for booked seat*/
+.rseat {
+    background-position: -20px -20px;
+}
+
+/*for reserved seat*/
+.snseat {
+    background-position: 0px -60px;
+}
+
+/*for selected seat*/
+.srseat {
+    background-position: -20px -60px;
+}
+
+/*for selected reserved seat*/
+
+.hseat {
+    width: 40px;
+    background-position: -40px 0;
+    z-index: 2;
+}
+
+/*for horizontal seat*/
+.bhseat {
+    background-position: -40px -40px;
+    cursor: default;
+    width: 40px;
+    z-index: 2;
+}
+
+/*for booked horizontal seat*/
+.rhseat {
+    background-position: -80px -20px;
+    width: 40px;
+    z-index: 2;
+}
+
+/*for reserved horizontal seat*/
+.shseat {
+    background-position: -40px -60px;
+    width: 40px;
+    z-index: 2;
+}
+
+/*for selected horizontal seat*/
+.srhseat {
+    background-position: -80px -60px;
+    width: 40px;
+    z-index: 2;
+}
+
+/*for selected reserved horizontal seat*/
+
+.vseat {
+    height: 40px;
+    background-position: -124px 0;
+    z-index: 2;
+    width: 20px
+}
+
+/*for vertical seat*/
+.bvseat {
+    background-position: -166px 0;
+    cursor: default;
+    height: 40px;
+}
+
+/*for booked vertical seat*/
+.rvseat {
+    background-position: -145px -40px;
+    height: 40px;
+}
+
+/*for reserved vertical seat*/
+.svseat {
+    background-position: -187px 0px;
+    height: 40px;
+}
+
+/*for selected vertical seat*/
+.srvseat {
+    background-position: -187px -40px;
+    height: 40px;
+}
+
+/*for selected reserved vertical seat*/
+
+.seatdesp {
+    float: left;
+    width: 198px;
+    margin: 10px 10px 10px 0;
+}
+
+.seatsmall dfn, .seatdesp .seatbig dfn {
+    float: left;
+    background: url(assets/theme/img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
+}
+
+.seatsmall {
+    list-style: none;
+    margin-bottom: 15px;
+    float: left
+}
+
+.seatbig {
+    list-style: none;
+    margin-bottom: 10px;
+    float: left;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 15px
+}
+
+.seatsmall li, .seatbig li {
+    width: 100%;
+    float: left;
+    padding: 5px 0 0;
+}
+
+.seatsmall li dfn, .seatbig li dfn {
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+
+.seatsmall li span, .seatbig li span {
+    float: left;
+    width: 120px;
+    padding-left: 5px;
+    font-size: 11px
+}
+
+.seatsmall dfn.wd1 {
+    background-position: 0px 0px
+}
+
+.seatsmall dfn.wd2 {
+    background-position: -20px -20px;
+}
+
+.seatsmall dfn.wd3 {
+    background-position: 0px -60px;
+}
+
+.seatsmall dfn.wd4 {
+    background-position: 0px -40px;
+}
+
+.seatbig dfn.wd5 {
+    background-position: -40px 0;
+    width: 40px;
+}
+
+.seatbig dfn.wd6 {
+    background-position: -80px -20px;
+    width: 40px;
+}
+
+.seatbig dfn.wd7 {
+    background-position: -40px -60px;
+    width: 40px;
+}
+
+.seatbig dfn.wd8 {
+    background-position: -40px -40px;
+    width: 40px;
+}
+
+.seatdesp div {
+    padding: 2px 0px;
+}
+
+.seatdesp div label {
+    font-weight: bold;
+}

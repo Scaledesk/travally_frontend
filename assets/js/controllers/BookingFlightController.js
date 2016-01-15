@@ -1,5 +1,5 @@
 angular.module('Travally')
-    .controller('BookingFlightController', function($http, $scope, $routeParams, $filter, $location, Flight) {
+    .controller('BookingFlightController', function($http, $scope, $routeParams, $rootScope, $filter, $location, Flight) {
         $scope.passenger =  {
             "adult": window.localStorage['AdultCount'],
             "child":window.localStorage['ChildCount'],
@@ -92,10 +92,11 @@ angular.module('Travally')
                     "MemberMobileNo": $scope.bookVal.MemberMobileNo,
                     "MemberMobilePin": $scope.bookVal.MemberMobilePin
                 };
-                console.log($scope.ticket);
+                $rootScope.ticketRequest = $scope.ticket;
+                //console.log($scope.ticket);
                 Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
                     console.log("ticket response");
-                    $scope.ticketDetails = ticketResponse.data;
+                    $rootScope.ticketResponse = ticketResponse.data;
                     $scope.$emit('UNLOAD')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')

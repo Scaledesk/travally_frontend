@@ -3,6 +3,14 @@ angular.module('Travally')
         $scope.isAuthenticated = function() {
             return $auth.isAuthenticated();
         };
+
+        $rootScope.flightSearch = {};
+        $rootScope.getFareQuoteRequest = {};
+        $rootScope.getFareQuoteResponse = {};
+        $rootScope.ticketRequest = {};
+        $rootScope.ticketResponse = {};
+
+
         $scope.logout = function() {
             $auth.logout();
             $rootScope.user_profile = null;

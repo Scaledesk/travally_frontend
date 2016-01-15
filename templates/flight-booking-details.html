@@ -199,7 +199,7 @@
                             <label>
                                 <input class="i-check" type="checkbox" checked/>Add to My Cards</label>
                         </div>-->
-                        {{ticket}}</form>
+                       </form>
                         <input class="btn btn-primary" type="button" ng-click="BookFlight()" value="Proceed Payment" /><br/><br/>
 
 
@@ -220,8 +220,17 @@
 
                     <div ng-hide="loading">
 
-                        {{bookingResponse}}<br/><br/><br/>
-                        {{ticketDetails}}
+                        Search Response:<br/>
+                        {{flightSearch}}<br/><br/><br/>
+                        GetFareQuote Request:<br/>
+                        {{getFareQuoteRequest}}<br/><br/>
+                        GetFareQuote Response<br/>
+                        {{getFareQuoteResponse}}<br/><br/>
+                        Ticket Request<br/>
+                        {{ticketRequest}}<br/><br/>
+                        Ticket Response<br/>
+                        {{ticketResponse}}<br/><br/>
+
 
                     </div>
                     </form>
