@@ -8,6 +8,13 @@ angular.module('Travally')
         $scope.page_type = "list";
         $scope.details = false;
 
+
+        $scope.TBSelectedSeatPrice= "";
+        $scope.TBSelectedSeat= "";
+
+
+
+
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
 
@@ -88,7 +95,6 @@ angular.module('Travally')
             console.log(response);
         });
 
-
         $scope.showDetails =function(busses){
             //$scope.page_type = "book";
             if(busses.busDetailsView == true){
@@ -123,7 +129,7 @@ angular.module('Travally')
                 BusServices.getSeatLayout(bb).then(function (seatLayout) {
                     $scope.detailsLoading = false;
                     $scope.seat_layout = seatLayout;
-                    $scope.seatLayoutExample = "<h1>hello world</h1><br/><p>vgscvdghscvghscvghsdv<br/>gdchsgcfgshcvhs<br/>scdfsfcgfc</p>";
+                   // $scope.seatLayoutExample = "<h1>hello world</h1><br/><p>vgscvdghscvghscvghsdv<br/>gdchsgcfgshcvhs<br/>scdfsfcgfc</p>";
                     console.log(seatLayout);
                 }).catch(function (response) {
                     $scope.detailsLoading = false;

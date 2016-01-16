@@ -68,7 +68,7 @@ angular.module('Travally')
         });
 
         $scope.BookFlight = function(){
-            if($scope.flightData.isLcc){
+            if($scope.flightData.IsLcc){
                 $scope.$emit('LOAD')
                 $scope.ticket = {
                     "BookingID": "",

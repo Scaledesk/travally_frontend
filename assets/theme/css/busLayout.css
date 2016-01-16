@@ -56,7 +56,7 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    background: url(assets/theme/img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
+    background: url(../img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
     cursor: pointer
 }
 
@@ -173,7 +173,7 @@
 
 .seatsmall dfn, .seatdesp .seatbig dfn {
     float: left;
-    background: url(assets/theme/img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
+    background: url(../img/image/transparent-backgro-seatlayout.gif) no-repeat left top;
 }
 
 .seatsmall {

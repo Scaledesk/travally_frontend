@@ -221,7 +221,8 @@
 
 
 
-                        <div ng-show="busses.busDetailsView" class="booking-item">
+                        <div ng-show="busses.busDetailsView" class="booking-items">
+
 
                             <div ng-show="detailsLoading" class="row">
                                 <div id="floatingCirclesG">
@@ -235,13 +236,69 @@
                                     <div class="f_circleG" id="frotateG_08"></div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
                             <div ng-hide="detailsLoading" class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <h4>Select Your Seat</h4>
                                     <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
+
+
+
+
+                                    <div>
+                                        <input id="TBSelectedSeat" name="TBSelectedSeat" ng-model="TBSelectedSeat" type="hidden">
+                                        <input id="TBSelectedSeatPrice" name="TBSelectedSeatPrice" ng-model="TBSelectedSeatPrice" type="hidden">
+                                        
+                                    </div>
+                                    <div class="seatdesp">
+                                        <div class="fleft">
+                                            <ul class="seatsmall">
+                                                <li class=""><dfn class="wd1"></dfn> <span>Available seat</span></li>
+                                                <li class=""><dfn class="wd2"></dfn> <span>Reserved for ladies</span></li>
+                                                <li class=""><dfn class="wd3"></dfn> <span>Selected seat</span></li>
+                                                <li class=""><dfn class="wd4"></dfn> <span>Booked seat</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="fleft width_100">
+                                            <div style="color:Red;"><label>Seat(s)</label>:<span class="seatsSelected"><label id="selectedSeats"></label></span></div>
+                                            <div style="color:Red;"><label>Amount</label>:<span class="seatsSelected"><label id="totalAmount"></label></span></div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     <!--<div ng-bind-html="renderHtml(seatLayoutExample)"></div>-->
                                 </div>
-                                <div class="col-md-4">
+
+
+
+
+
+
+
+
+
+
+                                <!--<div class="col-md-4">
                                     <h4>Select Your Boarding Point</h4>
                                     <select>
                                         <option value="Place">New Delhi</option>
@@ -253,10 +310,16 @@
                                     <p class="bus_search_align_2">Total Amount</p>
                                     <h4>&#x20b9;0</h4>
                                     <button class="bus_search_btn">Confirm Booking</button>
-                                </div>
-                                ​
-                                ​
+                                </div>-->​
                             </div>
+
+
+
+
+
+
+
+
 
                         </div>
 
@@ -321,6 +384,13 @@
     function AddRemoveSeat(test,seatno,htm,seatprice)
     {
         var routeId = '100158515180396821';
+
+        console.log(test);
+        console.log(seatno);
+        console.log(htm);
+        console.log(seatprice);
+
+
 
         if($('#'+routeId + '' + seatno))
         {

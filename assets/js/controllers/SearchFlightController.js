@@ -121,7 +121,7 @@ angular.module('Travally')
                 "publishFare":flight.Fare.PublishedPrice,
                 "offeredFare":flight.Fare.OfferedFare,
                 "duration":flight.ObDuration,
-                "isLcc":flight.IsLcc,
+                "IsLcc":flight.IsLcc,
                 "stop":stop,
                 "FareBreakdown":flight.FareBreakdown,
                 "key":flight.SegmentKey
@@ -136,14 +136,14 @@ angular.module('Travally')
         });
 
         $scope.bookingDetails = function(data) {
-            if (!data.isLcc) {
+            if (!data.IsLcc) {
                 //window.localStorage['flight'] = data;
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
-                        window.localStorage['AdultCount'] = $scope.passenger;
+                     /*   window.localStorage['AdultCount'] = $scope.passenger;
                         window.localStorage['ChildCount'] = 0;
                         window.localStorage['InfantCount'] = 0;
-                        window.localStorage['SeniorCount'] = 0;
+                        window.localStorage['SeniorCount'] = 0;*/
 
                         /*"Remarks": "test",
                          "InstantTicket": true,
@@ -252,7 +252,7 @@ angular.module('Travally')
                                     };
 
                                     Flight.setflightBookData(bookVal);
-                                    Flight.setFlightData(data);
+                                    Flight.setFlightData($scope.fareQuoteResponse.Result);
                                     $location.path('/bookingDetail');
 
                                 }).catch(function (response) {
