@@ -7,7 +7,7 @@ angular.module('Travally')
         $scope.DateOfJourney = $routeParams.DateOfJourney;
         $scope.page_type = "list";
         $scope.details = false;
-
+        $scope.route_id = "asas";
 
         $scope.TBSelectedSeatPrice= "";
         $scope.TBSelectedSeat= "";
@@ -84,7 +84,9 @@ angular.module('Travally')
                 "cancel_policy" : Buses.CancelPolicy,
                 "dropping_point_details" : Buses.DroppingPointsDetails,
                 "price" : Buses.Price,
-                "busDetailsView":false
+                "busDetailsView":false,
+                "detailsLoading":false,
+                "seat_layout": {}
             };
                 $scope.Bus_Result.push(busDetails);
             });
@@ -96,14 +98,14 @@ angular.module('Travally')
         });
 
         $scope.showDetails =function(busses){
-            //$scope.page_type = "book";
+            $scope.route_id = busses.route_id;
             if(busses.busDetailsView == true){
                 busses.busDetailsView = false;
             }
             else{
                 busses.busDetailsView = true;
             }
-            $scope.detailsLoading = "true";
+            busses.detailsLoading = "true";
             if(busses.busDetailsView == true) {
                 var bb = {
                     "BTBusSearchResult": {
@@ -127,8 +129,8 @@ angular.module('Travally')
                     "MemberMobilePin": serverConfig.memberMobilePin
                 };
                 BusServices.getSeatLayout(bb).then(function (seatLayout) {
-                    $scope.detailsLoading = false;
-                    $scope.seat_layout = seatLayout;
+                    busses.detailsLoading = false;
+                    busses.seat_layout = seatLayout;
                    // $scope.seatLayoutExample = "<h1>hello world</h1><br/><p>vgscvdghscvghscvghsdv<br/>gdchsgcfgshcvhs<br/>scdfsfcgfc</p>";
                     console.log(seatLayout);
                 }).catch(function (response) {
