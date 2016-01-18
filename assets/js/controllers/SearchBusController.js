@@ -9,10 +9,10 @@ angular.module('Travally')
         $scope.details = false;
         $scope.route_id = "asas";
 
-        $scope.TBSelectedSeatPrice= "";
-        $scope.TBSelectedSeat= "";
-
-
+        $scope.TBSelectedSeatsPrice= 0;
+            $scope.TBSelectedSeats= "";
+        $scope.totalAmount = "";
+        $scope.selectedSeats = "";
 
 
         $scope.sortType     = "duration";
@@ -96,9 +96,14 @@ angular.module('Travally')
             $scope.$emit('UNLOAD')
             console.log(response);
         });
-
         $scope.showDetails =function(busses){
-            $scope.route_id = busses.route_id;
+
+            if($scope.route_id == busses.route_id){
+                $scope.route_id = "";
+            }
+            else{
+                $scope.route_id = busses.route_id;
+            }
             if(busses.busDetailsView == true){
                 busses.busDetailsView = false;
             }
@@ -131,7 +136,6 @@ angular.module('Travally')
                 BusServices.getSeatLayout(bb).then(function (seatLayout) {
                     busses.detailsLoading = false;
                     busses.seat_layout = seatLayout;
-                   // $scope.seatLayoutExample = "<h1>hello world</h1><br/><p>vgscvdghscvghscvghsdv<br/>gdchsgcfgshcvhs<br/>scdfsfcgfc</p>";
                     console.log(seatLayout);
                 }).catch(function (response) {
                     $scope.detailsLoading = false;
@@ -144,6 +148,8 @@ angular.module('Travally')
         };
 
         $scope.bookingDetails = function(data) {
+
+
 
             var book = {
                 "BusId":data.bus_id,
@@ -185,33 +191,7 @@ angular.module('Travally')
                     "Gender":"Male"
                 },
                 "SeatsDetail":[
-                    /*{
-                        "SeatId":"",
-                        "BusId":data.bus_id,
-                        "SeatName":"",
-                        "SeatType":"",
-                        "RowNo":"",
-                        "ColumnNo":"",
-                        "SeatStatus":"",
-                        "SeatFare":"",
-                        "priceId":"",
-                        "Width":"",
-                        "Height":"",
-                        "IsLadies":"",
-                        "IsUpper":"",
-                        "Price": {
-                            "TdsCommission":"",
-                            "PriceId":"",
-                            "PublishedFare":"",
-                            "AgentCommission":"",
-                            "SeviceTax":"",
-                            "Tax":"",
-                            "Currency":"",
-                            "RateOfExchange":"",
-                            "CurrencyCode":"INR",
-                            "Discount":"",
-                            "TdsRate":""
-                        }}*/
+
                 ],
                 "Currency":"INR",
                 "sessionId":$scope.SessionId,
@@ -222,9 +202,12 @@ angular.module('Travally')
                 "MemberMobileNo":serverConfig.memberMobileNumber,
                 "MemberMobilePin":serverConfig.memberMobilePin
             };
+
+
+
+
             BusServices.BookBus(book).then(function (BookResponse) {
                 $scope.book_response = BookResponse;
-                /*$scope.page_type = "book";*/
                 console.log(BookResponse);
             }).catch(function (response) {
 
@@ -246,16 +229,9 @@ angular.module('Travally')
             return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
         }
 
-
-
-
-
-
-
         /*$scope.filterFlightDetail=function(){
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
         }*/
     });
-
 
 

@@ -128,7 +128,7 @@
                 </ul>
             </div>
         </div>
-        <input type="text" id="route_id" ng-model="route_id"/>
+        <input type="text" id="route_id" style="display: none;" ng-model="route_id"/>
         <div class="col-md-7">
             <div ng-show="loading">
 
@@ -175,7 +175,6 @@
                                 <div class="col-md-2">
                                     <h5>{{busses.duration}} hour</h5>
                                 </div>
-                                {{busses.route_id}}
                                 <div class="col-md-3"><span class="booking-item-price">&#8377;{{busses.available_fares}}</span><span></span>
                                     <p class="booking-item-flight-class">Class: {{busses.service_name}}</p><a class="btn btn-primary" ng-click="showDetails(busses)" ng-href="">Select</a>
                                 </div>
@@ -184,46 +183,9 @@
 
 
 
-                        <!--<div ng-show="busses.busDetailsView" class="booking-item">
+                        <!-- Bus Details VIew  -->
 
-                            <div ng-show="detailsLoading" class="row">
-                                <div id="floatingCirclesG">
-                                    <div class="f_circleG" id="frotateG_01"></div>
-                                    <div class="f_circleG" id="frotateG_02"></div>
-                                    <div class="f_circleG" id="frotateG_03"></div>
-                                    <div class="f_circleG" id="frotateG_04"></div>
-                                    <div class="f_circleG" id="frotateG_05"></div>
-                                    <div class="f_circleG" id="frotateG_06"></div>
-                                    <div class="f_circleG" id="frotateG_07"></div>
-                                    <div class="f_circleG" id="frotateG_08"></div>
-                                </div>
-                            </div>
-                            <div ng-hide="detailsLoading" class="row">
-                                <div class="col-md-8">
-
-                                    <div ng-bind-html="renderHtml(seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
-                                    <div ng-bind-html="renderHtml(seatLayoutExample)"></div>
-
-                                </div>
-                            </div>
-
-                        </div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div ng-show="busses.busDetailsView" class="booking-items">
+                        <div ng-if="route_id == busses.route_id" class="booking-items">
 
 
                             <div ng-show="busses.detailsLoading" class="row">
@@ -239,34 +201,14 @@
                                 </div>
                             </div>
 
-
-
-
-
-
-
-
                             <div ng-hide="busses.detailsLoading" class="row">
                                 <div class="col-md-12">
                                     <h4>Select Your Seat</h4>
                                     <div ng-bind-html="renderHtml(busses.seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
 
                                     <div>
-
-
-
-                                        <!--<div>
-                                            {{seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout}}
-                                            </div>-->
-
-
-
-
-
-                                        <input id="TBSelectedSeats" name="TBSelectedSeats" value="" type="hidden">
-                                        <input id="TBSelectedSeatsPrice" name="TBSelectedSeatsPrice" value="0" type="hidden">
-
-
+                                        <input id="TBSelectedSeats" name="TBSelectedSeats" ng-model="TBSelectedSeats" type="text" style="display: none;">
+                                        <input id="TBSelectedSeatsPrice" name="TBSelectedSeatsPrice" ng-model="TBSelectedSeatsPrice" type="text" style="display: none;">
                                     </div>
 
                                     <div class="seatdesp">
@@ -279,8 +221,9 @@
                                             </ul>
                                         </div>
                                         <div class="fleft width_100">
-                                            <div style="color:Red;"><label>Seat(s)</label>:<span class="seatsSelected"><label id="selectedSeats"></label></span></div>
-                                            <div style="color:Red;"><label>Amount</label>:<span class="seatsSelected"><label id="totalAmount"></label></span></div>
+                                            <div style="color:Red;"> Seat(s) : {{TBSelectedSeats}}<!--<label>Seat(s)</label>:<span class="seatsSelected"><label id="selectedSeats"></label></span>--></div>
+                                            <div style="color:Red;">Amount : {{TBSelectedSeatsPrice}}<!--<label>Amount</label>:<span class="seatsSelected"><label id="totalAmount"></label></span>--></div>
+
                                         </div>
                                     </div>
 
@@ -423,16 +366,18 @@
         if($("#TBSelectedSeats").val())
         {
             $("#TBSelectedSeats").val($("#TBSelectedSeats").val()+","+seatno);
+            $("#TBSelectedSeats").trigger('input');
         }
         else
         {
             $("#TBSelectedSeats").val(seatno);
+            $("#TBSelectedSeats").trigger('input');
         }
 
         $("#TBSelectedSeatsPrice").val(parseFloat($("#TBSelectedSeatsPrice").val()) +  parseFloat(seatprice));
-
-        $('#selectedSeats').text($('#TBSelectedSeats').val());
-        $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());
+        $("#TBSelectedSeatsPrice").trigger('input');
+        /*$('#selectedSeats').text($('#TBSelectedSeats').val());
+        $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());*/
         return true;
     }
 
@@ -446,26 +391,31 @@
             if(inext == -1 && i == 0)
             {
                 $("#TBSelectedSeats").val("");
+                $("#TBSelectedSeats").trigger('input');
             }
             else if(i == 0)
             {
                 $("#TBSelectedSeats").val(str.substring(inext+1));
+                $("#TBSelectedSeats").trigger('input');
             }
             else
             {
                 if(inext == -1)
                 {
                     $("#TBSelectedSeats").val(str.substring(0,i-1));
+                    $("#TBSelectedSeats").trigger('input');
                 }
                 else
                 {
                     $("#TBSelectedSeats").val(str.substring(0,i-1) + str.substring(inext));
+                    $("#TBSelectedSeats").trigger('input');
                 }
             }
         }
         $("#TBSelectedSeatsPrice").val(parseFloat($("#TBSelectedSeatsPrice").val()) - parseFloat(seatprice));
-        $('#selectedSeats').text($('#TBSelectedSeats').val());
-        $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());
+        $("#TBSelectedSeatsPrice").trigger('input');
+        /*$('#selectedSeats').text($('#TBSelectedSeats').val());
+        $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());*/
     }
 
 </script>
