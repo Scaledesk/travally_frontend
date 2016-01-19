@@ -41,9 +41,21 @@
                         <div ng-class="{'tab-pane fade in active':tab=='photos'}" id="tab-1">
                             <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
                                 <!--<img src="{{hotelDetail.Image}}" alt="Image Alternative text" title="hotel PORTO BAY RIO INTERNACIONAL rooftop pool" />-->
-                                <span ng-repeat="img in hotelDetail.ImageUrls">
+
+
+                                <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+                                    <uib-slide ng-repeat="slide in hotelDetail.ImageUrls" active="slide.active">
+                                        <img ng-src="{{slide}}" style="margin:auto;">
+                                        <div class="carousel-caption">
+                                            <h4>hello</h4>
+                                        </div>
+                                    </uib-slide>
+                                </uib-carousel>
+
+
+                                <!--<span ng-repeat="img in hotelDetail.ImageUrls">
                                         <img src="{{img}}" alt="Image" title="hotel PORTO BAY SERRA GOLF suite2" />
-                                </span>
+                                </span>-->
                                 <!--<img src="assets/theme/img/lhotel_porto_bay_sao_paulo_suite_lhotel_living_room_800x600.jpg" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
                                 <img src="assets/theme/img/hotel_porto_bay_rio_internacional_rooftop_pool_800x600.jpg" alt="Image Alternative text" title="hotel PORTO BAY RIO INTERNACIONAL rooftop pool" />
                                 <img src="assets/theme/img/hotel_porto_bay_serra_golf_suite2_800x600.jpg" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF suite2" />

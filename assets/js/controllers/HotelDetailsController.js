@@ -1,7 +1,8 @@
 angular.module('Travally')
     .controller('HotelDetailsController', function($http, $scope, Hotel,$routeParams,$filter, $location) {
         $scope.hotel = Hotel.getSelectedHotel();
-
+        $scope.myInterval = 1000;
+        $scope.noWrapSlides = false;
         var index = $routeParams.index;
          $scope.sessionId = $routeParams.sessionId;
         console.log($scope.hotel);

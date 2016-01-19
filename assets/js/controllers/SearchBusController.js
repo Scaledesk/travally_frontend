@@ -144,11 +144,10 @@ angular.module('Travally')
         $scope.book_button_text = 'Book Seat';
         $scope.book_button_disabled = false;
         $scope.bookingDetails = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
-
             console.log(TBSelectedSeatsPrice);
             console.log(TBSelectedSeats);
-        //console.log(amount);
-
+            var str = TBSelectedSeats;
+            var res = str.split(",");
 
              $scope.book = {
                 "BusId":data.bus_id,
@@ -190,7 +189,6 @@ angular.module('Travally')
                     "Gender":"Male"
                 },
                 "SeatsDetail":[
-
                 ],
                 "Currency":"INR",
                 "sessionId":$scope.SessionId,
@@ -205,8 +203,6 @@ angular.module('Travally')
             $scope.book_button_text = 'Booking.....';
             $scope.book_button_disabled = true;
 
-            var str = TBSelectedSeats;
-            var res = str.split(",");
             angular.forEach(res, function (seat, key) {
                 console.log(seat);
                 angular.forEach(data.seat_layout.data.BTNewSeatLayoutDetails.BTSeatLayoutStructure.objStructSeatDetails, function (seatDetails, key) {
@@ -221,6 +217,23 @@ angular.module('Travally')
             console.log($scope.book);
             BusServices.BookBus($scope.book).then(function (BookResponse) {
                 $scope.book_response = BookResponse.data.Message;
+
+
+
+                if($scope.book_response.Description == Successfull){
+
+                     var UserBookingDetails = {
+
+
+
+
+                     };
+
+
+
+                }
+
+
                 $scope.book_button_text = 'Book Seat';
                 $scope.book_button_disabled = false;
                 console.log(BookResponse);
