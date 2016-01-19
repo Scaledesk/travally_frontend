@@ -10,9 +10,7 @@ angular.module('Travally')
         $scope.route_id = "asas";
 
         $scope.TBSelectedSeatsPrice= 0;
-            $scope.TBSelectedSeats= "";
-        $scope.totalAmount = "";
-        $scope.selectedSeats = "";
+        $scope.TBSelectedSeats= "";
 
 
         $scope.sortType     = "duration";
@@ -44,14 +42,7 @@ angular.module('Travally')
                     boarding_point_address = Boarding.CityPointAddress;
                     boarding_point_contact_number = Boarding.CityPointContactNumber;
                     boarding_point_time = Boarding.CityPointTime;
-                    /*"CityPointId": 976614,
-                        "BusId": 0,
-                        "CityPointName": "CHARBAGH",
-                        "CityPointLocation": "CHARBAGH",
-                        "CityPointLandmark": null,
-                        "CityPointAddress": null,
-                        "CityPointContactNumber": null,
-                        "CityPointTime": "2016-01-15T21*/
+
                 });
                 angular.forEach(Buses.DroppingPointsDetails, function (Dropping, key) {
                     dropping_point_name = Dropping.CityPointName;
@@ -97,6 +88,8 @@ angular.module('Travally')
             console.log(response);
         });
         $scope.showDetails =function(busses){
+            $scope.book_response = "";
+
 
             if($scope.route_id == busses.route_id){
                 $scope.route_id = "";
@@ -147,11 +140,17 @@ angular.module('Travally')
             return $sce.trustAsHtml(htmlCode);
         };
 
-        $scope.bookingDetails = function(data) {
+
+        $scope.book_button_text = 'Book Seat';
+        $scope.book_button_disabled = false;
+        $scope.bookingDetails = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
+
+            console.log(TBSelectedSeatsPrice);
+            console.log(TBSelectedSeats);
+        //console.log(amount);
 
 
-
-            var book = {
+             $scope.book = {
                 "BusId":data.bus_id,
                 "SourceId":$scope.SourceId,
                 "DestinationId":$scope.DestinationId,
@@ -203,14 +202,31 @@ angular.module('Travally')
                 "MemberMobilePin":serverConfig.memberMobilePin
             };
 
+            $scope.book_button_text = 'Booking.....';
+            $scope.book_button_disabled = true;
 
+            var str = TBSelectedSeats;
+            var res = str.split(",");
+            angular.forEach(res, function (seat, key) {
+                console.log(seat);
+                angular.forEach(data.seat_layout.data.BTNewSeatLayoutDetails.BTSeatLayoutStructure.objStructSeatDetails, function (seatDetails, key) {
+                    angular.forEach(seatDetails, function (s, key) {
+                        if(seat== s.SeatName){
+                            $scope.book.SeatsDetail.push(s);
+                        }
+                    });
+                });
+            });
 
-
-            BusServices.BookBus(book).then(function (BookResponse) {
-                $scope.book_response = BookResponse;
+            console.log($scope.book);
+            BusServices.BookBus($scope.book).then(function (BookResponse) {
+                $scope.book_response = BookResponse.data.Message;
+                $scope.book_button_text = 'Book Seat';
+                $scope.book_button_disabled = false;
                 console.log(BookResponse);
             }).catch(function (response) {
-
+                $scope.book_button_text = 'Book Seat';
+                $scope.book_button_disabled = false;
                 console.log(response);
             });
         };

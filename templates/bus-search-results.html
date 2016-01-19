@@ -221,18 +221,18 @@
                                             </ul>
                                         </div>
                                         <div class="fleft width_100">
+
                                             <div style="color:Red;"> Seat(s) : {{TBSelectedSeats}}<!--<label>Seat(s)</label>:<span class="seatsSelected"><label id="selectedSeats"></label></span>--></div>
                                             <div style="color:Red;">Amount : {{TBSelectedSeatsPrice}}<!--<label>Amount</label>:<span class="seatsSelected"><label id="totalAmount"></label></span>--></div>
 
                                         </div>
+                                        <div class="fleft">
+
+                                            <a class="btn btn-primary" ng-disabled="book_button_disabled" ng-click="bookingDetails(busses,TBSelectedSeatsPrice,TBSelectedSeats)" ng-href="">{{book_button_text}}</a>
+
+                                            {{book_response}}
+                                        </div>
                                     </div>
-
-
-
-
-
-
-
                                 </div>
 
 
@@ -328,9 +328,8 @@
 <script type="text/javascript">
     function AddRemoveSeat(test,seatno,htm,seatprice)
     {
-        console.log("ok");
+
         var routeId = $("#route_id").val();
-        console.log(routeId);
         if($('#'+routeId + '' + seatno))
         {
             var classOfDiv = $('#'+routeId + '' + seatno).attr("class");
