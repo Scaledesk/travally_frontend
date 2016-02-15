@@ -10,7 +10,9 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://api.jbspl.com'
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, OPTIONS'
+                    //'Access-Control-Allow-Origin': 'http://api.jbspl.com'
                 }
             });
         },
