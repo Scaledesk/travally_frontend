@@ -9,8 +9,6 @@ angular.module('Travally')
         $rootScope.getFareQuoteResponse = {};
         $rootScope.ticketRequest = {};
         $rootScope.ticketResponse = {};
-
-
         $scope.logout = function() {
             $auth.logout();
             $rootScope.user_profile = null;

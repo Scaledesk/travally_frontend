@@ -3,7 +3,7 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
         search : function(dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/api/HotelBooking/Search',
+                url: 'http://api.jbspl.com/staging/api/HotelBooking/Search',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
@@ -15,7 +15,7 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
         getHotelDetails : function(dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/api/HotelBooking/GetHotelDetails',
+                url: 'http://api.jbspl.com/staging/api/HotelBooking/GetHotelDetails',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
@@ -27,7 +27,7 @@ angular.module('Travally').factory('Hotel', function($http, serverConfig) {
         hotelBook : function(dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/api/HotelBooking/Book',
+                url: 'http://api.jbspl.com/staging/api/HotelBooking/Book',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,

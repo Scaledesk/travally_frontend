@@ -1,14 +1,11 @@
 angular.module('Travally')
 // inject the Activation service into our controller
-    .controller('SearchHotelController', function($http, $scope, Hotel,$routeParams,$filter, $location) {
+    .controller('SearchHotelController', function($http, $scope, $rootScope, Hotel,$routeParams,$filter, $location) {
         var city_id = $routeParams.city_id;
         var city_name = $routeParams.city_name;
         var country_code = $routeParams.country_id;
         $scope.check_in = $routeParams.check_in;
         $scope.check_out = $routeParams.check_out;
-
-
-
         $scope.hotelCityData = Hotel.getHotelCity();
         $scope.hotelCity = {};
         $scope.refreshHotelCity = function(query){
@@ -22,16 +19,13 @@ angular.module('Travally')
             }
         });
 
-
-
-
         console.log(city_id);
         console.log(city_name);
         console.log(country_code);
         console.log($scope.check_in);
         console.log($scope.check_out);
 
-        var hotelRequest = {
+        $rootScope.hotelRequest = {
             "CheckInDate":$scope.check_in,
             "CheckOutDate":$scope.check_out,
             "CountryName":country_code,
@@ -56,9 +50,9 @@ angular.module('Travally')
         $scope.hotelResult = [];
 
             $scope.$emit('LOAD')
-            Hotel.search(hotelRequest).then(function (data) {
+            Hotel.search($rootScope.hotelRequest).then(function (data) {
                     console.log(data);
-                    $scope.hotels = data.data.Result;
+                    $rootScope.hotels = data.data.Result;
                 $scope.sessionId = data.data.SessionId;
 
                     /*angular.forEach($scope.hotels.data.HotelSearchResults.Hotels, function (hotel, key) {
@@ -174,21 +168,16 @@ angular.module('Travally')
                     console.log(data);
                     $scope.$emit('UNLOAD')
                 });
-        
             $scope.hotelDetails = function(selectedHotel){
             Hotel.setSelectedHotel(selectedHotel);
             var index = selectedHotel.Index;
-
                 /*var city_id = $routeParams.city_id;
                 var city_name = $routeParams.city_name;
                 var country_code = $routeParams.country_id;
                 $scope.check_in = $routeParams.check_in;
                 $scope.check_out = $routeParams.check_out;*/
-
                 console.log(index);
                 console.log($scope.sessionId);
                 $location.path('/hotelDetails/'+index+'/'+$scope.sessionId+'/');
-
-
         }
     });

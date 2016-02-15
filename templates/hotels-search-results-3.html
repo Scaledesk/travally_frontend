@@ -380,7 +380,7 @@
 
         <div class="col-md-7">
             <div class="nav-drop booking-sort">
-                <h5 class="booking-sort-title"><a href="#">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
+                <h5 class="booking-sort-title"><a href="">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
                 <ul class="nav-drop-menu">
                     <li><a href="#">Price (low to high)</a>
                     </li>
@@ -398,7 +398,6 @@
 
 
             <div ng-show="loading">
-
                 <div id="floatingCirclesG">
                     <div class="f_circleG" id="frotateG_01"></div>
                     <div class="f_circleG" id="frotateG_02"></div>
@@ -409,7 +408,6 @@
                     <div class="f_circleG" id="frotateG_07"></div>
                     <div class="f_circleG" id="frotateG_08"></div>
                 </div>
-
             </div>
 
 
@@ -425,14 +423,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-
-
-
-
                                     <!--<ANY ng-switch-when="matchValue2">...</ANY>
                                     <ANY ng-switch-default>...</ANY>-->
-
-
                                 <div ng-switch="{{hotel.HotelInfo.Rating}}" class="booking-item-rating">
                                     <ul ng-switch-when="1" class="icon-group booking-item-rating-stars">
                                         <li><i class="fa fa-star"></i>
@@ -505,10 +497,9 @@
                         </div>
                     </a>
                 </li>
-
-
-
             </ul>
+
+
             <div class="row">
                 <div class="col-md-6">
                     <p><small>{{hotels.length;}} hotels found in {{hotelCity.selected.city_name}}. &nbsp;&nbsp;<!--Showing 1 – 15--></small>

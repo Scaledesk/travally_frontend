@@ -8,10 +8,10 @@ performance/temp*.html
 .idea/workspace.xml
 *~
 *.swp
-/assets/js/app.js
+#/assets/js/app.js
 angular.js.tmproj
-/node_modules/
-bower_components/
+#/node_modules/
+#bower_components/
 angular.xcodeproj
 .idea
 *.iml

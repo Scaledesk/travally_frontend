@@ -1,11 +1,11 @@
 angular.module('Travally')
-    .controller('HotelDetailsController', function($http, $scope, Hotel,$routeParams,$filter, $location) {
+    .controller('HotelDetailsController', function($http, $scope, $rootScope, Hotel,$routeParams,$filter, $location) {
         $scope.hotel = Hotel.getSelectedHotel();
-        $scope.myInterval = 1000;
+        $scope.myInterval = 4000;
         $scope.noWrapSlides = false;
         var index = $routeParams.index;
          $scope.sessionId = $routeParams.sessionId;
-        console.log($scope.hotel);
+        //console.log($scope.hotel);
         $scope.selected = $scope.hotel.RoomDetails[0];
         $scope.selectedRoomIndex = $scope.selected.Index;
         var h = {
@@ -15,7 +15,7 @@ angular.module('Travally')
             "MemberMobilePin":"6366"
     };
         Hotel.getHotelDetails(h).then(function (data) {
-            $scope.hotelDetail = data.data.HotelDetail
+            $rootScope.hotelDetail = data.data.HotelDetail
         }).catch(function (data) {
             console.log(data);
         });
@@ -28,9 +28,11 @@ angular.module('Travally')
         $scope.bookHotel = function(){
             $scope.$emit('LOAD')
 
-            var hb ={
+            $rootScope.hb ={
                 "RoomCodes":[
-                    $scope.selected.RoomTypeCode
+
+                    "270348:1460512|1###5:146202:1022976|si-e7da3dae-ff1d-460a-8cf8-638fcd428d78"
+                    //$scope.selected.RoomTypeCode
                 ],
                 "Guest": [
                     {
@@ -51,7 +53,8 @@ angular.module('Travally')
                         "Country": "India",
                         "Zipcode": "110022",
                         "GuestType": 0,
-                        "RoomIndex": $scope.selected.Index
+                        "RoomIndex": 0
+                        //"RoomIndex": $scope.selected.Index
                     }
                 ],
                 "SessionId": $scope.sessionId,
@@ -63,11 +66,12 @@ angular.module('Travally')
                     "IPAddress": "127.0.0.1",
                     "TrackId": 0,
                     "PaymentGateway": 4,
-                    "PaymentModeType": 2
+                    //"PaymentModeType": 2
+                    "PaymentModeType": 1
                 },
                 "NoOfRooms": $scope.hotel.NoOfRooms,
                 "Index": $scope.hotel.Index,
-                "HotelCode": $scope.hotel.HotelInfo.HotelCode,
+                "HotelCode": "|876794",
                 "HotelName": $scope.hotel.HotelInfo.HotelName,
                 "CheckInDate": $scope.hotel.CheckInDate,
                 "CheckOutDate": $scope.hotel.CheckOutDate,
@@ -79,9 +83,9 @@ angular.module('Travally')
                 "MemberMobileNo":"9983772777",
                 "MemberMobilePin":"6366"
             };
-
-            Hotel.hotelBook(hb).then(function (data) {
-                $scope.bookResponse = data.data;
+//"HotelCode": $scope.hotel.HotelInfo.HotelCode,
+            Hotel.hotelBook($rootScope.hb).then(function (data) {
+                $rootScope.bookResponse = data.data;
                 $scope.$emit('UNLOAD')
             }).catch(function (data) {
                 console.log(data);
@@ -89,15 +93,12 @@ angular.module('Travally')
             });
 
         };
+
         $scope.selectRooms = function(room){
             $scope.selected = room;
             $scope.selectedRoomIndex = room.Index;
 
         };
-
-
-
-
         console.log(index);
         console.log($scope.sessionId);
     });
