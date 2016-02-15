@@ -48,7 +48,7 @@ angular.module('Travally')
             "PromotionalCode":null,
             "IsDirectFlight":false,
             "FlightSegments":null,
-            "DepartureDateString":"20/01/2016",
+            "DepartureDateString":$scope.departureDate,
             "ReturnDateString":"",
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin

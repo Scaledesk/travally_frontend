@@ -97,6 +97,7 @@ angular.module('Travally')
                 Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
                     console.log("ticket response");
                     $rootScope.ticketResponse = ticketResponse.data;
+                    console.log(ticketResponse.data);
                     $scope.$emit('UNLOAD')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
@@ -136,7 +137,7 @@ angular.module('Travally')
                         };
                         console.log(ticket);
                         Flight.flightTicket(ticket).then(function (ticketResponse) {
-                            $scope.ticketDetails = ticketResponse.data;
+                            $rootScope.ticketResponse = ticketResponse.data;
                             $scope.$emit('UNLOAD')
                         }).catch(function (response) {
                             $scope.$emit('UNLOAD')

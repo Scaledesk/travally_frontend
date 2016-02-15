@@ -216,11 +216,11 @@ angular.module('Travally')
 
             console.log($scope.book);
             BusServices.BookBus($scope.book).then(function (BookResponse) {
-                $scope.book_response = BookResponse.data.Message;
+                $scope.book_response = BookResponse.data;
 
 
 
-                if($scope.book_response.Description == Successfull){
+                /*if($scope.book_response.Description == Successfull){
 
                      var UserBookingDetails = {
 
@@ -229,9 +229,7 @@ angular.module('Travally')
 
                      };
 
-
-
-                }
+                }*/
 
 
                 $scope.book_button_text = 'Book Seat';

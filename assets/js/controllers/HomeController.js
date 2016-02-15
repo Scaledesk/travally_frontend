@@ -29,16 +29,6 @@ angular.module('Travally')
             $scope.hotelCity = $filter('filter')($scope.hotelCityData,{city_name:query})
         };
 
-
-
-
-
-
-
-
-
-
-
         $scope.flightSearchButtonText = "Search Flight";
         $scope.flightSearchButton = false;
 
