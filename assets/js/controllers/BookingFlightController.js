@@ -8,13 +8,13 @@ angular.module('Travally')
         };
         $scope.user = {};
         $scope.agree = false;
-        $scope.validation_message='';
+        $scope.Successful_Message = "";
+        $scope.validation_message="";
         $scope.flightData = Flight.getFlightData();
         $scope.bookVal = Flight.getflightBookData();
         //console.log($scope.flightData);
         console.log($scope.bookVal);
         angular.forEach($scope.flightData.FareBreakdown, function (f, key) {
-
             p =  {
                 "Title":"Mr",
                 "FirstName":"Trivedi",
@@ -127,8 +127,11 @@ angular.module('Travally')
                     console.log("ticket response");
                     $rootScope.ticketResponse = ticketResponse.data;
                     console.log(ticketResponse.data);
+                    if($rootScope.ticketResponse.Status.Description == Sucessfull){
+                        $scope.saveDetails();
+                        $scope.Successful_Message = "Ticket Booked";
+                    }
                     //console.log($scope.bookVal.passenger);
-
                     $scope.$emit('UNLOAD')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
@@ -172,6 +175,7 @@ angular.module('Travally')
 
                             if($rootScope.ticketResponse.Status.Description == Sucessfull){
                                 $scope.saveDetails();
+                                $scope.Successful_Message = "Ticket Booked";
                             }
                             $scope.$emit('UNLOAD')
                         }).catch(function (response) {
