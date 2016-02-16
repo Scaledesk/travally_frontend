@@ -21371,6 +21371,13 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             data: bookData
         });
     },
+        saveDetails: function (bookData) {
+        return $http({
+            method: 'POST',
+            url: serverConfig.travally_backend+'/addFlightBooking',
+            data: bookData
+        });
+    },
         setflightBookData: function (data) {
         flightBookData = data;
     },

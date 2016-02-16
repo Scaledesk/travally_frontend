@@ -1,15 +1,18 @@
 angular.module('Travally')
-    .controller('BookingFlightController', function($http, $scope, $routeParams, $rootScope, $filter, $location, Flight) {
+    .controller('BookingFlightController', function($http, $scope, $routeParams, $auth, $rootScope, $filter, $location, Flight) {
         $scope.passenger =  {
             "adult": window.localStorage['AdultCount'],
             "child":window.localStorage['ChildCount'],
             "infant":window.localStorage['InfantCount'],
             "senior":window.localStorage['SeniorCount']
         };
+        $scope.user = {};
+        $scope.agree = false;
+        $scope.validation_message='';
         $scope.flightData = Flight.getFlightData();
         $scope.bookVal = Flight.getflightBookData();
         //console.log($scope.flightData);
-
+        console.log($scope.bookVal);
         angular.forEach($scope.flightData.FareBreakdown, function (f, key) {
 
             p =  {
@@ -68,6 +71,32 @@ angular.module('Travally')
         });
 
         $scope.BookFlight = function(){
+
+                if($auth.isAuthenticated()){
+                    $scope.flightBooking();
+                 }
+                else{
+
+                        /*if($scope.user.name ==''){
+                            $scope.validation_message = "name is required";
+                            return;
+                        }
+                    if($scope.user.phone ==''){
+                        $scope.validation_message = "phone number is required";
+                        return;
+                    }
+                    if($scope.user.email ==''){
+                        $scope.validation_message = "email is required";
+                        return;
+                    }
+                    if($scope.agree == false){
+                        $scope.validation_message = "Select Create Travally Account";
+                        return;
+                    }*/
+
+                }
+        };
+        $scope.flightBooking = function(){
             if($scope.flightData.IsLcc){
                 $scope.$emit('LOAD')
                 $scope.ticket = {
@@ -98,6 +127,8 @@ angular.module('Travally')
                     console.log("ticket response");
                     $rootScope.ticketResponse = ticketResponse.data;
                     console.log(ticketResponse.data);
+                    //console.log($scope.bookVal.passenger);
+
                     $scope.$emit('UNLOAD')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
@@ -105,7 +136,7 @@ angular.module('Travally')
                 });
 
             }
-           else {
+            else {
                 $scope.$emit('LOAD')
                 //console.log($scope.bookVal);
                 Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
@@ -138,6 +169,10 @@ angular.module('Travally')
                         console.log(ticket);
                         Flight.flightTicket(ticket).then(function (ticketResponse) {
                             $rootScope.ticketResponse = ticketResponse.data;
+
+                            if($rootScope.ticketResponse.Status.Description == Sucessfull){
+                                $scope.saveDetails();
+                            }
                             $scope.$emit('UNLOAD')
                         }).catch(function (response) {
                             $scope.$emit('UNLOAD')
@@ -149,14 +184,46 @@ angular.module('Travally')
                         console.log($scope.bookingResponse);
                         $scope.$emit('UNLOAD')
                     }
-
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
                     console.log(response);
                 });
             }
-
         };
+
+        $scope.saveDetails = function(){
+
+            var saveData = {
+                "pnr":$rootScope.ticketResponse.PNR,
+                "airline":$scope.bookVal.Segment[0].Airline.AirlineName,
+                "booking_id":$rootScope.ticketResponse.BookingId,
+                "ssr_denied":$rootScope.ticketResponse.SSRDenied,
+                "ssr_prod_type":$rootScope.ticketResponse.ProdType,
+                "confirmation_no":$rootScope.ticketResponse.ConfirmationNumber,
+                "payment_reference_no":$rootScope.ticketResponse.PaymentReferenceNumber,
+                "ref_id":$rootScope.ticketResponse.Status.RefId,
+                "status_code":$rootScope.ticketResponse.Status.StatusCode,
+                "status_description":$rootScope.ticketResponse.Status.Description,
+                "status_category":$rootScope.ticketResponse.Status.Category,
+                "source":$scope.bookVal.Segment[0].Origin.CityName,
+                "destination":$scope.bookVal.Segment[0].Destination.CityName,
+                "departure_date":"2016-10-10"
+            };
+            console.log(saveData);
+            Flight.saveDetails(saveData).then(function (dd) {
+                console.log('successfully saved');
+                console.log(dd);
+            }).catch(function (response){
+                console.log(response);
+                console.log('some error occurred');
+            });
+        };
+
+
+
+
+
+
     });
 
 /*var tt = {

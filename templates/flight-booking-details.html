@@ -9,25 +9,25 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>First & Last Name</label>
-                            <input class="form-control" type="text" />
+                            <input ng-model="user.name" class="form-control" type="text" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input class="form-control" type="text" />
+                            <input class="form-control" ng-model="user.phone" type="text" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" />
+                            <input class="form-control" ng-model="user.email" type="email" />
                         </div>
                     </div>
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input class="i-check" type="checkbox" checked/>Create Travally account
+                        <input class="i-check" type="checkbox" ng-change="agree=!agree"/>Create Travally account
                     </label>
                 </div>
             </form>
@@ -221,12 +221,15 @@
                     <div ng-hide="loading">
                         Ticket Response<br/>
                         {{ticketResponse}}<br/><br/>
-
-
                     </div>
-                    </form>
+
                 </div>
+                <div>
+                    <input class="btn btn-primary" type="button" ng-click="saveDetails()" value="Save Details" /><br/><br/>
+                </div>
+
             </div>
+
         </div>
 
 
