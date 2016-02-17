@@ -5,13 +5,13 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
         getAllCities: function () {
             return $http({
                 method: 'GET',
-                url: 'http://api.jbspl.com/api/BusBooking/GetAllCities',
+                url: 'http://api.jbspl.com/staging/api/BusBooking/GetAllCities',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, OPTIONS'
+                    'Content-Type': 'application/json'
+                    //'Access-Control-Allow-Origin': '*',
+                    //'Access-Control-Allow-Methods': 'GET, OPTIONS'
                     //'Access-Control-Allow-Origin': 'http://api.jbspl.com'
                 }
             });
@@ -19,7 +19,7 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
         searchBuses: function (dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/api/BusBooking/Search',
+                url: 'http://api.jbspl.com/staging/api/BusBooking/Search',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
@@ -31,7 +31,7 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
         BookBus: function (dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/api/BusBooking/Book',
+                url: 'http://api.jbspl.com/staging/api/BusBooking/Book',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
@@ -43,7 +43,7 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
         getSeatLayout: function (dt) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/api/BusBooking/GetSeatLayOut',
+            url: 'http://api.jbspl.com/staging/api/BusBooking/GetSeatLayOut',
             headers: {
                 'x-UserName':serverConfig.user_name,
                 'x-Password':serverConfig.password,

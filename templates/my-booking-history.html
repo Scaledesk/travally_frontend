@@ -5,7 +5,7 @@
                     <!--    <h4>Tabs</h4> -->
                     <div class="tabbable">
                         <ul class="nav nav-tabs" id="myTab">
-                            <li ng-class="{active:ss=='first'}"><a href="" ng-click="ss='first'" data-toggle="tab">First</a>
+                            <li ng-class="{active:ss=='first'}"><a href="" ng-click="ss='first'" data-toggle="tab">Flight</a>
                             </li>
 
                             <li ng-class="{active:ss=='second'}"><a href="" ng-click="ss='second'" data-toggle="tab">Second</a>
@@ -23,14 +23,24 @@
                                     <div class="panel-group" id="accordion">
                                         <div class="panel panel-default">
 
+                                           <div ng-repeat="flight in flight_booking_details" ng-init="flight.cc=false">
+                                               <div class="panel-heading">
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="flight.cc = !flight.cc"><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
+                                                    <span style="margin-right:15px;">{{flight.source}}</span> to <span style="margin-left:15px;">{{flight.destination}}</span> <span style="margin-left:15px;">Date: {{flight.departure_date | date : 'dd-MMM-yyyy'}}</span></a></h4>
+                                                </div>
 
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="cc=='col' ? cc='' :cc='col'"><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
-                                                    <span style="margin-right:15px;">Mumbai</span> to <span style="margin-left:15px;">Kanpur</span> <span style="margin-left:15px;">Date: 21st Oct 2015</span></a></h4>
-                                            </div>
-                                            <div ng-class="{'panel-collapse collapse in active':cc=='col'}" ng-show="cc=='col'" id="collapse-1">
-                                                <div class="panel-body">Praesent dolor rutrum cras malesuada varius ac mi ornare odio quam nostra hendrerit cras a volutpat id rutrum dui pulvinar turpis justo hac lobortis per in ullamcorper est</div>
-                                            </div>
+                                                <div ng-class="{'panel-collapse collapse in active':flight.cc}" ng-show="flight.cc">
+                                                    <div class="panel-body">
+                                                        {{flight}}<br/>
+                                                        <div>
+
+                                                            <button ng-click="cancelBooking(flight)" style="cursor: pointer;">Cancel Booking</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                           </div>
+
 
                                         </div>
                                     </div>

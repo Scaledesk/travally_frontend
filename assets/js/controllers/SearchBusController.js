@@ -16,7 +16,7 @@ angular.module('Travally')
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
 
-        var searchBusesDetails = {
+         $scope.searchBusesDetails = {
             "SourceId": $scope.SourceId,
             "DestinationId": $scope.DestinationId,
             "SourceName": $scope.SourceName,
@@ -28,7 +28,7 @@ angular.module('Travally')
         };
         $scope.Bus_Result = [];
         $scope.$emit('LOAD')
-        BusServices.searchBuses(searchBusesDetails).then(function (responseBuses) {
+        BusServices.searchBuses($scope.searchBusesDetails).then(function (responseBuses) {
             console.log(responseBuses);
             $scope.Bus_Results = responseBuses.data.BusSearchResult;
             $scope.SessionId = responseBuses.data.sessionId;
@@ -238,6 +238,7 @@ angular.module('Travally')
             }).catch(function (response) {
                 $scope.book_button_text = 'Book Seat';
                 $scope.book_button_disabled = false;
+                $scope.book_response = response.data;
                 console.log(response);
             });
         };

@@ -7,9 +7,9 @@ angular.module('Travally')
             "senior":window.localStorage['SeniorCount']
         };
         $scope.user = {};
-        $scope.agree = false;
+        //$scope.agree = false;
         $scope.Successful_Message = "";
-        $scope.validation_message="";
+        //$scope.validation_message="";
         $scope.flightData = Flight.getFlightData();
         $scope.bookVal = Flight.getflightBookData();
         //console.log($scope.flightData);
@@ -128,7 +128,7 @@ angular.module('Travally')
                     $rootScope.ticketResponse = ticketResponse.data;
                     console.log(ticketResponse.data);
                     if($rootScope.ticketResponse.Status.Description == Sucessfull){
-                        $scope.saveDetails();
+                        //$scope.saveDetails();
                         $scope.Successful_Message = "Ticket Booked";
                     }
                     //console.log($scope.bookVal.passenger);
@@ -172,9 +172,8 @@ angular.module('Travally')
                         console.log(ticket);
                         Flight.flightTicket(ticket).then(function (ticketResponse) {
                             $rootScope.ticketResponse = ticketResponse.data;
-
                             if($rootScope.ticketResponse.Status.Description == Sucessfull){
-                                $scope.saveDetails();
+                               // $scope.saveDetails();
                                 $scope.Successful_Message = "Ticket Booked";
                             }
                             $scope.$emit('UNLOAD')
@@ -211,7 +210,8 @@ angular.module('Travally')
                 "status_category":$rootScope.ticketResponse.Status.Category,
                 "source":$scope.bookVal.Segment[0].Origin.CityName,
                 "destination":$scope.bookVal.Segment[0].Destination.CityName,
-                "departure_date":"2016-10-10"
+                "source_value" : $scope.bookVal.Source,
+                "departure_date":$scope.bookVal.Segment[0].DepTIme
             };
             console.log(saveData);
             Flight.saveDetails(saveData).then(function (dd) {

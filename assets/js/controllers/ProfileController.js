@@ -21,6 +21,40 @@ console.log($routeParams.target);
             $scope.user.address = $scope.profile.Address;
             $scope.user.dob = $scope.profile.DOB;
         });
+
+
+    if($scope.target == 'booking-history'){
+        Profile.getFlightBookingDetails().then(function(response){
+            $scope.flight_booking_details = response.data.data;
+            console.log(response.data.data);
+        }).catch(function(response){
+            console.log(response);
+        });
+    }
+
+    $scope.cancelBooking = function(f){
+
+        var b = {
+            "BookingId":"15384002",
+            "Pnr":"76H9TW",
+            "Source":0,
+            "LastName":"",
+            "TicketId":0,
+            "MemberMobileNo":"9188888888",
+            "MemberMobilePin":"1234"
+        };
+        var cancel = {
+
+        };
+        Profile.cancelBooking(cancel).then(function(response){
+            $scope.cancelResponse = response.data;
+            console.log(response.data);
+        }).catch(function(response){
+            console.log(response);
+        });
+
+    };
+
     $scope.update_success = false;
     /**
      * function for updating user profiles
