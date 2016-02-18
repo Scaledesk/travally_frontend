@@ -1,4 +1,4 @@
-angular.module('Travally').controller('ProfileController', function ($rootScope, $routeParams, $scope, $auth, $location, Profile) {
+angular.module('Travally').controller('ProfileController', function ($rootScope,serverConfig, $routeParams, $scope, $auth, $location, Profile,Flight) {
 
     $scope.user = {};
     $scope.target = $routeParams.target;
@@ -33,26 +33,50 @@ console.log($routeParams.target);
     }
 
     $scope.cancelBooking = function(f){
-
-        var b = {
-            "BookingId":"15384002",
-            "Pnr":"76H9TW",
-            "Source":0,
+        $scope.getBooking = {
+            "BookingId": f.booking_id,
+            "Pnr": f.pnr,
+            "Source": f.source_value,
             "LastName":"",
             "TicketId":0,
-            "MemberMobileNo":"9188888888",
-            "MemberMobilePin":"1234"
+            "MemberMobileNo":serverConfig.memberMobileNumber,
+            "MemberMobilePin":serverConfig.memberMobilePin
         };
-        var cancel = {
+        Flight.GetBooking($scope.getBooking).then(function(response){
+            console.log('true');
+            $scope.BookingResponse = response.data;
+            $scope.cancelFlightBooking();
+            //console.log(response.data);
+        }).catch(function(response){
+            console.log('false');
+            console.log(response);
+        });
+    };
 
+    $scope.cancelFlightBooking = function(){
+        $scope.ticketId = [$scope.BookingResponse.Ticket[0].TicketId];
+        /*angular.forEach($scope.BookingResponse.Ticket, function (t, key) {
+            $scope.ticketId.push(t.TicketId);
+        });*/
+        $scope.cancel = {
+            "BookingId":$scope.BookingResponse.BookingId,
+            "RequestType":1,
+            "TicketId":$scope.ticketId,
+            "Remarks":"TEST",
+            "SubAgentID":'',
+            "IsFullBookingCancel":true,
+            " PNR":$scope.BookingResponse.PNR,
+            "MemberMobileNo":serverConfig.memberMobileNumber,
+            "MemberMobilePin":serverConfig.memberMobilePin
         };
-        Profile.cancelBooking(cancel).then(function(response){
+        Flight.sendChangeRequest($scope.cancel).then(function(response){
+            console.log('cancel');
             $scope.cancelResponse = response.data;
             console.log(response.data);
         }).catch(function(response){
+            $scope.cancelResponse = response.data;
             console.log(response);
         });
-
     };
 
     $scope.update_success = false;

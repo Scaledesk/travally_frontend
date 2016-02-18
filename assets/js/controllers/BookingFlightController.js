@@ -176,6 +176,7 @@ angular.module('Travally')
                                // $scope.saveDetails();
                                 $scope.Successful_Message = "Ticket Booked";
                             }
+                            console.log($rootScope.ticketResponse);
                             $scope.$emit('UNLOAD')
                         }).catch(function (response) {
                             $scope.$emit('UNLOAD')

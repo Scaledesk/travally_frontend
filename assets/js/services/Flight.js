@@ -21347,6 +21347,31 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             data: bookData
         });
     },
+
+        GetBooking: function (bookData) {
+            return $http({
+                method: 'POST',
+                url: 'http://api.jbspl.com/Staging/api/AirlineBooking/GetBooking',
+                headers: {
+                    'x-UserName':serverConfig.user_name,
+                    'x-Password':serverConfig.password,
+                    'Content-Type': 'application/json'
+                },
+                data: bookData
+            });
+        },
+        sendChangeRequest: function (dt) {
+        return $http({
+            method: 'POST',
+            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/SendChangeRequest',
+            headers: {
+                'x-UserName':serverConfig.user_name,
+                'x-Password':serverConfig.password,
+                'Content-Type': 'application/json'
+            },
+            data: dt
+        });
+    },
             flightTicket: function (bookData) {
             return $http({
                   method: 'POST',
