@@ -40,6 +40,18 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                 data: dt
             });
         },
+            CancelBooking: function (dt) {
+            return $http({
+            method: 'POST',
+            url: 'http://api.jbspl.com/staging/api/BusBooking/CancelBooking',
+            headers: {
+                'x-UserName':serverConfig.user_name,
+                'x-Password':serverConfig.password,
+                'Content-Type': 'application/json'
+            },
+            data: dt
+            });
+        },
         getSeatLayout: function (dt) {
         return $http({
             method: 'POST',

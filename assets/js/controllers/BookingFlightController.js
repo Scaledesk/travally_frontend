@@ -96,6 +96,24 @@ angular.module('Travally')
 
                 }
         };
+
+
+        $scope.makePayment = function(){
+            $scope.$emit('LOAD')
+            var t ={
+                "type":"flight_booking",
+                "amount":3870,
+                "status":"pending"
+            };
+            Flight.AddTransaction(t).then(function (PaymentResponse) {
+                console.log("ticket response");
+                console.log(PaymentResponse);
+                $scope.$emit('UNLOAD')
+            }).catch(function (response) {
+                $scope.$emit('UNLOAD')
+                console.log(response);
+            });
+        };
         $scope.flightBooking = function(){
             if($scope.flightData.IsLcc){
                 $scope.$emit('LOAD')

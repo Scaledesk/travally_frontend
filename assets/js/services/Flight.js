@@ -21347,7 +21347,13 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             data: bookData
         });
     },
-
+            AddTransaction: function (t) {
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:8000/addTransaction',
+            data: t
+        });
+    },
         GetBooking: function (bookData) {
             return $http({
                 method: 'POST',

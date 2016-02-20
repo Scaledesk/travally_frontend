@@ -1,5 +1,4 @@
 angular.module('Travally').controller('ProfileController', function ($rootScope,serverConfig, $routeParams, $scope, $auth, $location, Profile,Flight) {
-
     $scope.user = {};
     $scope.target = $routeParams.target;
     $scope.ss = 'first';
