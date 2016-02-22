@@ -141,7 +141,7 @@ angular.module('Travally')
                 };
                 $rootScope.ticketRequest = $scope.ticket;
                 //console.log($scope.ticket);
-                Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
+                /*Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
                     console.log("ticket response");
                     $rootScope.ticketResponse = ticketResponse.data;
                     console.log(ticketResponse.data);
@@ -154,13 +154,50 @@ angular.module('Travally')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
                     console.log(response);
+                });*/
+                var t ={
+                    "type":"flight_booking",
+                    "amount":3870,
+                    "status":"pending",
+                    "booking_request":$scope.ticket
+                };
+                Flight.AddTransaction(t).then(function (PaymentResponse) {
+                    console.log("ticket response");
+                    console.log(PaymentResponse);
+                    window.location.assign("http://localhost:8000/bookingPayment/"+PaymentResponse.data.data.id+"?access_token="+$auth.getToken());
+                    $scope.$emit('UNLOAD')
+                }).catch(function (response) {
+                    $scope.$emit('UNLOAD')
+                    console.log(response);
                 });
+
+
 
             }
             else {
                 $scope.$emit('LOAD')
+                var t1 ={
+                    "type":"flight_booking",
+                    "amount":3870,
+                    "status":"pending",
+                    "booking_request":$scope.bookVal
+                };
+                Flight.AddTransaction(t1).then(function (PaymentResponse) {
+                    console.log("ticket response");
+                    console.log(PaymentResponse);
+                    window.location.assign("http://localhost:8000/bookingPayment/"+PaymentResponse.data.data.id+"?access_token="+$auth.getToken());
+                    $scope.$emit('UNLOAD')
+                }).catch(function (response) {
+                    $scope.$emit('UNLOAD')
+                    console.log(response);
+                });
+
+
+
+
+
                 //console.log($scope.bookVal);
-                Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
+                /*Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
                     console.log('booking Details');
                     $scope.bookingResponse = bookingResponse.data;
                     if ($scope.bookingResponse.BookingId != null) {
@@ -187,6 +224,7 @@ angular.module('Travally')
                             "MemberMobileNo": $scope.bookVal.MemberMobileNo,
                             "MemberMobilePin": $scope.bookVal.MemberMobilePin
                         };
+
                         console.log(ticket);
                         Flight.flightTicket(ticket).then(function (ticketResponse) {
                             $rootScope.ticketResponse = ticketResponse.data;
@@ -209,7 +247,7 @@ angular.module('Travally')
                 }).catch(function (response) {
                     $scope.$emit('UNLOAD')
                     console.log(response);
-                });
+                });*/
             }
         };
 
