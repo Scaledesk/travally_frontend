@@ -63,6 +63,13 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
             },
             data: dt
         });
-    }
+    },
+        saveBusBookingDetails: function (bookData) {
+            return $http({
+                method: 'POST',
+                url: serverConfig.travally_backend+'/addBusBooking',
+                data: bookData
+            });
+        }
     }
 });

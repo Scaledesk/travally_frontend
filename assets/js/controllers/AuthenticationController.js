@@ -81,8 +81,8 @@ angular.module('Travally').controller('AuthenticationController', function ($roo
                 $scope.disabled = false;
                 console.log('error login');
             });
-    };
-    $scope.authenticate = function (provider) {
+      };
+        $scope.authenticate = function (provider) {
         $auth.authenticate(provider)
             .then(function (response) {
                 var user = {

@@ -21354,6 +21354,12 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             data: t
         });
     },
+        getTransaction: function (id) {
+        return $http({
+            method: 'GET',
+            url: 'http://localhost:8000/getTransaction/'+id
+        });
+    },
         GetBooking: function (bookData) {
             return $http({
                 method: 'POST',

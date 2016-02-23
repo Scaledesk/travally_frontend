@@ -1,5 +1,5 @@
 angular.module('Travally')
-    .controller('SearchBusController', function($http, $scope, $routeParams, $filter, $location, serverConfig, BusServices, $sce) {
+    .controller('SearchBusController', function($http, $scope,Flight,$auth, $routeParams, $filter, $location, serverConfig, BusServices, $sce) {
         $scope.SourceId = $routeParams.SourceId;
         $scope.DestinationId = $routeParams.DestinationId;
         $scope.SourceName = $routeParams.SourceName;
@@ -161,10 +161,10 @@ angular.module('Travally')
                 "RouteId":data.route_id,
                 "BusType":data.bus_type,
                 "Travel Name": data.travel_name,
-                "NoOfSeats":1,
+                "NoOfSeats":res.length,
                 "DepartureTime":data.departure_time,
                 "ArrivalTime":data.arrival_time,
-                "TotalFare":data.available_fares,
+                "TotalFare":TBSelectedSeatsPrice,
                 "BoardingPointdetails":{
                     "CityPointId": data.boarding_point_id,
                     "BusId": data.bus_id,
@@ -213,25 +213,29 @@ angular.module('Travally')
                     });
                 });
             });
-
             console.log($scope.book);
-            BusServices.BookBus($scope.book).then(function (BookResponse) {
+
+
+            var t ={
+                "type":"Bus Booking",
+                "amount":TBSelectedSeatsPrice,
+                "status":"pending",
+                "booking_request":$scope.book
+            };
+            Flight.AddTransaction(t).then(function (PaymentResponse) {
+                console.log("transaction response");
+                console.log(PaymentResponse);
+                window.location.assign("http://localhost:8000/bookingPayment/"+PaymentResponse.data.data.id+"?access_token="+$auth.getToken());
+                $scope.$emit('UNLOAD')
+            }).catch(function (response) {
+                $scope.$emit('UNLOAD')
+                console.log(response);
+            });
+
+
+
+            /*BusServices.BookBus($scope.book).then(function (BookResponse) {
                 $scope.book_response = BookResponse.data;
-
-
-
-                /*if($scope.book_response.Description == Successfull){
-
-                     var UserBookingDetails = {
-
-
-
-
-                     };
-
-                }*/
-
-
                 $scope.book_button_text = 'Book Seat';
                 $scope.book_button_disabled = false;
                 console.log(BookResponse);
@@ -240,7 +244,7 @@ angular.module('Travally')
                 $scope.book_button_disabled = false;
                 $scope.book_response = response.data;
                 console.log(response);
-            });
+            });*/
         };
 
 

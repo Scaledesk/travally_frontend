@@ -55,5 +55,8 @@ angular.module('Travally').config(function($routeProvider){
       }).when('/hotelDetails/:index/:sessionId', {
         templateUrl: "templates/hotelDetails.html",
         controller: "HotelDetailsController"
+      }).when('/payment_success/:id', {
+        templateUrl: "templates/paymentSuccess.html",
+        controller: "PaymentSuccessController"
       });
 });

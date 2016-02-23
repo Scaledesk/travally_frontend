@@ -64,7 +64,7 @@ console.log($routeParams.target);
             "Remarks":"TEST",
             "SubAgentID":'',
             "IsFullBookingCancel":true,
-            " PNR":$scope.BookingResponse.PNR,
+            "PNR":$scope.BookingResponse.PNR,
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
         };
