@@ -58,5 +58,8 @@ angular.module('Travally').config(function($routeProvider){
       }).when('/payment_success/:id', {
         templateUrl: "templates/paymentSuccess.html",
         controller: "PaymentSuccessController"
+      }).when('/flight_booking_payment_success/:id', {
+        templateUrl: "templates/FlightPaymentSuccess.html",
+        controller: "FlightPaymentSuccessController"
       });
 });

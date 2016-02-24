@@ -247,7 +247,7 @@
                                     <p ng-show="flight.stop==0">non stop</p>
                                     <p ng-hide="flight.stop==0">{{flight.stop}} stop</p>
                                 </div>
-                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.offeredFare}}</span><span></span>
+                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.publishFare}}</span><span></span>
                                     <p class="booking-item-flight-class">Class: {{flight.fareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
                                 </div>
                             </div>

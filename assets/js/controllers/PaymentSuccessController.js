@@ -1,6 +1,7 @@
 angular.module('Travally')
     .controller('PaymentSuccessController', function($http, $scope,Flight,$auth, $routeParams, serverConfig, BusServices, $sce) {
         $scope.$emit('LOAD')
+        $scope.s = false;
         id = $routeParams.id;
         Flight.getTransaction(id).then(function (Res) {
             console.log("booking response");
@@ -48,6 +49,8 @@ angular.module('Travally')
             BusServices.saveBusBookingDetails(ticketDetails).then(function (res) {
                 console.log("sav details");
                 console.log(res);
+                $scope.mm = res.data.data.message;
+                $scope.s = true;
                 $scope.$emit('UNLOAD')
             }).catch(function (response) {
                 $scope.$emit('UNLOAD')

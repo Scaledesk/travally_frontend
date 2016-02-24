@@ -156,8 +156,8 @@ angular.module('Travally')
                     console.log(response);
                 });*/
                 var t ={
-                    "type":"flight_booking",
-                    "amount":3870,
+                    "type":"flight_booking_lcc",
+                    "amount":$scope.bookVal.Fare.PublishedPrice,
                     "status":"pending",
                     "booking_request":$scope.ticket
                 };
@@ -170,15 +170,12 @@ angular.module('Travally')
                     $scope.$emit('UNLOAD')
                     console.log(response);
                 });
-
-
-
             }
             else {
                 $scope.$emit('LOAD')
                 var t1 ={
                     "type":"flight_booking",
-                    "amount":3870,
+                    "amount":$scope.bookVal.Fare.PublishedPrice,
                     "status":"pending",
                     "booking_request":$scope.bookVal
                 };
@@ -252,7 +249,6 @@ angular.module('Travally')
         };
 
         $scope.saveDetails = function(){
-
             var saveData = {
                 "pnr":$rootScope.ticketResponse.PNR,
                 "airline":$scope.bookVal.Segment[0].Airline.AirlineName,

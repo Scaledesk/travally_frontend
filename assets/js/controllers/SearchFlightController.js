@@ -212,7 +212,6 @@ angular.module('Travally')
                             $scope.fareQuoteResponse = fareQuoteResponse.data;
                             $rootScope.getFareQuoteResponse = fareQuoteResponse;
                             if($scope.fareQuoteResponse.Status.Description = "Successful") {
-
                                 var getFareRule = {
                                     "SessionId": $scope.sessionId,
                                     "Result": $scope.fareQuoteResponse.Result,
@@ -221,8 +220,7 @@ angular.module('Travally')
                                 };
                                 Flight.searchGetFareRule(getFareRule).then(function (fareRuleResponse) {
                                     console.log("getFareRule success");
-                                    console.log(fareRuleResponse);
-
+                                   // console.log(fareRuleResponse);
                                     bookVal = {
                                         "Remarks":"test",
                                         "InstantTicket":true,
@@ -251,10 +249,19 @@ angular.module('Travally')
                                         "MemberMobilePin": serverConfig.memberMobilePin
                                     };
 
+                                    console.log('bookval');
+                                    console.log(bookVal);
+
+                                    console.log('data');
+                                    console.log(data);
+
+                                    console.log('fare quote response');
+                                    console.log($scope.fareQuoteResponse.Result);
+
+
                                     Flight.setflightBookData(bookVal);
                                     Flight.setFlightData($scope.fareQuoteResponse.Result);
                                     $location.path('/bookingDetail');
-
                                 }).catch(function (response) {
                                     console.log("getFareRule error");
                                     console.log(response);
