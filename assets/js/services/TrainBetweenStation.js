@@ -4,18 +4,21 @@ angular.module('Travally').factory('TrainBetweenStation', function($http,serverC
         get : function(source,dest,date) {
             return $http({
                 method: 'GET',
-                url: serverConfig.address+'between/source/'+ source + '/dest/' +dest+ '/date/' + date + serverConfig.apiKey
+                url: serverConfig.address+'between/source/'+ source + '/dest/' +dest+ '/date/' + date + serverConfig.apiKey,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
         },
 
         getFare : function(trainNo,source,dest,age,quota,date) {
             return $http({
                 method: 'GET',
-                url: serverConfig.address+'fare/train/'+ trainNo + '/source/' +source+ '/dest/' + dest +'/age/'+age+'/quota/'+quota+'/doj/'+date+ serverConfig.apiKey
+                url: serverConfig.address+'fare/train/'+ trainNo + '/source/' +source+ '/dest/' + dest +'/age/'+age+'/quota/'+quota+'/doj/'+date+ serverConfig.apiKey,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
         }
-
-
-
     }
 });

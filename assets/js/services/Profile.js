@@ -21,6 +21,13 @@ angular.module('Travally').factory('Profile', function($http,serverConfig) {
 
             });
         },
+        getBusBookingDetails: function() {
+            return $http({
+                method:'GET',
+                url : serverConfig.travally_backend+'/getBusBookingDetails' /*+ '?token=' + window.localStorage['satellizer_token'],*/
+
+            });
+        },
 
         changePassword: function(data) {
         return $http({

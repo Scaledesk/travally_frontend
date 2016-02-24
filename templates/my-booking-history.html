@@ -8,7 +8,7 @@
                             <li ng-class="{active:ss=='first'}"><a href="" ng-click="ss='first'" data-toggle="tab">Flight</a>
                             </li>
 
-                            <li ng-class="{active:ss=='second'}"><a href="" ng-click="ss='second'" data-toggle="tab">Second</a>
+                            <li ng-class="{active:ss=='second'}"><a href="" ng-click="ss='second'" data-toggle="tab">Bus</a>
                             </li>
 
                             <li ng-class="{active:ss=='third'}"><a href="" ng-click="ss='third'" data-toggle="tab">Third</a>
@@ -21,9 +21,10 @@
                                 <div class="gap"></div>
                                 <div class="col-md-12 ">
                                     <div class="panel-group" id="accordion">
-                                        <div class="panel panel-default">
+
 
                                            <div ng-repeat="flight in flight_booking_details" ng-init="flight.cc=false">
+                                               <div class="panel panel-default">
                                                <div class="panel-heading">
                                                     <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="flight.cc = !flight.cc"><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
                                                     <span style="margin-right:15px;">{{flight.source}}</span> to <span style="margin-left:15px;">{{flight.destination}}</span> <span style="margin-left:15px;">Date: {{flight.departure_date | date : 'dd-MMM-yyyy'}}</span></a></h4>
@@ -39,10 +40,8 @@
 
                                                     </div>
                                                 </div>
-                                           </div>
-
-
-                                        </div>
+                                                </div>
+                                            </div>
                                     </div>
                                     <!--<div class="panel-collapse collapse in" id="collapse-1">
                                         <div class="panel-body"></div>
@@ -57,19 +56,44 @@
                                         <div class="gap"></div>
                                         <div class="col-md-12 ">
                                         <div class="panel-group" id="accordion">
-                                            <div class="panel panel-default">
 
-                                                <div class="panel-heading">
+                                                <div ng-repeat="bus in bus_booking_details" ng-init="bus.cc=false">
+                                                    <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="" ng-click="bus.cc = !bus.cc"><i class="fa fa-bus user-profile-statictics-icon"></i>&nbsp;&nbsp;
+                                                                <span style="margin-right:15px;">{{bus.source}}</span> to
+                                                                <span style="margin-left:15px;">{{bus.destination}}</span>
+                                                                <span style="margin-left:15px;">Date Time: {{bus.departure_date | date : 'dd-MMM-yyyy  HH:mm'}}</span>
+                                                                <span style="margin-left:15px;">Status: {{bus.status}}</span>
+                                                             </a>
+                                                        </h4>
+                                                    </div>
+
+                                                    <div ng-class="{'panel-collapse collapse in active':bus.cc}" ng-show="bus.cc">
+                                                        <div class="panel-body">
+                                                            {{bus}}<br/>
+                                                            <div>
+
+                                                                <button ng-click="cancelBusBooking(bus)" style="cursor: pointer;">Cancel Booking</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                                <!--<div class="panel-heading">
                                                     <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="" ng-click="dd=='col' ? dd='' :dd='col'" ><i class="fa fa-plane user-profile-statictics-icon"></i>&nbsp;&nbsp;
                                                         <span style="margin-right:15px;">Delhi</span> to <span style="margin-left:15px;">Kanpur</span> <span style="margin-left:15px;">Date: 21st Oct 2015</span></a></h4>
                                                 </div>
 
                                                 <div ng-class="{'panel-collapse collapse in active':dd=='col'}" ng-show="dd=='col'" id="collapse-2">
                                                     <div class="panel-body">Praesent dolor rutrum cras malesuada varius ac mi ornare odio quam nostra hendrerit cras a volutpat id rutrum dui pulvinar turpis justo hac lobortis per in ullamcorper est</div>
-                                                </div>
+                                                </div>-->
 
 
-                                            </div>
+
                                         </div>
 
                                         <!--<div class="panel-collapse collapse in" id="collapse-1">
@@ -91,20 +115,6 @@
 
 
                                 </div>
-
-
-Get Booking: <br/>
-{{getBooking}}<br/><br/>
-                        Response:<br/>
-                        {{BookingResponse}}<br/><br/>
-                        send Change Request:<br/>
-                        {{cancel}}<br/><br/>
-                        Response:<br/>
-                        {{cancelResponse}}
-
-
-
-
                             </div>
 
                         </div>

@@ -1,4 +1,4 @@
-angular.module('Travally').controller('ProfileController', function ($rootScope,serverConfig, $routeParams, $scope, $auth, $location, Profile,Flight) {
+angular.module('Travally').controller('ProfileController', function ($rootScope,serverConfig,BusServices, $routeParams, $scope, $auth, $location, Profile,Flight) {
     $scope.user = {};
     $scope.target = $routeParams.target;
     $scope.ss = 'first';
@@ -29,6 +29,18 @@ console.log($routeParams.target);
         }).catch(function(response){
             console.log(response);
         });
+
+
+        Profile.getBusBookingDetails().then(function(response){
+            $scope.bus_booking_details = response.data.data;
+            console.log(response.data.data);
+        }).catch(function(response){
+            console.log(response);
+        });
+
+
+
+
     }
 
     $scope.cancelBooking = function(f){
@@ -48,6 +60,23 @@ console.log($routeParams.target);
             //console.log(response.data);
         }).catch(function(response){
             console.log('false');
+            console.log(response);
+        });
+    };
+
+    $scope.cancelBusBooking = function(b){
+    var bc = {
+        "TicketNo": b.ticket_no,
+        "MemberMobileNo":serverConfig.memberMobileNumber,
+        "MemberMobilePin":serverConfig.memberMobilePin
+        };
+        BusServices.CancelBooking(bc).then(function(response){
+            console.log(response.data);
+            $scope.CancelResponse = response.data;
+
+
+
+        }).catch(function(response){
             console.log(response);
         });
     };

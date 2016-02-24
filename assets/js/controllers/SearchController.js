@@ -52,7 +52,7 @@ $scope.fareClass ="";
 
         $scope.$emit('LOAD')
         TrainBetweenStation.get(source,destination,$scope.journey_date)
-             .success(function(data) {
+             .then(function(data) {
              $scope.records = data.train;
                 $scope.total_train = $scope.records.length;
                      console.log($scope.records);
@@ -65,8 +65,6 @@ $scope.fareClass ="";
                      angular.forEach(data.fare, function(fare) {
                          //var duration = parseTime(record.dest_arrival_time) - parseTime(record.src_departure_time);
                          var duration = diff(record.src_departure_time, record.dest_arrival_time);
-
-
                          var temp = {
                              "train" : data.train,
                              "source" : data.from,
@@ -88,10 +86,10 @@ $scope.fareClass ="";
              });
                 $scope.$emit('UNLOAD')
              })
-             .error(function(data) {
+             .catch(function(data) {
              console.log(data);
                 $scope.$emit('UNLOAD')
-             $location.path("/error");
+             //$location.path("/error");
              });
 
         function diff(start, end) {
