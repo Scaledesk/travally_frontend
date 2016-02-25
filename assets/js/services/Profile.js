@@ -28,6 +28,20 @@ angular.module('Travally').factory('Profile', function($http,serverConfig) {
 
             });
         },
+        saveCancellationDetails: function(data) {
+            return $http({
+                method:'POST',
+                url : serverConfig.travally_backend+'/addCancellation', /*+ '?token=' + window.localStorage['satellizer_token'],*/
+                data : data
+
+            });
+        },
+        getCancellationDetails: function() {
+            return $http({
+                method:'GET',
+                url : serverConfig.travally_backend+'/getCancellation' /*+ '?token=' + window.localStorage['satellizer_token'],*/
+            });
+        },
 
         changePassword: function(data) {
         return $http({

@@ -52,7 +52,7 @@ $scope.fareClass ="";
 
         $scope.$emit('LOAD')
         TrainBetweenStation.get(source,destination,$scope.journey_date)
-             .then(function(data) {
+             .success(function(data) {
              $scope.records = data.train;
                 $scope.total_train = $scope.records.length;
                      console.log($scope.records);
@@ -86,12 +86,14 @@ $scope.fareClass ="";
              });
                 $scope.$emit('UNLOAD')
              })
-             .catch(function(data) {
+             .error(function(data) {
              console.log(data);
                 $scope.$emit('UNLOAD')
              //$location.path("/error");
              });
-
+        $scope.redirectToIrctc  = function(){
+            window.location="https://www.irctc.co.in";
+        };
         function diff(start, end) {
             start = start.split(":");
             end = end.split(":");

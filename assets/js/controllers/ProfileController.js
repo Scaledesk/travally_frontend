@@ -20,8 +20,6 @@ console.log($routeParams.target);
             $scope.user.address = $scope.profile.Address;
             $scope.user.dob = $scope.profile.DOB;
         });
-
-
     if($scope.target == 'booking-history'){
         Profile.getFlightBookingDetails().then(function(response){
             $scope.flight_booking_details = response.data.data;
@@ -37,10 +35,6 @@ console.log($routeParams.target);
         }).catch(function(response){
             console.log(response);
         });
-
-
-
-
     }
 
     $scope.cancelBooking = function(f){
@@ -70,11 +64,13 @@ console.log($routeParams.target);
         "MemberMobileNo":serverConfig.memberMobileNumber,
         "MemberMobilePin":serverConfig.memberMobilePin
         };
+        console.log(bc);
         BusServices.CancelBooking(bc).then(function(response){
             console.log(response.data);
             $scope.CancelResponse = response.data;
 
-
+            //type = "Bus";
+            //$scope.saveCancelDetails(type);
 
         }).catch(function(response){
             console.log(response);
@@ -100,12 +96,50 @@ console.log($routeParams.target);
         Flight.sendChangeRequest($scope.cancel).then(function(response){
             console.log('cancel');
             $scope.cancelResponse = response.data;
+
+            //type = "Flight";
+            //$scope.saveCancelDetails(type);
+
             console.log(response.data);
         }).catch(function(response){
             $scope.cancelResponse = response.data;
             console.log(response);
         });
     };
+
+
+    $scope.saveCancelDetails = function(type){
+        if(type=='Bus'){
+            var c = {
+                "type":"type",
+                "status":$scope.CancelResponse.isCancellationSuccess,
+                "cancellation_id":$scope.CancelResponse.cancellation_id,
+                "cancellation_tax_no":$scope.CancelResponse.cancellation_tax_no,
+                "refund_amount":$scope.CancelResponse.refund_amount,
+                "cancellation_charge":$scope.CancelResponse.cancellation_charge
+            };
+            Profile.saveCancellationDetails(c).then(function(data){
+                console.log(data);
+                $scope.cancellation_details_saved = true;
+            }).catch(function(response){
+                console.log(response);
+            });
+        }
+        if(type=='Flight'){
+            var cancel = {
+                "type":type,
+                "status":$scope.cancelResponse.Status.Description,
+                "cancellation_id":$scope.cancelResponse.ChangeRequestId
+            };
+            Profile.saveCancellationDetails(cancel).then(function(data){
+                console.log(data);
+                $scope.cancellation_details_saved = true;
+            }).catch(function(response){
+                console.log(response);
+            });
+        }
+    };
+
 
     $scope.update_success = false;
     /**
@@ -136,5 +170,4 @@ console.log($routeParams.target);
             console.log('unknown error');
         });
     };
-
 });
