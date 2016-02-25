@@ -32,10 +32,27 @@
 
                                                 <div ng-class="{'panel-collapse collapse in active':flight.cc}" ng-show="flight.cc">
                                                     <div class="panel-body">
-                                                        {{flight}}<br/>
-                                                        <div>
-
-                                                            <button ng-click="cancelBooking(flight)" style="cursor: pointer;">Cancel Booking</button>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Source : {{flight.source}}
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                Destination : {{flight.destination}}
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                departure date time : {{flight.departure_date | date : 'dd-MMM-yy  H mm'}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Booking Id : {{flight.booking_id}}
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                Airline : {{flight.airline}}
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary" ng-click="cancelBooking(flight)" style="cursor: pointer;">Cancel Booking</button>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -72,10 +89,28 @@
 
                                                     <div ng-class="{'panel-collapse collapse in active':bus.cc}" ng-show="bus.cc">
                                                         <div class="panel-body">
-                                                            {{bus}}<br/>
-                                                            <div>
 
-                                                                <button ng-click="cancelBusBooking(bus)" style="cursor: pointer;">Cancel Booking</button>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    Source : {{bus.source}}
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    Destination : {{bus.destination}}
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    departure date time : {{bus.departure_date | date : 'dd-MMM-yy  H mm'}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    Ticket No. : {{bus.ticket_no}}
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    Travel Operator : {{bus.travel_operator}}
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary" ng-click="cancelBusBooking(bus)" style="cursor: pointer;">Cancel Booking</button>
+                                                                </div>
                                                             </div>
 
                                                         </div>
