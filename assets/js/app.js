@@ -1,4 +1,4 @@
-angular.module('Travally', ['ngRoute',  'ngResource', 'satellizer', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'ui.date', 'angularUtils.directives.dirPagination'])
+angular.module('Travally', ['ngRoute',  'ngResource', 'satellizer', 'ui.select', 'ngSanitize', '720kb.datepicker', 'ui.bootstrap', 'ui.date', 'angularUtils.directives.dirPagination'])
     .config(function(paginationTemplateProvider) {
         paginationTemplateProvider.setPath('assets/js/includes/angular-utils-pagination/dirPagination.tpl.html');
     })

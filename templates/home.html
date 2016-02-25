@@ -58,26 +58,11 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade in active" id="flight-search-1">
-
-
-
                                                 <!-- Main Search BOX Start -->
-
-
-
-
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                                             <label>From</label>
-
-
-
-
-
-
-
-
                                                             <!--<input class="typeahead form-control" placeholder="City, Airport, U.S. Zip" ng-model="formData.source" list="myList"/>
 
                                                             <datalist id="myList">
@@ -133,31 +118,43 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                     <label>Departing</label>
-                                                                    <input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="formData.date">
+                                                                    <!--<input class="form-control" ui-date ui-date-format="dd-mm-yy" ng-model="formData.date">-->
+                                                                    <datepicker date-format="dd-MM-yyyy" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                                                                        <input class="form-control" placeholder="select departure date" ng-model="formData.date">
+
+                                                                    </datepicker>
                                                                    <!-- <input class="form-control" name="start" type="text" ng-model="formData.date"/>-->
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                                    <label>Returning</label>
-                                                                    <input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="formData.return">
+                                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                                    <!--<label>Returning</label>-->
+                                                                    <!--<input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="formData.return">-->
+                                                                    <!--<input class="form-control" pick-a-date="date" placeholder="select returning date" ng-model="formData.return">-->
+                                                                    <!--<datepicker>
+
+                                                                        <input class="form-control" placeholder="select returning date" ng-model="formData.return">
+
+                                                                    </datepicker>-->
+
                                                                     <!--<input class="form-control" name="end" type="text" />-->
                                                                 </div>
                                                             </div>
                                                             <!--<div class="col-md-6">-->
-                                                        
-                                                            
+
+
                                                     <div class="row">
                                                             
-                                                 <div class="col-md-4">
+                                                        <div class="col-md-4">
                                                      
-                                                     <div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>
+                                                                 <div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>
                                                                     <label>Number of Passengers</label>
                                                                 <input type="number" class="form-control" ng-model="formData.passenger" placeholder="Enter Number of Passenger">
-                                                     </div>
-                                                                </div>
+                                                                 </div>
+                                                        </div>
                                                         
-                                                        </div> 
+                                                    </div>
 
                                                                
 
@@ -191,7 +188,7 @@
                                                                     </select>
                                                                 </div>-->
                                                             
-                                                        </div>
+                                                        <!--</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -288,15 +285,25 @@
                                             <div class="col-md-3">
                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                     <label>Check-in</label>
-                                                    <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_in">
+                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_in">-->
                                                      <!--<input class="form-control" name="start" type="text" ng-model="hotel.check_in"/>-->
+                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                                                        <input class="form-control" placeholder="select check in date" ng-model="hotel.check_in">
+
+                                                    </datepicker>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                     <label>Check-Out</label>
-                                                    <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_out">
+                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_out">-->
                                                      <!--<input class="form-control" name="start" type="text" ng-model="hotel.check_out"/>-->
+                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                                                        <input class="form-control" placeholder="select check out date" ng-model="hotel.check_out">
+
+                                                    </datepicker>
                                                 </div>
                                             </div>
 
@@ -446,8 +453,14 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                     <label>Departing</label>
-                                                                    <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="flight.date">
+                                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="flight.date">-->
+                                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                                                                        <input class="form-control" placeholder="select departure date" ng-model="flight.date">
+
+                                                                    </datepicker>
                                                                 </div>
+                                                            </div>
                                                             </div>
                                                             <!--<div class="col-md-3">
                                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
@@ -501,7 +514,7 @@
                                                                 </select>
                                                             </div>-->
 
-                                                        </div>
+                                                        <!--</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -556,9 +569,25 @@
                                     <div class="input-daterange" data-date-format="M d, D">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group form-group-lg form-g-roup-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>Pick-up Date</label>
+                                                <!--<div class="form-group form-group-lg form-g-roup-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>Pick-up Date</label>-->
+                                                    <!--&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">&ndash;&gt;-->
+
+                                                    <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">-->
+
+                                                        <!--<input class="form-control" placeholder="select departure date" ng-model="Bus.journeyDate">-->
+
+                                                    <!--</datepicker>-->
+
+                                                <!--</div>-->
+                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                    <label>Pick up date</label>
                                                     <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">
+                                                    <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                                                        <input class="form-control" placeholder="select departure date" ng-model="Bus.journeyDate">
+
+                                                    </datepicker>-->
                                                 </div>
                                             </div>
 
