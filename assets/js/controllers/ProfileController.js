@@ -111,12 +111,11 @@ console.log($routeParams.target);
     $scope.saveCancelDetails = function(type){
         if(type=='Bus'){
             var c = {
-                "type":"type",
-                "status":$scope.CancelResponse.isCancellationSuccess,
-                "cancellation_id":$scope.CancelResponse.cancellation_id,
-                "cancellation_tax_no":$scope.CancelResponse.cancellation_tax_no,
-                "refund_amount":$scope.CancelResponse.refund_amount,
-                "cancellation_charge":$scope.CancelResponse.cancellation_charge
+                "type":type,
+                "status":$scope.CancelResponse.IsCancellationSuccess,
+                "cancellation_tax_no":$scope.CancelResponse.CancellationTaxNo,
+                "refund_amount":$scope.CancelResponse.RefundAmount,
+                "cancellation_charge":$scope.CancelResponse.CancellationCharge
             };
             Profile.saveCancellationDetails(c).then(function(data){
                 console.log(data);
