@@ -605,9 +605,9 @@ label {
   line-height: 45px;
   font-size: 22px;
 }
-.form-group.form-group-lg.form-group-icon-left .form-control {
+/*.form-group.form-group-lg.form-group-icon-left .form-control {
   padding-left: 45px;
-}
+}*/
 .form-group.form-group-lg.form-group-icon-right .form-control {
   padding-right: 45px;
 }
