@@ -34,8 +34,12 @@ angular.module('Travally')
 
         BusServices.getAllCities().then(function (responseCities) {
             $scope.Bus_Cities = responseCities.data.WSBusCityList;
+            console.log('success');
+            console.log(responseCities);
             $scope.$emit('UNLOAD')
         }).catch(function (response) {
+            console.log('error');
+            console.log(response);
             $scope.$emit('UNLOAD')
         });
         $scope.BusSourceCity = {};

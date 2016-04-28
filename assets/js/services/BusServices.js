@@ -3,20 +3,27 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
     var flightData = {};
     return {
         getAllCities: function () {
-            return $http({
+            /*return $http({
                 method: 'GET',
                 url: 'http://api.jbspl.com/staging/api/BusBooking/GetAllCities',
                 headers: {
                     'x-UserName':serverConfig.user_name,
-                    'x-Password':serverConfig.password,
+                    'x-Password':serverConfig.password
+                }
+            });*/
+            return $http({
+                method: 'POST',
+                url: 'http://52.77.238.174/redirect_request',
+                headers: {
                     'Content-Type': 'application/json'
-                    //'Access-Control-Allow-Origin': '*',
-                    //'Access-Control-Allow-Methods': 'GET, OPTIONS'
-                    //'Access-Control-Allow-Origin': 'http://api.jbspl.com'
+                },
+                data:{
+                    method: 'GET',
+                    url: 'BusBooking/GetAllCities'
                 }
             });
         },
-        searchBuses: function (dt) {
+        /*searchBuses: function (dt) {
             return $http({
                 method: 'POST',
                 url: 'http://api.jbspl.com/staging/api/BusBooking/Search',
@@ -27,8 +34,34 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                 },
                 data: dt
             });
-        },
+        },*/
+        searchBuses: function (dt) {
+         return $http({
+         method: 'POST',
+         url: 'http://52.77.238.174/redirect_request',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         data:{
+             method: 'POST',
+             url: 'BusBooking/Search',
+             payload:dt
+         }
+         });
+         },
         BookBus: function (dt) {
+            /*return $http({
+                method: 'POST',
+                url: 'http://52.77.238.174/redirect_request',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:{
+                    method: 'POST',
+                    url: 'BusBooking/Book',
+                    payload:dt
+                }
+            });*/
             return $http({
                 method: 'POST',
                 url: 'http://api.jbspl.com/staging/api/BusBooking/Book',
@@ -43,25 +76,29 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
             CancelBooking: function (dt) {
             return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/staging/api/BusBooking/CancelBooking',
+            url: 'http://52.77.238.174/redirect_request',
             headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
                 'Content-Type': 'application/json'
             },
-            data: dt
+                data:{
+                    method: 'POST',
+                    url: 'BusBooking/CancelBooking',
+                    payload:dt
+                }
             });
         },
         getSeatLayout: function (dt) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/staging/api/BusBooking/GetSeatLayOut',
+            url: 'http://52.77.238.174/redirect_request',
             headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
                 'Content-Type': 'application/json'
             },
-            data: dt
+            data:{
+                method: 'POST',
+                url: 'BusBooking/GetSeatLayOut',
+                payload:dt
+            }
         });
     },
         saveBusBookingDetails: function (bookData) {

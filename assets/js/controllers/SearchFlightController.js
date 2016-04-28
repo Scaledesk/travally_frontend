@@ -63,6 +63,7 @@ angular.module('Travally')
 
             $scope.flightData = d.data.Result;
             //console.log(d.data.Result);
+            $scope.$emit('UNLOAD')
             angular.forEach($scope.flightData, function (flight, key) {
                 /*var getFareRule =  {
                     "SessionId":$scope.sessionId,

@@ -14,6 +14,20 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                 data: dt
             });
         },
+        /*searchFlight: function (dt) {
+            return $http({
+                method: 'POST',
+                url: 'http://52.77.238.174/redirect_request',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:{
+                    method: 'POST',
+                    url: 'AirlineBooking/Search',
+                    payload:dt
+                }
+            });
+        },*/
         getAirportDetails: function(){
             return [
                 {
@@ -21324,27 +21338,31 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             ];
         },
         searchGetFareRule: function (dt) {
-        return $http({
-            method: 'POST',
-            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/GetFareRule',
-            headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
-                'Content-Type': 'application/json'
-            },
-            data: dt
-        });
+            return $http({
+                method: 'POST',
+                url: 'http://52.77.238.174/redirect_request',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:{
+                    method: 'POST',
+                    url: 'AirlineBooking/GetFareRule',
+                    payload:dt
+                }
+            });
     },
         flightBooking: function (bookData) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/Book',
+            url: 'http://52.77.238.174/redirect_request',
             headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
                 'Content-Type': 'application/json'
             },
-            data: bookData
+            data:{
+                method: 'POST',
+                url: 'AirlineBooking/Book',
+                payload:bookData
+            }
         });
     },
             AddTransaction: function (t) {
@@ -21363,49 +21381,57 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
         GetBooking: function (bookData) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/Staging/api/AirlineBooking/GetBooking',
+                url: 'http://52.77.238.174/redirect_request',
                 headers: {
-                    'x-UserName':serverConfig.user_name,
-                    'x-Password':serverConfig.password,
                     'Content-Type': 'application/json'
                 },
-                data: bookData
+                    data:{
+                        method: 'POST',
+                        url: 'AirlineBooking/GetBooking',
+                        payload:bookData
+                    }
             });
         },
         sendChangeRequest: function (dt) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/SendChangeRequest',
+            url: 'http://52.77.238.174/redirect_request',
             headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
                 'Content-Type': 'application/json'
             },
-            data: dt
+            data:{
+                method: 'POST',
+                url: 'AirlineBooking/SendChangeRequest',
+                payload:dt
+            }
         });
     },
             flightTicket: function (bookData) {
             return $http({
                   method: 'POST',
-                  url: 'http://api.jbspl.com/Staging/api/AirlineBooking/Ticket',
+                url: 'http://52.77.238.174/redirect_request',
                   headers: {
-                      'x-UserName':serverConfig.user_name,
-                      'x-Password':serverConfig.password,
                       'Content-Type': 'application/json'
                   },
-                  data: bookData
+                data:{
+                    method: 'POST',
+                    url: 'AirlineBooking/Ticket',
+                    payload:bookData
+                }
             });
     },
         flightGetFareQuote: function (bookData) {
         return $http({
             method: 'POST',
-            url: 'http://api.jbspl.com/Staging/api/AirlineBooking/GetFareQuote',
+            url: 'http://52.77.238.174/redirect_request',
             headers: {
-                'x-UserName':serverConfig.user_name,
-                'x-Password':serverConfig.password,
                 'Content-Type': 'application/json'
             },
-            data: bookData
+            data:{
+                method: 'POST',
+                url: 'AirlineBooking/GetFareQuote',
+                payload:bookData
+            }
         });
     },
         saveDetails: function (bookData) {
