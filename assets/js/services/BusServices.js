@@ -50,7 +50,7 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
          });
          },
         BookBus: function (dt) {
-            /*return $http({
+            return $http({
                 method: 'POST',
                 url: 'http://52.77.238.174/redirect_request',
                 headers: {
@@ -61,8 +61,8 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                     url: 'BusBooking/Book',
                     payload:dt
                 }
-            });*/
-            return $http({
+            });
+            /*return $http({
                 method: 'POST',
                 url: 'http://api.jbspl.com/staging/api/BusBooking/Book',
                 headers: {
@@ -71,7 +71,7 @@ angular.module('Travally').factory('BusServices', function($http, serverConfig) 
                     'Content-Type': 'application/json'
                 },
                 data: dt
-            });
+            });*/
         },
             CancelBooking: function (dt) {
             return $http({

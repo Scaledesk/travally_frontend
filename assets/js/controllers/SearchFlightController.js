@@ -33,7 +33,30 @@ angular.module('Travally')
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin
         };*/
-        var flightDataDemo = {
+
+
+        var dddd = {
+            "JourneyType":1,
+            "AdultCount":1,
+            "ChildCount":0,
+            "InfantCount":0,
+            "DirectFlight":false,
+            "OneStopFlight":false,
+            "Segments":[
+                {"Origin":$scope.source,
+                "Destination":$scope.destination,
+                "PreferredDepartureTime":$scope.departureDate,
+                "PreferredArrivalTime":"",
+                "FlightCabinClass":""}],
+            "EndUserIp":"127.0.0.1",
+            "TokenId":window.localStorage['token_id'],
+            "PreferredAirlines":[],
+            "Sources":null,
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": serverConfig.memberMobilePin
+        };
+
+        /*var flightDataDemo = {
             "Origin":"BOM",
             "Destination":"DEL",
             "DepartureDate":"0001-01-01T00:00:00",
@@ -52,17 +75,19 @@ angular.module('Travally')
             "ReturnDateString":"",
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
-        };
+        };*/
 
         $scope.flightResultData =[];
         $scope.$emit('LOAD')
-        Flight.searchFlight(flightDataDemo).then(function (d) {
+        console.log('search request');
+        console.log(dddd);
+        Flight.searchFlight(dddd).then(function (d) {
             $scope.sessionId = d.data.SessionId;
 
             $rootScope.flightSearch = d;
 
             $scope.flightData = d.data.Result;
-            //console.log(d.data.Result);
+            console.log(d);
             $scope.$emit('UNLOAD')
             angular.forEach($scope.flightData, function (flight, key) {
                 /*var getFareRule =  {

@@ -1,8 +1,20 @@
 angular.module('Travally')
 // inject the Activation service into our controller
-    .controller('HomeController', function(TrainBetweenStation, Hotel, StationCode, $http, $scope, $location,$filter, Flight, BusServices ) {
+    .controller('HomeController', function(TrainBetweenStation, Hotel, StationCode,serverConfig, $http, $scope, $location,$filter, Flight, BusServices,$rootScope ) {
         //var d = $location.search().code;
         $scope.$emit('LOAD')
+        var auth = {
+            "EndUserIp":"127.0.0.1",
+            "MemberMobileNo":serverConfig.memberMobileNumber,
+            "MemberMobilePin":serverConfig.memberMobilePin
+        };
+        Flight.authentication(auth).then(function(res){
+            console.log(res);
+            window.localStorage['token_id'] = res.data.TokenId;
+        }).catch(function(res){
+            console.log(res);
+        });
+
         $scope.tab = 'train';
         $scope.selectedItem = {};
         $scope.master_stations = StationCode.get();
@@ -12,8 +24,6 @@ angular.module('Travally')
         $scope.cityData = Hotel.getCity();
         $scope.city = {};
         $scope.cityDestinaton = {};
-
-
 
 
         $scope.hotelCityData = Hotel.getHotelCity();

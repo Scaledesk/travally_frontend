@@ -2,7 +2,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
     var flightBookData = {};
     var flightData = {};
     return {
-        searchFlight: function (dt) {
+        /*searchFlight: function (dt) {
             return $http({
                 method: 'POST',
                 url: 'http://api.jbspl.com/Staging/api/AirlineBooking/Search',
@@ -10,11 +10,30 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
                     'Content-Type': 'application/json'
-                },
+                },s
                 data: dt
             });
+        },*/
+
+        authentication: function (dt) {
+            return $http({
+                method: 'POST',
+                url: 'http://52.77.238.174/redirect_request',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:{
+                    method: 'POST',
+                    url: 'UpdatedHotel/Authenticate',
+                    payload:dt
+                }
+            });
         },
-        /*searchFlight: function (dt) {
+
+
+
+
+        searchFlight: function (dt) {
             return $http({
                 method: 'POST',
                 url: 'http://52.77.238.174/redirect_request',
@@ -27,7 +46,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                     payload:dt
                 }
             });
-        },*/
+        },
         getAirportDetails: function(){
             return [
                 {
@@ -21368,14 +21387,14 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
             AddTransaction: function (t) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:8000/addTransaction',
+            url: serverConfig.travally_backend+'addTransaction',
             data: t
         });
     },
         getTransaction: function (id) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:8000/getTransaction/'+id
+            url: serverConfig.travally_backend+'getTransaction/'+id
         });
     },
         GetBooking: function (bookData) {
