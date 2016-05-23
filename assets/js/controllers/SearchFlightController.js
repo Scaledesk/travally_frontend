@@ -34,27 +34,56 @@ angular.module('Travally')
             "MemberMobilePin": serverConfig.memberMobilePin
         };*/
 
+        //"72a4eea8-46f3-45c7-80b0-4ef81fbe7ab1"
+        /*var dddd = {
+            "JourneyType": 1,
+            "AdultCount": 1,
+            "ChildCount": 0,
+            "InfantCount": 0,
+            "DirectFlight": false,
+            "OneStopFlight": false,
+            "Segments": [
+                {
+                    "Origin": "DEL",
+                    "Destination": "BLR",
+                    "PreferredDepartureTime": "2016-08-08T00:00:00",
+                    "PreferredArrivalTime": "2016-08-08T00:00:00",
+                    "FlightCabinClass": ""
+                }
+            ],
+            "EndUserIp": "127.0.0.1",
+            "TokenId": window.localStorage['token_id'],
+            "PreferredAirlines": null,
+            "Sources": null,
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": serverConfig.memberMobilePin
+        };*/
+
 
         var dddd = {
-            "JourneyType":1,
-            "AdultCount":1,
-            "ChildCount":0,
-            "InfantCount":0,
-            "DirectFlight":false,
-            "OneStopFlight":false,
-            "Segments":[
-                {"Origin":$scope.source,
-                "Destination":$scope.destination,
-                "PreferredDepartureTime":$scope.departureDate,
-                "PreferredArrivalTime":"",
-                "FlightCabinClass":""}],
-            "EndUserIp":"127.0.0.1",
+            "JourneyType": 1,
+            "AdultCount": 1,
+            "ChildCount": 0,
+            "InfantCount": 0,
+            "DirectFlight": false,
+            "OneStopFlight": false,
+            "Segments": [
+                {
+                    "Origin": "DEL",
+                    "Destination": "BLR",
+                    "PreferredDepartureTime": $scope.departureDate,
+                    "PreferredArrivalTime": "2016-08-08T00:00:00",
+                    "FlightCabinClass": "1"
+                }
+            ],
+            "EndUserIp": "122.177.44.72",
             "TokenId":window.localStorage['token_id'],
-            "PreferredAirlines":[],
-            "Sources":null,
+            "PreferredAirlines": null,
+            "Sources": null,
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin
         };
+
 
         /*var flightDataDemo = {
             "Origin":"BOM",
@@ -83,79 +112,17 @@ angular.module('Travally')
         console.log(dddd);
         Flight.searchFlight(dddd).then(function (d) {
             $scope.sessionId = d.data.SessionId;
-
             $rootScope.flightSearch = d;
-
-            $scope.flightData = d.data.Result;
+            $scope.flightData = d.data.Results[0];
             console.log(d);
             $scope.$emit('UNLOAD')
-            angular.forEach($scope.flightData, function (flight, key) {
-                /*var getFareRule =  {
-                    "SessionId":$scope.sessionId,
-                    "Result":flight,
-                    "MemberMobileNo": serverConfig.memberMobileNumber,
-                    "MemberMobilePin": serverConfig.memberMobilePin
-                };
-                Flight.searchGetFareRule(getFareRule).then(function (fareRuleResponse) {
-                    console.log("getFareRule success");
-                 console.log(fareRuleResponse);
-                 }).catch(function (response) {
-                    console.log("getFareRule error");
-                    console.log(response);
-                 });*/
-                angular.forEach(flight.Segment, function (segment, key) {
-                    airlineCode = segment.Airline.AirlineCode;
-                    airlineName = segment.Airline.AirlineName;
-                    flightNumber = segment.FlightNumber;
-                    fareClass = segment.FareClass;
-                    sourceAirportName = segment.Origin.AirportName;
-                    terminal = segment.Origin.Terminal;
-                    sourceCityName = segment.Origin.CityName;
-                    countryName = segment.Origin.CountryName;
-                    destinationAirportName = segment.Destination.AirportName;
-                    destinationAirportTerminal = segment.Destination.Terminal;
-                    destinationCityName = segment.Destination.CityName;
-                    departureTime = segment.DepTIme;
-                    arrivalTime = segment.ArrTime;
-                    status = segment.Status;
-                    stop = segment.Stop;
-                    destinationCountryName = segment.Destination.CountryName;
-                });
-            var vv={
-                "origin":flight.Origin,
-                "destination":flight.Destination,
-                "TripIndicator":flight.TripIndicator,
-                "airlineCode":airlineCode,
-                "airlineName":airlineName,
-                "flightNumber":flightNumber,
-                "fareClass":fareClass,
-                "sourceAirtportName":sourceAirportName,
-                "sourceAirtportTerminal":terminal,
-                "sourceCityName":sourceCityName,
-                "sourceCountryName":countryName,
-                "destinationAirtportName":destinationAirportName,
-                "destinattionAirtportTerminal":destinationAirportTerminal,
-                "destinattionCityName":destinationCityName,
-                "destinattionCountryName":destinationCountryName,
-                "departureTime":departureTime,
-                "arrivalTime":arrivalTime,
-                "status":status,
-                "baseFare":flight.Fare.BaseFare,
-                "tax":flight.Fare.Tax,
-                "agentCommission":flight.Fare.AgentCommission,
-                "otherCommission":flight.Fare.TdsOnCommission,
-                "publishFare":flight.Fare.PublishedPrice,
-                "offeredFare":flight.Fare.OfferedFare,
-                "duration":flight.ObDuration,
-                "IsLcc":flight.IsLcc,
-                "stop":stop,
-                "FareBreakdown":flight.FareBreakdown,
-                "key":flight.SegmentKey
-            };
-                $scope.flightResultData.push(vv);
-                $scope.flightResult = $scope.flightResultData;
-                $scope.$emit('UNLOAD')
-            });
+
+            /*angular.forEach($scope.flightData, function (flight, key) {
+
+            });*/
+
+
+
         }).catch(function (response) {
             $scope.$emit('UNLOAD')
             console.log(response);
@@ -163,27 +130,8 @@ angular.module('Travally')
 
         $scope.bookingDetails = function(data) {
             if (!data.IsLcc) {
-                //window.localStorage['flight'] = data;
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
-                     /*   window.localStorage['AdultCount'] = $scope.passenger;
-                        window.localStorage['ChildCount'] = 0;
-                        window.localStorage['InfantCount'] = 0;
-                        window.localStorage['SeniorCount'] = 0;*/
-
-                        /*"Remarks": "test",
-                         "InstantTicket": true,
-                         "Fare": flight.Fare,
-                         "Passenger": [],
-                         "Origin": data.origin,
-                         "Destination": data.destination,
-                         "Segment": flight.Segment,
-                         "FareType": "PUB",
-                         "FareRule": flight.FareRule,
-                         "Source": 0,
-                         */
-
-
                         bookVal = {
                             "Remarks":"test",
                             "InstantTicket":true,

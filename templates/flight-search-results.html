@@ -1,12 +1,8 @@
-
 <div class="container">
-    <h3 class="booking-title">{{flightResult.length;}} Flights from Mumbai to Delhi on  for  adult <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
+    <h3 class="booking-title">{{flightData.length;}} Flights from Mumbai to Delhi on  for  adult <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
     <form class="booking-item-dates-change mb30">
         <div class="row">
             <div class="col-md-3">
-
-
-
                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                     <label>From</label>
                     <input class="typeahead form-control" placeholder="" type="text" />
@@ -217,38 +213,38 @@
 
             </div>
             <ul ng-hide="loading" class="booking-list">
-                <li ng-repeat="flight in flightResult | orderBy:sortType:sortReverse">
+                <li ng-repeat="flight in flightData | orderBy:sortType:sortReverse">
                     <div class="booking-item-container">
                         <div class="booking-item">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="booking-item-airline-logo">
                                         <img src="assets/theme/img/croatia.jpg" alt="Image Alternative text" title="Image Title" />
-                                        <p>{{flight.airlineName}}</p>
-                                        {{flight.IsLcc}}
+                                        <p>{{flight.Segments[0][0].Airline.AirlineName}}</p>
+                                        {{flight.IsLCC}}
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="booking-item-flight-details">
                                         <div class="booking-item-departure"><i class="fa fa-plane"></i>
-                                            <h5>{{ flight.departureTime | date : 'h:mm a'}}</h5>
-                                            <p class="booking-item-date">{{ flight.departureTime | date : medium}}</p>
-                                            <p class="booking-item-destination">{{flight.sourceCityName}}</p>
+                                            <h5>{{ flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}}</h5>
+                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Origin.DepTime | date : medium}}</p>-->
+                                            <p class="booking-item-destination">{{flight.Segments[0][0].Origin.Airport.CityName}}</p>
                                         </div>
                                         <div class="booking-item-arrival"><i class="fa fa-plane fa-flip-vertical"></i>
-                                            <h5>{{ flight.arrivalTime | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
-                                            <p class="booking-item-date">{{ flight.arrivalTime | date : medium}}</p>
-                                            <p class="booking-item-destination">{{flight.destinattionCityName}}</p>
+                                            <h5>{{ flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
+                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Destination.ArrTime | date : medium}}</p>-->
+                                            <p class="booking-item-destination">{{flight.Segments[0][0].Destination.Airport.CityName}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <h5>{{flight.duration}} hour</h5>
-                                    <p ng-show="flight.stop==0">non stop</p>
-                                    <p ng-hide="flight.stop==0">{{flight.stop}} stop</p>
+                                    <h5>{{flight.Segments[0][0].Duration/60|number:2}} hour</h5>
+                                    <p ng-hide="flight.Segments[0][0].StopOver">non stop</p>
+                                    <p ng-show="flight.Segments[0][0].StopOver">{{flight.Segments[0][0].StopPoint}} stop</p>
                                 </div>
-                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.publishFare}}</span><span></span>
-                                    <p class="booking-item-flight-class">Class: {{flight.fareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
+                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.Fare.PublishedFare}}</span><span></span>
+                                    <p class="booking-item-flight-class">Class: {{flight.Segments[0][0].Airline.FareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
                                 </div>
                             </div>
                         </div>
@@ -256,12 +252,12 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <p>Flight Details</p>
-                                    <h5 class="list-title">{{flight.sourceCityName}}({{flight.origin}}) to {{flight.destinattionCityName}} ({{flight.destination}})</h5>
+                                    <h5 class="list-title">{{flight.Segments[0][0].Origin.Airport.CityName}}({{flight.FareRules.Origin}}) to {{flight.Segments[0][0].Destination.Airport.CityName}} ({{flight.FareRules.Destination}})</h5>
                                     <ul class="list">
-                                        <li>{{flight.airlineName}} {{flight.flightNumber}}</li>
-                                        <li>{{flight.fareClass}} Class ({{flight.fareClass}}), {{flight.sourceAirtportName}} Terminal {{flight.sourceAirtportTerminal}}</li>
-                                        <li>Depart {{flight.departureTime}} Arrive {{flight.arrivalTime}}</li>
-                                        <li>Duration: {{flight.duration}}</li>
+                                        <li>{{flight.Segments[0][0].Airline.AirlineName}} {{flight.Segments[0][0].Airline.FlightNumber}}</li>
+                                        <li>{{flight.Segments[0][0].Airline.FareClass}} Class ({{flight.Segments[0][0].Airline.FareClass}}), {{flight.Segments[0][0].Origin.Airport.AirportName}} Terminal {{flight.Segments[0][0].Origin.Airport.Terminal}}</li>
+                                        <li>Depart {{flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}} Arrive {{flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}</li>
+                                        <li>Duration: {{flight.Segments[0][0].Duration/60|number:2}}</li>
                                     </ul>
                                 </div>
                             </div>

@@ -2,18 +2,18 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
     var flightBookData = {};
     var flightData = {};
     return {
-        /*searchFlight: function (dt) {
+        searchFlight: function (dt) {
             return $http({
                 method: 'POST',
-                url: 'http://api.jbspl.com/Staging/api/AirlineBooking/Search',
+                url: 'http://api.jbspl.com/staging/api/UpdatedAirlineBooking/Search',
                 headers: {
                     'x-UserName':serverConfig.user_name,
                     'x-Password':serverConfig.password,
                     'Content-Type': 'application/json'
-                },s
+                },
                 data: dt
             });
-        },*/
+        },
 
         authentication: function (dt) {
             return $http({
@@ -24,7 +24,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                 },
                 data:{
                     method: 'POST',
-                    url: 'UpdatedHotel/Authenticate',
+                    url: 'UpdatedAirlineBooking/Authenticate',
                     payload:dt
                 }
             });
@@ -33,7 +33,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
 
 
 
-        searchFlight: function (dt) {
+       /* searchFlight: function (dt) {
             return $http({
                 method: 'POST',
                 url: 'http://52.77.238.174/redirect_request',
@@ -42,11 +42,12 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                 },
                 data:{
                     method: 'POST',
-                    url: 'AirlineBooking/Search',
+                    url: 'UpdatedAirlineBooking/Search',
                     payload:dt
                 }
             });
-        },
+        },*/
+
         getAirportDetails: function(){
             return [
                 {

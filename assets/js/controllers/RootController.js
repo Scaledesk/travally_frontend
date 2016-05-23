@@ -12,6 +12,11 @@ angular.module('Travally')
 
         $rootScope.TokenId = "";
 
+        $.get("http://ipinfo.io", function(response) {
+            console.log('ip address');
+            console.log(response);
+        }, "jsonp");
+
         $scope.logout = function() {
             $auth.logout();
             $rootScope.user_profile = null;

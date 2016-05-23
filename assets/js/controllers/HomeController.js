@@ -8,7 +8,9 @@ angular.module('Travally')
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
         };
+        //122.177.44.72
         Flight.authentication(auth).then(function(res){
+            console.log('token id gsdh');
             console.log(res);
             window.localStorage['token_id'] = res.data.TokenId;
         }).catch(function(res){
