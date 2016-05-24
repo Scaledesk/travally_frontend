@@ -23,28 +23,7 @@
                 <div class="search-tabs search-tabs-bg search-tabs-abs mt50">
                     <h1>Find Your Perfect Trip</h1>
                     <div class="tabbable">
-                        <ul class="nav nav-tabs" id="myTab">
 
-                            <!--ng-class="{active:activeVal==1}"><a href="#/" ng-click="activeVal =1">Home</a>-->
-
-                            <li ng-class="{active:tab=='train'}"><a href="" data-toggle="tab" ng-click="tab = 'train'"><i class="fa fa-train"></i> <span >Train</span></a>
-                            </li>
-                            <li ng-class="{active:tab=='hotel'}"><a href="" data-toggle="tab" ng-click="tab = 'hotel'"><i class="fa fa-building-o"></i> <span >Hotels</span></a>
-                              </li>
-
-                            <li ng-class="{active:tab=='flight'}"><a href="" data-toggle="tab" ng-click="tab = 'flight'"><i class="fa fa-plane"></i> <span >Flight</span></a>
-                            </li>
-
-                            <li ng-class="{active:tab=='bus'}"><a href="" data-toggle="tab" ng-click="tab = 'bus'"><i class="fa fa-bus"></i> <span >Bus</span></a>
-                            </li>
-
-                            <!--  <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-home"></i> <span >Rentals</span></a>
-                             </li>
-                           <!--   <li><a href="#tab-4" data-toggle="tab"><i class="fa fa-car"></i> <span >Cars</span></a>
-                             </li>
-                             <li><a href="#tab-5" data-toggle="tab"><i class="fa fa-bolt"></i> <span >Activities</span></a>
-                             </li>  -->
-                        </ul>
                         <div class="tab-content">
                             <div ng-class="{'tab-pane fade in active':tab=='train'}" ng-show="tab=='train'" id="tab-2">
                                 <!-- <h2>Search for Cheap Flights</h2> -->
@@ -88,7 +67,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
 
 
@@ -121,7 +100,7 @@
                                                                     <!--<input class="form-control" ui-date ui-date-format="dd-mm-yy" ng-model="formData.date">-->
                                                                     <datepicker date-format="dd-MM-yyyy" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
 
-                                                                        <input class="form-control" placeholder="select departure date" ng-model="formData.date">
+                                                                        <input class="form-control" placeholder="Select departure date" ng-model="formData.date">
 
                                                                     </datepicker>
                                                                    <!-- <input class="form-control" name="start" type="text" ng-model="formData.date"/>-->
@@ -145,18 +124,37 @@
 
 
                                                     <div class="row">
-                                                            
-                                                        <div class="col-md-4">
-                                                     
+
+                                                        <div class="col-md-4 pl0">
+
                                                                  <div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>
                                                                     <label>Number of Passengers</label>
                                                                 <input type="number" class="form-control" ng-model="formData.passenger" placeholder="Enter Number of Passenger">
                                                                  </div>
                                                         </div>
-                                                        
+
+                                                        <div class="col-md-2 mt40 search-text"  >
+                                                            Search for :
+                                                        </div>
+
+                                                        <div class="col-md-2 mt40">
+                                                            <select class="form-control">
+                                                                <option selected>All</option>
+                                                                <option>Train</option>
+                                                                <option>Bus</option>
+                                                                <option>ETC</option>
+
+                                                            </select>
+
+                                                        </div>
+
+
+
+
+
                                                     </div>
 
-                                                               
+
 
                                                                 <!--<div class="form-group form-group-lg form-group-select-plus">
                                                                     <label>Passngers</label>
@@ -187,7 +185,7 @@
                                                                         <option>14</option>
                                                                     </select>
                                                                 </div>-->
-                                                            
+
                                                         <!--</div>-->
                                                     </div>
                                                 </div>
@@ -257,377 +255,377 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-lg" type="submit" ng-click="search(formData)">Search for Trains</button>
+                                    <button class="btn btn-primary btn-lg" type="submit" ng-click="search(formData)">Search Now</button>
                                 </form>
                             </div>
 
 
-                            <div ng-class="{'tab-pane fade in active':tab=='hotel'}" ng-show="tab=='hotel'" id="tab-1">
-                                <h2>Search and Save on Hotels</h2>
-                                <form>
-                                    <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                        <label>Where are you going?</label>
-                                        <!--<input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" ng-model="hotel.city" />-->
-                                        <ui-select ng-model="hotelCity.selected"
-                                                   theme="bootstrap"
-                                                   ng-disabled="disabled"
-                                                   reset-search-input="true">
-                                            <ui-select-match placeholder="Enter city name">{{$select.selected.city_name}}</ui-select-match>
-                                            <ui-select-choices repeat="c in hotelCity track by $index"
-                                                               refresh="refreshHotelCity($select.search)"
-                                                               refresh-delay="0">
-                                                <div ng-bind-html="c.city_name | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-                                    <div class="input-daterange" data-date-format="M d, D">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>Check-in</label>
-                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_in">-->
-                                                     <!--<input class="form-control" name="start" type="text" ng-model="hotel.check_in"/>-->
-                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
-
-                                                        <input class="form-control" placeholder="select check in date" ng-model="hotel.check_in">
-
-                                                    </datepicker>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>Check-Out</label>
-                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_out">-->
-                                                     <!--<input class="form-control" name="start" type="text" ng-model="hotel.check_out"/>-->
-                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
-
-                                                        <input class="form-control" placeholder="select check out date" ng-model="hotel.check_out">
-
-                                                    </datepicker>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-select-plus">
-                                                    <label>Rooms</label>
-                                                    <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                                        <label class="btn btn-primary active">
-                                                            <input type="radio" name="options" />1</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />2</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />3</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />3+</label>
-                                                    </div>
-                                                    <select class="form-control hidden">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option selected="selected">4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option>12</option>
-                                                        <option>13</option>
-                                                        <option>14</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-select-plus">
-                                                    <label>Guests</label>
-                                                    <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                                        <label class="btn btn-primary active">
-                                                            <input type="radio" name="options" />1</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />2</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />3</label>
-                                                        <label class="btn btn-primary">
-                                                            <input type="radio" name="options" />3+</label>
-                                                    </div>
-                                                    <select class="form-control hidden">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option selected="selected">4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option>12</option>
-                                                        <option>13</option>
-                                                        <option>14</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div></form>
-
-
-
-
-
-
-                                    <button class="btn btn-primary btn-lg" type="submit" ng-click="searchHotel(hotel)">Search for Hotels</button>
-                                </form>
-                            </div>
-
-
-
-
-
-                            <div ng-class="{'tab-pane fade in active':tab=='flight'}" ng-show="tab=='flight'" id="tab-3">
-                                <h2>Search Flight</h2>
-                                <form>
-                                    <div class="tabbable" >
-                                        <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab1">
-                                            <li class="active"><a href="#flight-search-1" data-toggle="tab"></a>
-                                            </li>
-                                            <!--  <li><a href="#flight-search-2" data-toggle="tab">One Way</a>
-                                              </li> -->
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade in active" id="flight-search-11">
-
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                            <label>From</label>
-
-
-
-                                                            <ui-select ng-model="city.selected"
-                                                                       theme="bootstrap"
-                                                                       ng-disabled="disabled"
-                                                                       reset-search-input="true">
-                                                                <ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>
-                                                                <ui-select-choices repeat="c in city track by $index"
-                                                                                   refresh="refreshCity($select.search)"
-                                                                                   refresh-delay="0">
-                                                                    <div ng-bind-html="c.name | highlight: $select.search"></div>
-                                                                </ui-select-choices>
-                                                            </ui-select>
-
-                                                            <!--<input class="typeahead form-control" placeholder="City Source" ng-model="flight.source"/>-->
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-3">
-                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-
-
-
-                                                            <label>To</label>
-
-                                                            <ui-select ng-model="cityDestinaton.selected"
-                                                                       theme="bootstrap"
-                                                                       ng-disabled="disabled"
-                                                                       reset-search-input="true">
-                                                                <ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>
-                                                                <ui-select-choices repeat="c in cityDestinaton track by $index"
-                                                                                   refresh="refreshDestinationCity($select.search)"
-                                                                                   refresh-delay="0">
-                                                                    <div ng-bind-html="c.name | highlight: $select.search"></div>
-                                                                </ui-select-choices>
-                                                            </ui-select>
-
-
-                                                            <!--<input class="typeahead form-control" placeholder="City Destination" type="text" ng-model="flight.destination"/>-->
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="input-daterange" data-date-format="M d, D">
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                                    <label>Departing</label>
-                                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="flight.date">-->
-                                                                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
-
-                                                                        <input class="form-control" placeholder="select departure date" ng-model="flight.date">
-
-                                                                    </datepicker>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                            <!--<div class="col-md-3">
-                                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                                    <label>Returning</label>
-                                                                    <input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="flight.return">
-                                                                </div>
-                                                            </div>-->
-                                                            <!--<div class="col-md-6">-->
-
-
-                                                            <div class="row">
-
-                                                                <div class="col-md-4">
-
-                                                                    <div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>
-                                                                        <label>Number of Passengers</label>
-                                                                        <input type="number" class="form-control" ng-model="flight.passenger" placeholder="Enter Number of Passenger">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-
-                                                            <!--<div class="form-group form-group-lg form-group-select-plus">
-                                                                <label>Passngers</label>
-                                                                <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                                                    <label class="btn btn-primary active">
-                                                                        <input type="radio" name="options" />1</label>
-                                                                    <label class="btn btn-primary">
-                                                                        <input type="radio" name="options" />2</label>
-                                                                    <label class="btn btn-primary">
-                                                                        <input type="radio" name="options" />3</label>
-                                                                    <label class="btn btn-primary">
-                                                                        <input type="radio" name="options" />3+</label>
-                                                                </div>
-                                                                <select class="form-control hidden">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option selected="selected">4</option>
-                                                                    <option>5</option>
-                                                                    <option>6</option>
-                                                                    <option>7</option>
-                                                                    <option>8</option>
-                                                                    <option>9</option>
-                                                                    <option>10</option>
-                                                                    <option>11</option>
-                                                                    <option>12</option>
-                                                                    <option>13</option>
-                                                                    <option>14</option>
-                                                                </select>
-                                                            </div>-->
-
-                                                        <!--</div>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <button ng-disabled="flightSearchButton" class="btn btn-primary btn-lg" ng-click="searchFlight(flight)">{{flightSearchButtonText}}</button>
-                                </form>
-                            </div>
-
-
-
-
-                            <div ng-class="{'tab-pane fade in active':tab=='bus'}" ng-show="tab=='bus'" id="tab-4">
-                                <h3>Search for Buses</h3>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                <label>Source City</label>
-                                                <ui-select ng-model="BusSourceCity.selected"
-                                                           theme="bootstrap"
-                                                           ng-disabled="disabled"
-                                                           reset-search-input="true">
-                                                    <ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>
-                                                    <ui-select-choices repeat="b in BusSourceCity track by $index"
-                                                                       refresh="refreshBusSources($select.search)"
-                                                                       refresh-delay="0">
-                                                        <div ng-bind-html="b.CityName | highlight: $select.search"></div>
-                                                    </ui-select-choices>
-                                                </ui-select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                <label>Destination City</label>
-                                                <ui-select ng-model="BusDestinationCity.selected"
-                                                           theme="bootstrap"
-                                                           ng-disabled="disabled"
-                                                           reset-search-input="true">
-                                                    <ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>
-                                                    <ui-select-choices repeat="d in BusDestinationCity track by $index"
-                                                                       refresh="refreshBusDestinations($select.search)"
-                                                                       refresh-delay="0">
-                                                        <div ng-bind-html="d.CityName | highlight: $select.search"></div>
-                                                    </ui-select-choices>
-                                                </ui-select>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-daterange" data-date-format="M d, D">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <!--<div class="form-group form-group-lg form-g-roup-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
-                                                    <!--<label>Pick-up Date</label>-->
-                                                    <!--&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">&ndash;&gt;-->
-
+                            <!--<div ng-class="{'tab-pane fade in active':tab=='hotel'}" ng-show="tab=='hotel'" id="tab-1">-->
+                                <!--<h2>Search and Save on Hotels</h2>-->
+                                <!--<form>-->
+                                    <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+                                        <!--<label>Where are you going?</label>-->
+                                        <!--&lt;!&ndash;<input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" ng-model="hotel.city" />&ndash;&gt;-->
+                                        <!--<ui-select ng-model="hotelCity.selected"-->
+                                                   <!--theme="bootstrap"-->
+                                                   <!--ng-disabled="disabled"-->
+                                                   <!--reset-search-input="true">-->
+                                            <!--<ui-select-match placeholder="Enter city name">{{$select.selected.city_name}}</ui-select-match>-->
+                                            <!--<ui-select-choices repeat="c in hotelCity track by $index"-->
+                                                               <!--refresh="refreshHotelCity($select.search)"-->
+                                                               <!--refresh-delay="0">-->
+                                                <!--<div ng-bind-html="c.city_name | highlight: $select.search"></div>-->
+                                            <!--</ui-select-choices>-->
+                                        <!--</ui-select>-->
+                                    <!--</div>-->
+                                    <!--<div class="input-daterange" data-date-format="M d, D">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>Check-in</label>-->
+                                                    <!--&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_in">&ndash;&gt;-->
+                                                     <!--&lt;!&ndash;<input class="form-control" name="start" type="text" ng-model="hotel.check_in"/>&ndash;&gt;-->
                                                     <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">-->
+
+                                                        <!--<input class="form-control" placeholder="select check in date" ng-model="hotel.check_in">-->
+
+                                                    <!--</datepicker>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>Check-Out</label>-->
+                                                    <!--&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="hotel.check_out">&ndash;&gt;-->
+                                                     <!--&lt;!&ndash;<input class="form-control" name="start" type="text" ng-model="hotel.check_out"/>&ndash;&gt;-->
+                                                    <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">-->
+
+                                                        <!--<input class="form-control" placeholder="select check out date" ng-model="hotel.check_out">-->
+
+                                                    <!--</datepicker>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+
+
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-select-plus">-->
+                                                    <!--<label>Rooms</label>-->
+                                                    <!--<div class="btn-group btn-group-select-num" data-toggle="buttons">-->
+                                                        <!--<label class="btn btn-primary active">-->
+                                                            <!--<input type="radio" name="options" />1</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />2</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />3</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />3+</label>-->
+                                                    <!--</div>-->
+                                                    <!--<select class="form-control hidden">-->
+                                                        <!--<option>1</option>-->
+                                                        <!--<option>2</option>-->
+                                                        <!--<option>3</option>-->
+                                                        <!--<option selected="selected">4</option>-->
+                                                        <!--<option>5</option>-->
+                                                        <!--<option>6</option>-->
+                                                        <!--<option>7</option>-->
+                                                        <!--<option>8</option>-->
+                                                        <!--<option>9</option>-->
+                                                        <!--<option>10</option>-->
+                                                        <!--<option>11</option>-->
+                                                        <!--<option>12</option>-->
+                                                        <!--<option>13</option>-->
+                                                        <!--<option>14</option>-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-select-plus">-->
+                                                    <!--<label>Guests</label>-->
+                                                    <!--<div class="btn-group btn-group-select-num" data-toggle="buttons">-->
+                                                        <!--<label class="btn btn-primary active">-->
+                                                            <!--<input type="radio" name="options" />1</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />2</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />3</label>-->
+                                                        <!--<label class="btn btn-primary">-->
+                                                            <!--<input type="radio" name="options" />3+</label>-->
+                                                    <!--</div>-->
+                                                    <!--<select class="form-control hidden">-->
+                                                        <!--<option>1</option>-->
+                                                        <!--<option>2</option>-->
+                                                        <!--<option>3</option>-->
+                                                        <!--<option selected="selected">4</option>-->
+                                                        <!--<option>5</option>-->
+                                                        <!--<option>6</option>-->
+                                                        <!--<option>7</option>-->
+                                                        <!--<option>8</option>-->
+                                                        <!--<option>9</option>-->
+                                                        <!--<option>10</option>-->
+                                                        <!--<option>11</option>-->
+                                                        <!--<option>12</option>-->
+                                                        <!--<option>13</option>-->
+                                                        <!--<option>14</option>-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div></form>-->
+
+
+
+
+
+
+                                    <!--<button class="btn btn-primary btn-lg" type="submit" ng-click="searchHotel(hotel)">Search for Hotels</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
+
+
+
+
+
+                            <!--<div ng-class="{'tab-pane fade in active':tab=='flight'}" ng-show="tab=='flight'" id="tab-3">-->
+                                <!--<h2>Search Flight</h2>-->
+                                <!--<form>-->
+                                    <!--<div class="tabbable" >-->
+                                        <!--<ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab1">-->
+                                            <!--<li class="active"><a href="#flight-search-1" data-toggle="tab"></a>-->
+                                            <!--</li>-->
+                                            <!--&lt;!&ndash;  <li><a href="#flight-search-2" data-toggle="tab">One Way</a>-->
+                                              <!--</li> &ndash;&gt;-->
+                                        <!--</ul>-->
+                                        <!--<div class="tab-content">-->
+                                            <!--<div class="tab-pane fade in active" id="flight-search-11">-->
+
+
+                                                <!--<div class="row">-->
+                                                    <!--<div class="col-md-3">-->
+                                                        <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+                                                            <!--<label>From</label>-->
+
+
+
+                                                            <!--<ui-select ng-model="city.selected"-->
+                                                                       <!--theme="bootstrap"-->
+                                                                       <!--ng-disabled="disabled"-->
+                                                                       <!--reset-search-input="true">-->
+                                                                <!--<ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>-->
+                                                                <!--<ui-select-choices repeat="c in city track by $index"-->
+                                                                                   <!--refresh="refreshCity($select.search)"-->
+                                                                                   <!--refresh-delay="0">-->
+                                                                    <!--<div ng-bind-html="c.name | highlight: $select.search"></div>-->
+                                                                <!--</ui-select-choices>-->
+                                                            <!--</ui-select>-->
+
+                                                            <!--&lt;!&ndash;<input class="typeahead form-control" placeholder="City Source" ng-model="flight.source"/>&ndash;&gt;-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+
+                                                    <!--<div class="col-md-3">-->
+                                                        <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+
+
+
+                                                            <!--<label>To</label>-->
+
+                                                            <!--<ui-select ng-model="cityDestinaton.selected"-->
+                                                                       <!--theme="bootstrap"-->
+                                                                       <!--ng-disabled="disabled"-->
+                                                                       <!--reset-search-input="true">-->
+                                                                <!--<ui-select-match placeholder="Enter city name">{{$select.selected.name}}</ui-select-match>-->
+                                                                <!--<ui-select-choices repeat="c in cityDestinaton track by $index"-->
+                                                                                   <!--refresh="refreshDestinationCity($select.search)"-->
+                                                                                   <!--refresh-delay="0">-->
+                                                                    <!--<div ng-bind-html="c.name | highlight: $select.search"></div>-->
+                                                                <!--</ui-select-choices>-->
+                                                            <!--</ui-select>-->
+
+
+                                                            <!--&lt;!&ndash;<input class="typeahead form-control" placeholder="City Destination" type="text" ng-model="flight.destination"/>&ndash;&gt;-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+
+                                                    <!--<div class="input-daterange" data-date-format="M d, D">-->
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="col-md-3">-->
+                                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                                    <!--<label>Departing</label>-->
+                                                                    <!--&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="flight.date">&ndash;&gt;-->
+                                                                    <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">-->
+
+                                                                        <!--<input class="form-control" placeholder="select departure date" ng-model="flight.date">-->
+
+                                                                    <!--</datepicker>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--&lt;!&ndash;<div class="col-md-3">-->
+                                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                                    <!--<label>Returning</label>-->
+                                                                    <!--<input class="form-control" ui-date ui-date-format=" dd-mm-yy" ng-model="flight.return">-->
+                                                                <!--</div>-->
+                                                            <!--</div>&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<div class="col-md-6">&ndash;&gt;-->
+
+
+                                                            <!--<div class="row">-->
+
+                                                                <!--<div class="col-md-4">-->
+
+                                                                    <!--<div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>-->
+                                                                        <!--<label>Number of Passengers</label>-->
+                                                                        <!--<input type="number" class="form-control" ng-model="flight.passenger" placeholder="Enter Number of Passenger">-->
+                                                                    <!--</div>-->
+                                                                <!--</div>-->
+
+                                                            <!--</div>-->
+
+
+                                                            <!--&lt;!&ndash;<div class="form-group form-group-lg form-group-select-plus">-->
+                                                                <!--<label>Passngers</label>-->
+                                                                <!--<div class="btn-group btn-group-select-num" data-toggle="buttons">-->
+                                                                    <!--<label class="btn btn-primary active">-->
+                                                                        <!--<input type="radio" name="options" />1</label>-->
+                                                                    <!--<label class="btn btn-primary">-->
+                                                                        <!--<input type="radio" name="options" />2</label>-->
+                                                                    <!--<label class="btn btn-primary">-->
+                                                                        <!--<input type="radio" name="options" />3</label>-->
+                                                                    <!--<label class="btn btn-primary">-->
+                                                                        <!--<input type="radio" name="options" />3+</label>-->
+                                                                <!--</div>-->
+                                                                <!--<select class="form-control hidden">-->
+                                                                    <!--<option>1</option>-->
+                                                                    <!--<option>2</option>-->
+                                                                    <!--<option>3</option>-->
+                                                                    <!--<option selected="selected">4</option>-->
+                                                                    <!--<option>5</option>-->
+                                                                    <!--<option>6</option>-->
+                                                                    <!--<option>7</option>-->
+                                                                    <!--<option>8</option>-->
+                                                                    <!--<option>9</option>-->
+                                                                    <!--<option>10</option>-->
+                                                                    <!--<option>11</option>-->
+                                                                    <!--<option>12</option>-->
+                                                                    <!--<option>13</option>-->
+                                                                    <!--<option>14</option>-->
+                                                                <!--</select>-->
+                                                            <!--</div>&ndash;&gt;-->
+
+                                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<button ng-disabled="flightSearchButton" class="btn btn-primary btn-lg" ng-click="searchFlight(flight)">{{flightSearchButtonText}}</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
+
+
+
+
+                            <!--<div ng-class="{'tab-pane fade in active':tab=='bus'}" ng-show="tab=='bus'" id="tab-4">-->
+                                <!--<h3>Search for Buses</h3>-->
+                                <!--<form>-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+                                                <!--<label>Source City</label>-->
+                                                <!--<ui-select ng-model="BusSourceCity.selected"-->
+                                                           <!--theme="bootstrap"-->
+                                                           <!--ng-disabled="disabled"-->
+                                                           <!--reset-search-input="true">-->
+                                                    <!--<ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>-->
+                                                    <!--<ui-select-choices repeat="b in BusSourceCity track by $index"-->
+                                                                       <!--refresh="refreshBusSources($select.search)"-->
+                                                                       <!--refresh-delay="0">-->
+                                                        <!--<div ng-bind-html="b.CityName | highlight: $select.search"></div>-->
+                                                    <!--</ui-select-choices>-->
+                                                <!--</ui-select>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+                                                <!--<label>Destination City</label>-->
+                                                <!--<ui-select ng-model="BusDestinationCity.selected"-->
+                                                           <!--theme="bootstrap"-->
+                                                           <!--ng-disabled="disabled"-->
+                                                           <!--reset-search-input="true">-->
+                                                    <!--<ui-select-match placeholder="Enter city name">{{$select.selected.CityName}}</ui-select-match>-->
+                                                    <!--<ui-select-choices repeat="d in BusDestinationCity track by $index"-->
+                                                                       <!--refresh="refreshBusDestinations($select.search)"-->
+                                                                       <!--refresh-delay="0">-->
+                                                        <!--<div ng-bind-html="d.CityName | highlight: $select.search"></div>-->
+                                                    <!--</ui-select-choices>-->
+                                                <!--</ui-select>-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="input-daterange" data-date-format="M d, D">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-md-6">-->
+                                                <!--&lt;!&ndash;<div class="form-group form-group-lg form-g-roup-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<label>Pick-up Date</label>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;&lt;!&ndash;<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">&ndash;&gt;&ndash;&gt;-->
+
+                                                    <!--&lt;!&ndash;<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">&ndash;&gt;-->
+
+                                                        <!--&lt;!&ndash;<input class="form-control" placeholder="select departure date" ng-model="Bus.journeyDate">&ndash;&gt;-->
+
+                                                    <!--&lt;!&ndash;</datepicker>&ndash;&gt;-->
+
+                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>Pick up date</label>-->
+                                                    <!--<input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">-->
+                                                    <!--&lt;!&ndash;<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">-->
 
                                                         <!--<input class="form-control" placeholder="select departure date" ng-model="Bus.journeyDate">-->
 
-                                                    <!--</datepicker>-->
-
+                                                    <!--</datepicker>&ndash;&gt;-->
                                                 <!--</div>-->
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>Pick up date</label>
-                                                    <input class="form-control" ui-date ui-date-format=" yy-mm-dd" ng-model="Bus.journeyDate">
-                                                    <!--<datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+                                            <!--</div>-->
 
-                                                        <input class="form-control" placeholder="select departure date" ng-model="Bus.journeyDate">
-
-                                                    </datepicker>-->
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg" ng-click="searchBuses(Bus)">Search for Buses</button>
-                                </form>
-                            </div>
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<button class="btn btn-primary btn-lg" ng-click="searchBuses(Bus)">Search for Buses</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
 
 
 
 
-                            <div class="tab-pane fade" id="tab-5">
-                                <h2>Search for Activities</h2>
-                                <form>
-                                    <div class="input-daterange" data-date-format="M d, D">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                    <label>Where are you going?</label>
-                                                    <input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>From</label>
-                                                    <input class="form-control" name="start" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                                    <label>To</label>
-                                                    <input class="form-control" name="end" type="text" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg" type="submit">Search for Activities</button>
-                                </form>
-                            </div>
+                            <!--<div class="tab-pane fade" id="tab-5">-->
+                                <!--<h2>Search for Activities</h2>-->
+                                <!--<form>-->
+                                    <!--<div class="input-daterange" data-date-format="M d, D">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-md-6">-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>-->
+                                                    <!--<label>Where are you going?</label>-->
+                                                    <!--<input class="typeahead form-control" placeholder="City, Airport, Point of Interest or U.S. Zip Code" type="text" />-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>From</label>-->
+                                                    <!--<input class="form-control" name="start" type="text" />-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>-->
+                                                    <!--<label>To</label>-->
+                                                    <!--<input class="form-control" name="end" type="text" />-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<button class="btn btn-primary btn-lg" type="submit">Search for Activities</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
 
                         </div>
                     </div>
