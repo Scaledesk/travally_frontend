@@ -1,74 +1,148 @@
 angular.module('Travally')
-    .controller('BookingFlightController', function($http, $scope, $routeParams, $auth, $rootScope, $filter, $location, Flight) {
-        $scope.passenger =  {
-            "adult": window.localStorage['AdultCount'],
-            "child":window.localStorage['ChildCount'],
-            "infant":window.localStorage['InfantCount'],
-            "senior":window.localStorage['SeniorCount']
+    .controller('BookingFlightController', function($http, $scope, $routeParams,$cookies, $auth, $rootScope,serverConfig, $filter, $location, Flight) {
+        $scope.selectedFlightDetails = $cookies.getObject('selectedFlight');
+        $scope.flightData = $cookies.getObject('selectedFlight');
+        var fareRequest = {
+            EndUserIP:"127.0.0.1",
+            TokenId:window.localStorage['flight_token_id'],
+            TraceId:window.localStorage['flight_trace_id'],
+            ResultIndex:$scope.flightData.ResultIndex,
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": serverConfig.memberMobilePin
         };
+        $scope.bookVal = {
+            EndUserIP: "127.0.0.1",
+            TokenId: window.localStorage['flight_token_id'],
+            TraceId: window.localStorage['flight_trace_id'],
+            ResultIndex: $scope.selectedFlightDetails.ResultIndex,
+            Passengers: [],
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": serverConfig.memberMobilePin
+        };
+        console.log('gat fare quote request ');
+        console.log(JSON.stringify(fareRequest));
+            console.log('get fare quote response');
+            Flight.flightGetFareQuote(fareRequest).then(function(res){
+                console.log('success response');
+                console.log(JSON.stringify(res));
+                $scope.finalResults =  res.data.Results;
+                angular.forEach(res.data.Results.FareBreakdown, function (f, key) {
+                    console.log('fare breakdown');
+                    console.log(f);
+                   var p =  {
+                        title: "Mr",
+                        FirstName: "Trivedi",
+                        LastName: "Nupoora",
+                        PaxType: "1",
+                        DateOfBirth: "2003-06-19T00:00:00",
+                        Gender: "Male",
+                        PassportNo: "",
+                        PassportExpiry: "",
+                        AddressLine1: "demo",
+                        AddressLine2: "demo",
+                        City: "Delhi",
+                        CountryCode: "IN",
+                        CountryName: "India",
+                        ContactNo: "8787878787",
+                        Email: "abc@jbspl.com",
+                        IsLeadPax: true,
+                        FFAirline: "",
+                        FFNumber: "",
+                        Fare: $scope.finalResults.Fare,
+                        Meal: null,
+                        Seat:null
+                    };
+                    $scope.bookVal.Passengers.push(p);
+                });
+            }).catch(function(res){
+                console.log('error response');
+                console.log(JSON.stringify(res));
+            });
+            /*"Remarks":"test",
+            "InstantTicket":true,
+            "Fare":$scope.flightData.Fare,
+            "Passenger":[],
+            "Origin": $scope.flightData.origin,
+            "Destination": $scope.flightData.destination,
+            "Segment": $scope.flightData.Segment,
+            "FareType":"PUB",
+            "FareRule": $scope.flightData.FareRule,
+            "Source":3,
+            "PaymentInformation":{
+                "PaymentInformationId":0,
+                "InvoiceNumber":0,
+                "PaymentId":"0",
+                "Amount":0.0,
+                "IPAddress":"127.0.0.1",
+                "TrackId":0,
+                "PaymentGateway":4,
+                "PaymentModeType":2
+            },
+            "PromotionalPlanType": $scope.flightData.PromotionalPlanType,
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": $scope.flightData.memberMobilePin*/
+
         $scope.user = {};
-        //$scope.agree = false;
         $scope.Successful_Message = "";
-        //$scope.validation_message="";
-        $scope.flightData = Flight.getFlightData();
-        $scope.bookVal = Flight.getflightBookData();
-        //console.log($scope.flightData);
-        console.log($scope.bookVal);
-        angular.forEach($scope.flightData.FareBreakdown, function (f, key) {
-            p =  {
-                "Title":"Mr",
-                "FirstName":"Trivedi",
-                "LastName":"Nupoora",
-                "Type":0,
-                "DateOfBirth":"2003-06-19T00:00:00",
-                "Fare":{
-                    "BaseFare": f.BaseFare,
-                    "Tax": f.Tax,
-                    "ServiceTax":0.0,
-                    "AdditionalTxnFee": f.AdditionalTxnFee,
-                    "AgentCommission":0.0,
-                    "TdsOnCommission":0.0,
-                    "IncentiveEarned":0.0,
-                    "TdsOnIncentive":0.0,
-                    "PLBEarned":0.0,
-                    "TdsOnPLB":0.0,
-                    "PublishedPrice":0.0,
-                    "AirTransFee": f.AirlineTransFee,
-                    "Currency":null,
-                    "Discount":0.0,
-                    "ChargeBU":null,
-                    "OtherCharges":0.0,
-                    "FuelSurcharge": f.FuelSurcharge,
-                    "TransactionFee":0.0,
-                    "ReverseHandlingCharge":0.0,
-                    "OfferedFare":0.0,
-                    "AgentServiceCharge": f.AgentServiceCharge,
-                    "AgentConvienceCharges": f.AgentConvienceCharges,
-                    "Markup":null
-                },
-                "Ssr":null,
-                "Gender":1,
-                "PassportNumber":"",
-                "PassportExpiry":"0001-01-01T00:00:00",
-                "PinCode":"364270",
-                "Country":"IN",
-                "Phone":"7878127048",
-                "AddressLine1":"demo",
-                "AddressLine2":"demo",
-                "Email":"abc@jbspl.com",
-                "Meal":{
-                    "Code":"AVML",
-                    "Description":"Asian - Vegetarian"
-                },
-                "Seat":{
-                    "Code":"A",
-                    "Description":"Aisle"
-                },
-                "FFAirline":"",
-                "FFNumber":""
-            };
-            $scope.bookVal.Passenger.push(p);
-        });
+        console.log('selected flight');
+        console.log($scope.flightData);
+
+/*
+
+var d = {
+ "Title":"Mr",
+ "FirstName":"Trivedi",
+ "LastName":"Nupoora",
+ "Type":0,
+ "DateOfBirth":"2003-06-19T00:00:00",
+ "Fare":{
+ "BaseFare": f.BaseFare,
+ "Tax": f.Tax,
+ "ServiceTax":0.0,
+ "AdditionalTxnFee": f.AdditionalTxnFee,
+ "AgentCommission":0.0,
+ "TdsOnCommission":0.0,
+ "IncentiveEarned":0.0,
+ "TdsOnIncentive":0.0,
+ "PLBEarned":0.0,
+ "TdsOnPLB":0.0,
+ "PublishedPrice":0.0,
+ "AirTransFee": f.AirlineTransFee,
+ "Currency":null,
+ "Discount":0.0,
+ "ChargeBU":null,
+ "OtherCharges":0.0,
+ "FuelSurcharge": f.FuelSurcharge,
+ "TransactionFee":0.0,
+ "ReverseHandlingCharge":0.0,
+ "OfferedFare":0.0,
+ "AgentServiceCharge": f.AgentServiceCharge,
+ "AgentConvienceCharges": f.AgentConvienceCharges,
+ "Markup":null
+ },
+ "Ssr":null,
+ "Gender":1,
+ "PassportNumber":"",
+ "PassportExpiry":"0001-01-01T00:00:00",
+ "PinCode":"364270",
+ "Country":"IN",
+ "Phone":"7878127048",
+ "AddressLine1":"demo",
+ "AddressLine2":"demo",
+ "Email":"abc@jbspl.com",
+ "Meal":{
+ "Code":"AVML",
+ "Description":"Asian - Vegetarian"
+ },
+ "Seat":{
+ "Code":"A",
+ "Description":"Aisle"
+ },
+ "FFAirline":"",
+ "FFNumber":""
+ };
+*/
+
 
         $scope.BookFlight = function(){
 
@@ -77,47 +151,12 @@ angular.module('Travally')
                  }
                 else{
 
-                        /*if($scope.user.name ==''){
-                            $scope.validation_message = "name is required";
-                            return;
-                        }
-                    if($scope.user.phone ==''){
-                        $scope.validation_message = "phone number is required";
-                        return;
-                    }
-                    if($scope.user.email ==''){
-                        $scope.validation_message = "email is required";
-                        return;
-                    }
-                    if($scope.agree == false){
-                        $scope.validation_message = "Select Create Travally Account";
-                        return;
-                    }*/
-
                 }
         };
-
-
-        $scope.makePayment = function(){
-            $scope.$emit('LOAD')
-            var t ={
-                "type":"flight_booking",
-                "amount":3870,
-                "status":"pending"
-            };
-            Flight.AddTransaction(t).then(function (PaymentResponse) {
-                console.log("ticket response");
-                console.log(PaymentResponse);
-                $scope.$emit('UNLOAD')
-            }).catch(function (response) {
-                $scope.$emit('UNLOAD')
-                console.log(response);
-            });
-        };
         $scope.flightBooking = function(){
-            if($scope.flightData.IsLcc){
+            if($scope.flightData.IsLCC){
                 $scope.$emit('LOAD')
-                $scope.ticket = {
+                /*$scope.ticket = {
                     "BookingID": "",
                     "Origin": $scope.bookVal.Origin,
                     "Destination": $scope.bookVal.Destination,
@@ -138,28 +177,13 @@ angular.module('Travally')
                     "PromotionalPlanType": $scope.bookVal.PromotionalPlanType,
                     "MemberMobileNo": $scope.bookVal.MemberMobileNo,
                     "MemberMobilePin": $scope.bookVal.MemberMobilePin
-                };
-                $rootScope.ticketRequest = $scope.ticket;
-                //console.log($scope.ticket);
-                /*Flight.flightTicket($scope.ticket).then(function (ticketResponse) {
-                    console.log("ticket response");
-                    $rootScope.ticketResponse = ticketResponse.data;
-                    console.log(ticketResponse.data);
-                    if($rootScope.ticketResponse.Status.Description == Sucessfull){
-                        //$scope.saveDetails();
-                        $scope.Successful_Message = "Ticket Booked";
-                    }
-                    //console.log($scope.bookVal.passenger);
-                    $scope.$emit('UNLOAD')
-                }).catch(function (response) {
-                    $scope.$emit('UNLOAD')
-                    console.log(response);
-                });*/
+                };*/
+                //$rootScope.ticketRequest = $scope.ticket;
                 var t ={
                     "type":"flight_booking_lcc",
-                    "amount":$scope.bookVal.Fare.PublishedPrice,
+                    "amount":$scope.finalResults.Fare.PublishedFare,
                     "status":"pending",
-                    "booking_request":$scope.ticket
+                    "booking_request":$scope.bookVal
                 };
                 Flight.AddTransaction(t).then(function (PaymentResponse) {
                     console.log("ticket response");
@@ -175,7 +199,7 @@ angular.module('Travally')
                 $scope.$emit('LOAD')
                 var t1 ={
                     "type":"flight_booking",
-                    "amount":$scope.bookVal.Fare.PublishedPrice,
+                    "amount":$scope.finalResults.Fare.PublishedFare,
                     "status":"pending",
                     "booking_request":$scope.bookVal
                 };
@@ -189,62 +213,6 @@ angular.module('Travally')
                     console.log(response);
                 });
 
-
-
-
-
-                //console.log($scope.bookVal);
-                /*Flight.flightBooking($scope.bookVal).then(function (bookingResponse) {
-                    console.log('booking Details');
-                    $scope.bookingResponse = bookingResponse.data;
-                    if ($scope.bookingResponse.BookingId != null) {
-                        console.log('if');
-                        var ticket = {
-                            "BookingID": $scope.bookingResponse.BookingId,
-                            "Origin": $scope.bookVal.Origin,
-                            "Destination": $scope.bookVal.Destination,
-                            "Segment": $scope.bookVal.Segment,
-                            "FareType": $scope.bookVal.FareType,
-                            "FareRule": $scope.bookVal.FareRule,
-                            "Fare": $scope.bookVal.Fare,
-                            "Passenger": $scope.bookVal.Passenger,
-                            "Remarks": $scope.bookVal.Remarks,
-                            "InstantTicket": $scope.bookVal.InstantTicket,
-                            "PaymentInformation": $scope.bookVal.PaymentInformation,
-                            "Source": $scope.bookVal.Source,
-                            "SessionId": $scope.bookVal.SessionId,
-                            "IsOneWayBooking": true,
-                            "CorporateCode": "",
-                            "TourCode": "",
-                            "Endorsement": "",
-                            "PromotionalPlanType": $scope.bookVal.PromotionalPlanType,
-                            "MemberMobileNo": $scope.bookVal.MemberMobileNo,
-                            "MemberMobilePin": $scope.bookVal.MemberMobilePin
-                        };
-
-                        console.log(ticket);
-                        Flight.flightTicket(ticket).then(function (ticketResponse) {
-                            $rootScope.ticketResponse = ticketResponse.data;
-                            if($rootScope.ticketResponse.Status.Description == Sucessfull){
-                               // $scope.saveDetails();
-                                $scope.Successful_Message = "Ticket Booked";
-                            }
-                            console.log($rootScope.ticketResponse);
-                            $scope.$emit('UNLOAD')
-                        }).catch(function (response) {
-                            $scope.$emit('UNLOAD')
-                            console.log(response);
-                        });
-                    }
-                    else {
-                        console.log('else');
-                        console.log($scope.bookingResponse);
-                        $scope.$emit('UNLOAD')
-                    }
-                }).catch(function (response) {
-                    $scope.$emit('UNLOAD')
-                    console.log(response);
-                });*/
             }
         };
 

@@ -12,7 +12,7 @@ angular.module('Travally')
         Flight.authentication(auth).then(function(res){
             console.log('token id gsdh');
             console.log(res);
-            window.localStorage['token_id'] = res.data.TokenId;
+            window.localStorage['flight_token_id'] = res.data.TokenId;
         }).catch(function(res){
             console.log(res);
         });

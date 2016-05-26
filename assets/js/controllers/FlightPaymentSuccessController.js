@@ -30,8 +30,12 @@ angular.module('Travally')
                     });
                 }
                 else {
+
+                    console.log('booking request');
+                    console.log(JSON.stringify($scope.result.booking_request));
                     Flight.flightBooking($scope.result.booking_request).then(function (bookingResponse) {
                         console.log('booking Details');
+
                         $scope.bookingResponse = bookingResponse.data;
                         if ($scope.bookingResponse.BookingId != null) {
                             console.log('if');
