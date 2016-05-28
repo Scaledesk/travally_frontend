@@ -4,7 +4,7 @@ angular.module('Travally', ['ngRoute',  'ngResource', 'satellizer','ngCookies', 
     })
     .constant("serverConfig", {
         "address": "http://api.railwayapi.com/",
-        "apiKey": "/apikey/wkngg9839",
+        "apiKey": "/apikey/ovjxl3320",
         "travally_backend" : "http://54.169.181.84/",
         //"travally_backend" : "http://localhost:8000/",
         "user_name" : "BIS151",

@@ -58,8 +58,7 @@ angular.module('Travally')
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin
         };*/
-
-
+        $scope.ss='flight';
         var dddd = {
             "JourneyType": 1,
             "AdultCount": 1,
