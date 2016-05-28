@@ -212,6 +212,11 @@
                 </div>
 
             </div>
+
+
+
+
+<!--
             <ul ng-hide="loading" class="booking-list">
                 <li ng-repeat="flight in flightData | orderBy:sortType:sortReverse">
                     <div class="booking-item-container">
@@ -228,12 +233,12 @@
                                     <div class="booking-item-flight-details">
                                         <div class="booking-item-departure"><i class="fa fa-plane"></i>
                                             <h5>{{ flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}}</h5>
-                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Origin.DepTime | date : medium}}</p>-->
+                                            &lt;!&ndash;<p class="booking-item-date">{{ flight.Segments[0][0].Origin.DepTime | date : medium}}</p>&ndash;&gt;
                                             <p class="booking-item-destination">{{flight.Segments[0][0].Origin.Airport.CityName}}</p>
                                         </div>
                                         <div class="booking-item-arrival"><i class="fa fa-plane fa-flip-vertical"></i>
-                                            <h5>{{ flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
-                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Destination.ArrTime | date : medium}}</p>-->
+                                            <h5>{{ flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}&lt;!&ndash;{{flight.arrivalTime}}&ndash;&gt;</h5>
+                                            &lt;!&ndash;<p class="booking-item-date">{{ flight.Segments[0][0].Destination.ArrTime | date : medium}}</p>&ndash;&gt;
                                             <p class="booking-item-destination">{{flight.Segments[0][0].Destination.Airport.CityName}}</p>
                                         </div>
                                     </div>
@@ -265,6 +270,105 @@
                     </div>
                 </li>
             </ul>
+-->
+
+
+
+
+            <div ng-hide="loading" class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li ng-class="{active:ss=='train'}"><a href="" ng-click="ss='train'" data-toggle="tab">Train <i class="fa fa-train"></i></a>
+                    </li>
+                    <li ng-class="{active:ss=='flight'}"><a href="" ng-click="ss='flight'" data-toggle="tab">Flight <i class="fa fa-plane"></i></a>
+                    </li>
+                    <li ng-class="{active:ss=='bus'}"><a href="" ng-click="ss='bus'" data-toggle="tab">Bus <i class="fa fa-bus"></i></a>
+                    </li>
+
+                </ul>
+                <div class="tab-content ">
+                    <div ng-class="{'tab-pane fade in active':ss=='train'}" ng-show="ss=='train'" id="tab-1">
+                        <div class="gap"></div>
+                        <div class="col-md-12 ">
+                            <p class="text-center"> No Result found</p>
+                        </div>
+                        <div class="gap"></div>
+                    </div>
+
+                    <div ng-class="{'tab-pane fade in active':ss=='flight'}" ng-show="ss=='flight'" id="tab-2">
+                        <div class="gap"></div>
+                        <div class="col-md-12 ">
+                            <div class="panel-group" id="accordion">
+
+                                            <ul class="booking-list">
+                                                <li ng-repeat="flight in flightData | orderBy:sortType:sortReverse">
+                                                    <div class="booking-item-container">
+                                                        <div class="booking-item">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="booking-item-airline-logo">
+                                                                        <img src="assets/theme/img/croatia.jpg" alt="Image Alternative text" title="Image Title" />
+                                                                        <p>{{flight.Segments[0][0].Airline.AirlineName}}</p>
+                                                                        {{flight.IsLCC}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="booking-item-flight-details">
+                                                                        <div class="booking-item-departure"><i class="fa fa-plane"></i>
+                                                                            <h5>{{ flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}}</h5>
+                                                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Origin.DepTime | date : medium}}</p>-->
+                                                                            <p class="booking-item-destination">{{flight.Segments[0][0].Origin.Airport.CityName}}</p>
+                                                                        </div>
+                                                                        <div class="booking-item-arrival"><i class="fa fa-plane fa-flip-vertical"></i>
+                                                                            <h5>{{ flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
+                                                                            <!--<p class="booking-item-date">{{ flight.Segments[0][0].Destination.ArrTime | date : medium}}</p>-->
+                                                                            <p class="booking-item-destination">{{flight.Segments[0][0].Destination.Airport.CityName}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <h5>{{flight.Segments[0][0].Duration/60|number:2}} hour</h5>
+                                                                    <p ng-hide="flight.Segments[0][0].StopOver">non stop</p>
+                                                                    <p ng-show="flight.Segments[0][0].StopOver">{{flight.Segments[0][0].StopPoint}} stop</p>
+                                                                </div>
+                                                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.Fare.PublishedFare}}</span><span></span>
+                                                                    <p class="booking-item-flight-class">Class: {{flight.Segments[0][0].Airline.FareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="booking-item-details">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <p>Flight Details</p>
+                                                                    <h5 class="list-title">{{flight.Segments[0][0].Origin.Airport.CityName}}({{flight.FareRules.Origin}}) to {{flight.Segments[0][0].Destination.Airport.CityName}} ({{flight.FareRules.Destination}})</h5>
+                                                                    <ul class="list">
+                                                                        <li>{{flight.Segments[0][0].Airline.AirlineName}} {{flight.Segments[0][0].Airline.FlightNumber}}</li>
+                                                                        <li>{{flight.Segments[0][0].Airline.FareClass}} Class ({{flight.Segments[0][0].Airline.FareClass}}), {{flight.Segments[0][0].Origin.Airport.AirportName}} Terminal {{flight.Segments[0][0].Origin.Airport.Terminal}}</li>
+                                                                        <li>Depart {{flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}} Arrive {{flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}</li>
+                                                                        <li>Duration: {{flight.Segments[0][0].Duration/60|number:2}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                            </div>
+                        </div>
+                        <div class="gap"></div>
+                    </div>
+
+                    <div ng-class="{'tab-pane fade in active':ss=='bus'}" ng-show="ss=='bus'" id="tab-3">
+                        <div class="gap"></div>
+                        <div class="col-md-12 ">
+                            <p class="text-center"> No Result found</p>
+                        </div>
+                        <div class="gap"></div>
+                    </div>
+
+
+                </div>
+            </div>
 
 
 
@@ -275,7 +379,12 @@
 
 
 
-            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+
+
+
+
+
+            <p ng-hide="loading" class="text-right">Not what you're looking for? <a class="popup-text" href="/#/home" data-effect="mfp-zoom-out">Try your search again</a>
             </p>
         </div>
 

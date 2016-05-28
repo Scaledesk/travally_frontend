@@ -1,12 +1,12 @@
-angular.module('Travally', ['ngRoute',  'ngResource', 'satellizer', 'ui.select', 'ngSanitize', '720kb.datepicker', 'ui.bootstrap', 'ui.date', 'angularUtils.directives.dirPagination'])
+angular.module('Travally', ['ngRoute',  'ngResource', 'satellizer','ngCookies', 'ui.select', 'ngSanitize', '720kb.datepicker', 'ui.bootstrap', 'ui.date', 'angularUtils.directives.dirPagination'])
     .config(function(paginationTemplateProvider) {
         paginationTemplateProvider.setPath('assets/js/includes/angular-utils-pagination/dirPagination.tpl.html');
     })
     .constant("serverConfig", {
         "address": "http://api.railwayapi.com/",
-        "apiKey": "/apikey/wkngg9839",
-        //"travally_backend" : "http://54.169.181.84/",
-        "travally_backend" : "http://localhost:8000/",
+        "apiKey": "/apikey/ovjxl3320",
+        "travally_backend" : "http://54.169.181.84/",
+        //"travally_backend" : "http://localhost:8000/",
         "user_name" : "BIS151",
         "password" : "iuW109trq",
         "memberMobileNumber" : "9983772777",
