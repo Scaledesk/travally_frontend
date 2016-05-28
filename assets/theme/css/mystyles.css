@@ -31,3 +31,31 @@
 .booking-item-payment-total-flight > li .booking-item-flight-details .booking-item-arrival .fa-plane {
   font-size: 20px;
 }
+
+
+.search-tabs-abs {
+
+    left: 5%;
+    width: 90%;
+}
+
+.search-tabs-bg > .tabbable >.tab-content > .tab-pane {
+    background: rgba(255,255,255,0.90);
+    padding: 25px;
+    -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 1px rgba(0,0,0,0.15);
+}
+
+.search-text{
+width: 12%;
+font-size: 18px;
+font-weight: 500;
+}
+
+.pl0{
+    padding-left: 0px;
+}
+
+.form-group.form-group-icon-left .form-control{
+    padding-left: 35px;
+}

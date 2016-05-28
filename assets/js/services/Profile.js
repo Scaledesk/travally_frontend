@@ -4,7 +4,7 @@ angular.module('Travally').factory('Profile', function($http,serverConfig) {
         get : function() {
             return $http({
                 method: 'GET',
-                url: serverConfig.travally_backend+'getProfile/' /*+ '?token=' + window.localStorage['satellizer_token']*/
+                url: serverConfig.travally_backend+'getProfile' /*+ '?token=' + window.localStorage['satellizer_token']*/
             });
         },
         update: function(data) {
