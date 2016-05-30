@@ -1,5 +1,5 @@
 angular.module('Travally')
-    .controller('SearchFlightController', function($http, $scope, $routeParams, $filter, $location, Flight, $rootScope, serverConfig) {
+    .controller('SearchFlightController', function($http, $scope,$cookies, $routeParams, $filter, $location, Flight, $rootScope, serverConfig) {
         $scope.checkboxModel = {
             "fareClass":""
         };
@@ -75,8 +75,8 @@ angular.module('Travally')
                     "FlightCabinClass": "1"
                 }
             ],
-            "EndUserIp": "122.177.44.72",
-            "TokenId":window.localStorage['token_id'],
+            "EndUserIp": "127.0.0.1",
+            "TokenId":window.localStorage['flight_token_id'],
             "PreferredAirlines": null,
             "Sources": null,
             "MemberMobileNo": serverConfig.memberMobileNumber,
@@ -113,11 +113,30 @@ angular.module('Travally')
             $scope.sessionId = d.data.SessionId;
             $rootScope.flightSearch = d;
             $scope.flightData = d.data.Results[0];
+            console.log('search result');
             console.log(d);
+            window.localStorage['flight_trace_id']=d.data.TraceId;
             $scope.$emit('UNLOAD')
 
             /*angular.forEach($scope.flightData, function (flight, key) {
-
+                console.log('dcbcvddgcvc');
+                var fareRequest = {
+                    EndUserIP:"127.0.0.1",
+                    TokenId:window.localStorage['flight_token_id'],
+                    TraceId:window.localStorage['flight_trace_id'],
+                    ResultIndex:flight.ResultIndex,
+                    "MemberMobileNo": serverConfig.memberMobileNumber,
+                    "MemberMobilePin": serverConfig.memberMobilePin
+                };
+                Flight.flightGetFareQuote(fareRequest).then(function(res){
+                    console.log('success response');
+                    console.log(JSON.stringify(res));
+                    var a = res.data.Results;
+                    $scope.flightResultData.push(a);
+                }).catch(function(res){
+                    console.log('error response');
+                    console.log(JSON.stringify(res));
+                });
             });*/
 
 
@@ -128,7 +147,10 @@ angular.module('Travally')
         });
 
         $scope.bookingDetails = function(data) {
-            if (!data.IsLcc) {
+
+            $cookies.putObject('selectedFlight',data);
+            $location.path('/bookingDetail');
+            /*if (!data.IsLcc) {
                 angular.forEach($scope.flightData, function (flight, key) {
                     if (flight.SegmentKey == data.key) {
                         bookVal = {
@@ -246,7 +268,7 @@ angular.module('Travally')
                         });
                     }
                 });
-            }
+            }*/
         };
         $scope.filterFlightDetail=function(){
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
