@@ -288,12 +288,50 @@
                 <div class="tab-content ">
                     <div ng-class="{'tab-pane fade in active':ss=='train'}" ng-show="ss=='train'" id="tab-1">
                         <div class="gap"></div>
-                        <div class="col-md-12 ">
+
+                        <div ng-show="results.length==0" class="col-md-12 ">
                             <p class="text-center"> No Result found</p>
                         </div>
+
+                        <div ng-show="results.length>0" class="col-md-12">
+                            <div class="booking-item-container">
+                                <!--.type1 | filter:checkboxModel.type2 | filter:checkboxModel.type3 | filter:checkboxModel.type4-->
+                                <div class="booking-item">
+                                    <div class="row" dir-paginate="result in results | orderBy:sortType:sortReverse | filter:checkboxModel | itemsPerPage: 10" pagination-id="train">
+                                        <div class="col-md-2">
+                                            <div class="booking-item-airline-logo">
+                                                <img src="assets/theme/img/242px-IRCTC_Logo.svg.png" alt="Image Alternative text" title="Image Title" />
+                                                <p>{{result.train.name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="booking-item-flight-details">
+                                                <div class="booking-item-departure"><i class="fa fa-train"></i>
+                                                    <h5>{{result.departure_time}}</h5>
+                                                    <p class="booking-item-date">{{result.journey_date | date:'medium'}}</p>
+                                                    <p class="booking-item-destination">{{result.source.name}}</p>
+                                                </div>
+                                                <div class="booking-item-arrival"><i class="fa fa-train"></i>
+                                                    <h5>{{result.arrival_time}}</h5>
+                                                    <p class="booking-item-date">{{result.journey_date}}</p>
+                                                    <p class="booking-item-destination">{{result.destination.name}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5>{{result.duration}} Hours</h5>
+                                        </div>
+                                        <div class="col-md-3"><span class="booking-item-price">&#8377;{{result.farePrice*result.no_of_passenger}}</span><br/><span>for {{result.no_of_passenger}} person</span>
+                                            <p class="booking-item-flight-class">Class: {{result.fareName}}</p><a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Select</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="gap"></div>
                     </div>
-
                     <div ng-class="{'tab-pane fade in active':ss=='flight'}" ng-show="ss=='flight'" id="tab-2">
                         <div class="gap"></div>
                         <div class="col-md-12 ">
@@ -352,16 +390,142 @@
                                                     </div>
                                                 </li>
                                             </ul>
-
                             </div>
                         </div>
                         <div class="gap"></div>
                     </div>
-
                     <div ng-class="{'tab-pane fade in active':ss=='bus'}" ng-show="ss=='bus'" id="tab-3">
                         <div class="gap"></div>
-                        <div class="col-md-12 ">
+                        <div ng-show="Bus_Result.length==0" class="col-md-12 ">
                             <p class="text-center"> No Result found</p>
+                        </div>
+                        <div ng-show="Bus_Result.length>0" class="col-md-12">
+                            <ul ng-hide="loading" class="booking-list">
+                                <li ng-repeat="busses in Bus_Result | orderBy:sortType:sortReverse">
+                                    <div class="booking-item-container">
+                                        <div class="booking-item">
+                                            <div class="row">
+                                                <div class="col-md-2">
+
+                                                    <div class="booking-item-airline-logo">
+                                                        <img src="assets/theme/img/croatia.jpg" alt="Image Alternative text" title="Image Title" />
+                                                        <p>{{busses.bus_type}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="booking-item-flight-details">
+                                                        <div class="booking-item-departure"><i class="fa fa-bus"></i>
+                                                            <h5>{{ busses.departure_time | date : 'h:mm a'}}</h5>
+                                                            <p class="booking-item-date">{{ busses.date_of_journey | date : medium}}</p>
+                                                            <p class="booking-item-destination">{{busses.boarding_point_location}}</p>
+                                                        </div>
+                                                        <div class="booking-item-arrival"><i class="fa fa-bus "></i>
+                                                            <h5>{{ busses.arrival_time | date : 'h:mm a'}}<!--{{flight.arrivalTime}}--></h5>
+                                                            <p class="booking-item-destination">{{busses.dropping_point_location}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <h5>{{busses.duration}} hour</h5>
+                                                </div>
+                                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{busses.available_fares}}</span><span></span>
+                                                    <p class="booking-item-flight-class">Class: {{busses.service_name}}</p><a class="btn btn-primary" ng-click="showDetails(busses)" ng-href="">Select</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- Bus Details VIew  -->
+
+                                        <div ng-if="route_id == busses.route_id" class="booking-items">
+
+
+                                            <div ng-show="busses.detailsLoading" class="row">
+                                                <div id="floatingCirclesG">
+                                                    <div class="f_circleG" id="frotateG_01"></div>
+                                                    <div class="f_circleG" id="frotateG_02"></div>
+                                                    <div class="f_circleG" id="frotateG_03"></div>
+                                                    <div class="f_circleG" id="frotateG_04"></div>
+                                                    <div class="f_circleG" id="frotateG_05"></div>
+                                                    <div class="f_circleG" id="frotateG_06"></div>
+                                                    <div class="f_circleG" id="frotateG_07"></div>
+                                                    <div class="f_circleG" id="frotateG_08"></div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="busses.detailsLoading" class="row">
+                                                <div class="col-md-12">
+                                                    <h4>Select Your Seat</h4>
+                                                    <div ng-bind-html="renderHtml(busses.seat_layout.data.BTNewSeatLayoutDetails.HTMLLayout)"></div>
+
+                                                    <div>
+                                                        <input id="TBSelectedSeats" name="TBSelectedSeats" ng-model="TBSelectedSeats" type="text" style="display: none;">
+                                                        <input id="TBSelectedSeatsPrice" name="TBSelectedSeatsPrice" ng-model="TBSelectedSeatsPrice" type="text" style="display: none;">
+                                                    </div>
+
+                                                    <div class="seatdesp">
+                                                        <div class="fleft">
+                                                            <ul class="seatsmall">
+                                                                <li class=""><dfn class="wd1"></dfn> <span>Available seat</span></li>
+                                                                <li class=""><dfn class="wd2"></dfn> <span>Reserved for ladies</span></li>
+                                                                <li class=""><dfn class="wd3"></dfn> <span>Selected seat</span></li>
+                                                                <li class=""><dfn class="wd4"></dfn> <span>Booked seat</span></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="fleft width_100">
+
+                                                            <div style="color:Red;"> Seat(s) : {{TBSelectedSeats}}<!--<label>Seat(s)</label>:<span class="seatsSelected"><label id="selectedSeats"></label></span>--></div>
+                                                            <div style="color:Red;">Amount : {{TBSelectedSeatsPrice}}<!--<label>Amount</label>:<span class="seatsSelected"><label id="totalAmount"></label></span>--></div>
+
+                                                        </div>
+                                                        <div class="fleft">
+
+                                                            <a class="btn btn-primary" ng-disabled="book_button_disabled" ng-click="bookingDetails(busses,TBSelectedSeatsPrice,TBSelectedSeats)" ng-href="">{{book_button_text}}</a>
+
+                                                            {{book_response}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+                                                <!--<div class="col-md-4">
+                                                    <h4>Select Your Boarding Point</h4>
+                                                    <select>
+                                                        <option value="Place">New Delhi</option>
+                                                        <option value="Place">Dehradun</option>
+                                                    </select>
+                                                    ​
+                                                    <p class="bus_search_align">Seat No.</p>
+                                                    <h4 class="bus_search_align_1">Not Selected</h4>
+                                                    <p class="bus_search_align_2">Total Amount</p>
+                                                    <h4>&#x20b9;0</h4>
+                                                    <button class="bus_search_btn">Confirm Booking</button>
+                                                </div>-->​
+                                            </div>
+
+
+
+
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
                         </div>
                         <div class="gap"></div>
                     </div>

@@ -1,11 +1,19 @@
 angular.module('Travally')
-    .controller('SearchFlightController', function($http, $scope,$cookies, $routeParams, $filter, $location, Flight, $rootScope, serverConfig) {
+    .controller('SearchFlightController', function($http, $scope,$cookies,TrainBetweenStation, $routeParams,BusServices, $filter, $location, Flight, $rootScope, serverConfig) {
         $scope.checkboxModel = {
             "fareClass":""
         };
         $scope.fareStop = {
             "stop":""
         };
+        $scope.selectedSource = $cookies.getObject('source');
+        console.log('source');
+        console.log($scope.selectedSource);
+        $scope.selectedDestination = $cookies.getObject('destination');
+        console.log('destination');
+        console.log($scope.selectedSource);
+        $scope.formData = $cookies.getObject('formData');
+
         $scope.source = $routeParams.source;
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
@@ -146,8 +154,9 @@ angular.module('Travally')
             console.log(response);
         });
 
-        $scope.bookingDetails = function(data) {
 
+
+        $scope.bookingDetails = function(data) {
             $cookies.putObject('selectedFlight',data);
             $location.path('/bookingDetail');
             /*if (!data.IsLcc) {
@@ -272,7 +281,354 @@ angular.module('Travally')
         };
         $scope.filterFlightDetail=function(){
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
+        };
+
+
+        /**
+         * Bus search result
+         */
+
+
+        $scope.page_type = "list";
+        $scope.details = false;
+        $scope.route_id = "asas";
+        $scope.TBSelectedSeatsPrice= 0;
+        $scope.TBSelectedSeats= "";
+
+        $scope.searchBusesDetails = {
+            "SourceId": $scope.selectedSource.selected.CityId,
+            "DestinationId": $scope.selectedDestination.selected.CityId,
+            "SourceName": $scope.selectedSource.selected.name,
+            "DestinationName": $scope.selectedDestination.selected.name,
+            "DateOfJourney": $scope.formData.date,
+            "IsDomestic": true,
+            "MemberMobileNo": serverConfig.memberMobileNumber,
+            "MemberMobilePin": serverConfig.memberMobilePin
+        };
+        $scope.Bus_Result = [];
+        //$scope.$emit('LOAD')
+        BusServices.searchBuses($scope.searchBusesDetails).then(function (responseBuses) {
+            console.log(responseBuses);
+            $scope.Bus_Results = responseBuses.data.BusSearchResult;
+            $scope.SessionId = responseBuses.data.sessionId;
+            angular.forEach($scope.Bus_Results, function (Buses, key) {
+                angular.forEach(Buses.BoardingPointsDetails, function (Boarding, key) {
+                    bus_id = Boarding.BusId;
+                    city_point_id = Boarding.CityPointId;
+                    boarding_point_landmark = Boarding.CityPointLandmark;
+                    boarding_point_name = Boarding.CityPointName;
+                    boarding_point_location = Boarding.CityPointLocation;
+                    boarding_point_address = Boarding.CityPointAddress;
+                    boarding_point_contact_number = Boarding.CityPointContactNumber;
+                    boarding_point_time = Boarding.CityPointTime;
+
+                });
+                angular.forEach(Buses.DroppingPointsDetails, function (Dropping, key) {
+                    dropping_point_name = Dropping.CityPointName;
+                    dropping_point_location = Dropping.CityPointLocation;
+                });
+                var busDetails = {
+                    "route_id" : Buses.RouteId,
+                    "bus_type" : Buses.BusType,
+                    "service_name" : Buses.ServiceName,
+                    "travel_name" : Buses.TravelName,
+                    "departure_time" : Buses.DepartureTime,
+                    "arrival_time" : Buses.ArrivalTime,
+                    "bus_source" : Buses.BusSource,
+                    "available_seats" : Buses.AvailableSeats,
+                    "available_fares" : Buses.AvailableFares,
+                    "source_name": responseBuses.data.SourceName,
+                    "destination_name": responseBuses.data.DestinationName,
+                    "date_of_journey" : responseBuses.data.DateOfJourney,
+                    "boarding_point_id" : city_point_id,
+                    "bus_id" : bus_id,
+                    "boarding_point_name" : boarding_point_name,
+                    "boarding_point_location" : boarding_point_location,
+                    "boarding_point_landmark" : boarding_point_landmark,
+                    "boarding_point_address" : boarding_point_address,
+                    "boarding_point_contact_number" : boarding_point_contact_number,
+                    "boarding_point_time" : boarding_point_time,
+                    "duration":diff(Buses.DepartureTime,Buses.ArrivalTime),
+                    "dropping_point_name" : dropping_point_name,
+                    "dropping_point_location" : dropping_point_location,
+                    "cancel_policy" : Buses.CancelPolicy,
+                    "dropping_point_details" : Buses.DroppingPointsDetails,
+                    "price" : Buses.Price,
+                    "busDetailsView":false,
+                    "detailsLoading":false,
+                    "seat_layout": {}
+                };
+                $scope.Bus_Result.push(busDetails);
+            });
+
+            $scope.$emit('UNLOAD')
+        }).catch(function (response) {
+            //$scope.$emit('UNLOAD')
+            console.log(response);
+        });
+        $scope.showDetails =function(busses){
+            $scope.book_response = "";
+
+
+            if($scope.route_id == busses.route_id){
+                $scope.route_id = "";
+            }
+            else{
+                $scope.route_id = busses.route_id;
+            }
+            if(busses.busDetailsView == true){
+                busses.busDetailsView = false;
+            }
+            else{
+                busses.busDetailsView = true;
+            }
+            busses.detailsLoading = "true";
+            if(busses.busDetailsView == true) {
+                var bb = {
+                    "BTBusSearchResult": {
+                        "RouteId": busses.route_id,
+                        "BusType": busses.bus_type,
+                        "ServiceName": busses.service_name,
+                        "TravelName": busses.travel_name,
+                        "Currency": "INR",
+                        "DepartureTime": busses.departure_time,
+                        "ArrivalTime": busses.arrival_time,
+                        "BusSource": busses.bus_source,
+                        "AvailableSeats": busses.available_seats,
+                        "AvailableFares": busses.available_fares,
+                        "CancelPolicy": busses.cancel_policy,
+                        "DroppingPointsDetails": busses.dropping_point_details,
+                        "Price": busses.price
+                    },
+                    "DateOfJourney": $scope.DateOfJourney,
+                    "sessionId": $scope.SessionId,
+                    "MemberMobileNo": serverConfig.memberMobileNumber,
+                    "MemberMobilePin": serverConfig.memberMobilePin
+                };
+                BusServices.getSeatLayout(bb).then(function (seatLayout) {
+                    busses.detailsLoading = false;
+                    busses.seat_layout = seatLayout;
+                    console.log(seatLayout);
+                }).catch(function (response) {
+                    $scope.detailsLoading = false;
+                    console.log(response);
+                });
+            }
+        };
+        $scope.renderHtml = function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+        };
+
+
+        $scope.book_button_text = 'Book Seat';
+        $scope.book_button_disabled = false;
+        $scope.bookingDetails = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
+            console.log(TBSelectedSeatsPrice);
+            console.log(TBSelectedSeats);
+            var str = TBSelectedSeats;
+            var res = str.split(",");
+
+            $scope.book = {
+                "BusId":data.bus_id,
+                "SourceId":$scope.SourceId,
+                "DestinationId":$scope.DestinationId,
+                "SourceName":$scope.SourceName,
+                "DestinationName":$scope.DestinationName,
+                "DateOfJourney":$scope.DateOfJourney,
+                "BusSource":data.bus_source,
+                "IsDomestic":true,
+                "RouteId":data.route_id,
+                "BusType":data.bus_type,
+                "Travel Name": data.travel_name,
+                "NoOfSeats":res.length,
+                "DepartureTime":data.departure_time,
+                "ArrivalTime":data.arrival_time,
+                "TotalFare":TBSelectedSeatsPrice,
+                "BoardingPointdetails":{
+                    "CityPointId": data.boarding_point_id,
+                    "BusId": data.bus_id,
+                    "CityPointName": data.boarding_point_name,
+                    "CityPointLocation": data.boarding_point_location,
+                    "CityPointLandmark": data.boarding_point_landmark,
+                    "CityPointAddress": data.boarding_point_address,
+                    "CityPointContactNumber": data.boarding_point_contact_number ,
+                    "CityPointTime": data.boarding_point_time
+                },
+                "CancelPolicy":data.cancel_policy,
+                "PaxDetail":{
+                    "BusId":data.bus_id,
+                    "PaxId":1,
+                    "Title":"Mr.",
+                    "LastName":"Ahamad",
+                    "FirstName":"javed",
+                    "Age":24,
+                    "PhoneNo":"8285846853",
+                    "EMail":"javedahamad4@gmail.com",
+                    "Address":"Delhi",
+                    "Gender":"Male"
+                },
+                "SeatsDetail":[
+                ],
+                "Currency":"INR",
+                "sessionId":$scope.SessionId,
+                "ProductTypeId":0,
+                "ProductId":0,
+                "BookingMode":0,
+                "ProductType":0,
+                "MemberMobileNo":serverConfig.memberMobileNumber,
+                "MemberMobilePin":serverConfig.memberMobilePin
+            };
+
+            $scope.book_button_text = 'Booking.....';
+            $scope.book_button_disabled = true;
+
+            angular.forEach(res, function (seat, key) {
+                console.log(seat);
+                angular.forEach(data.seat_layout.data.BTNewSeatLayoutDetails.BTSeatLayoutStructure.objStructSeatDetails, function (seatDetails, key) {
+                    angular.forEach(seatDetails, function (s, key) {
+                        if(seat== s.SeatName){
+                            $scope.book.SeatsDetail.push(s);
+                        }
+                    });
+                });
+            });
+            console.log($scope.book);
+
+
+            var t ={
+                "type":"Bus Booking",
+                "amount":TBSelectedSeatsPrice,
+                "status":"pending",
+                "booking_request":$scope.book
+            };
+            Flight.AddTransaction(t).then(function (PaymentResponse) {
+                console.log("transaction response");
+                console.log(PaymentResponse);
+                window.location.assign("http://localhost:8000/bookingPayment/"+PaymentResponse.data.data.id+"?access_token="+$auth.getToken());
+                $scope.$emit('UNLOAD')
+            }).catch(function (response) {
+                $scope.$emit('UNLOAD')
+                console.log(response);
+            });
+
+
+
+            /*BusServices.BookBus($scope.book).then(function (BookResponse) {
+             $scope.book_response = BookResponse.data;
+             $scope.book_button_text = 'Book Seat';
+             $scope.book_button_disabled = false;
+             console.log(BookResponse);
+             }).catch(function (response) {
+             $scope.book_button_text = 'Book Seat';
+             $scope.book_button_disabled = false;
+             $scope.book_response = response.data;
+             console.log(response);
+             });*/
+        };
+        function diff(start, end) {
+            var date1 = new Date(start);
+            var date2 = new Date(end);
+            var diff = Math.abs(date2.getTime() - date1.getTime());
+            var hours = Math.floor(diff / 1000 / 60 / 60);
+            diff -= hours * 1000 * 60 * 60;
+            var minutes = Math.floor(diff / 1000 / 60);
+            // If using time pickers with 24 hours format, add the below line get exact hours
+            if (hours < 0)
+                hours = hours + 24;
+            return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
         }
+
+
+        /**
+         * Train search result
+         */
+
+        var source = $scope.selectedSource.selected.SCode;
+        var destination = $scope.selectedDestination.selected.SCode;
+        //31-05-2016
+        $scope.journey_date = $scope.formData.date;
+        var sdt = new Date($scope.formData.date.replace(/-/g,"/"));
+        $scope.journey_date = $filter('date')(sdt, 'dd-MM-yyyy');
+        //$scope.journey_date = $scope.formData.date;
+        //var dd = new Date($scope.journey_date.replace(/-/g,"/"));
+        var no_of_passenger = $scope.formData.passenger;
+        angular.forEach($scope.master_stations, function(station, key) {
+            if(station.code == source){
+                $scope.source.selected = station;
+            }
+            if(station.code == destination){
+                $scope.destination.selected = station;
+            }
+        });
+        $scope.no_of_passenger = no_of_passenger;
+        $scope.results = [];
+       // $scope.$emit('LOAD')
+        TrainBetweenStation.get(source,destination,$scope.journey_date)
+            .success(function(data) {
+                $scope.records = data.train;
+                $scope.total_train = $scope.records.length;
+                console.log($scope.records);
+                angular.forEach($scope.records, function(record){
+                    console.log(record);
+                    //var quota = "GN";
+                    TrainBetweenStation.getFare(record.number,record.from.code,record.to.code,18,"GN",$scope.journey_date)
+                        .success(function(data) {
+
+                            angular.forEach(data.fare, function(fare) {
+                                //var duration = parseTime(record.dest_arrival_time) - parseTime(record.src_departure_time);
+                                var duration = diffrence(record.src_departure_time, record.dest_arrival_time);
+                                var temp = {
+                                    "train" : data.train,
+                                    "source" : data.from,
+                                    "destination" : data.to,
+                                    "quota" : data.quota,
+                                    "fareName" : fare.name,
+                                    "farePrice": fare.fare,
+                                    "arrival_time" : record.dest_arrival_time,
+                                    "departure_time" :record.src_departure_time,
+                                    "journey_date" : $scope.journey_date,
+                                    "duration" : duration,
+                                    "no_of_passenger" : no_of_passenger
+                                };
+                                $scope.results.push(temp);
+                                $scope.$emit('UNLOAD')
+
+                            });
+                        });
+                });
+                $scope.$emit('UNLOAD')
+            })
+            .error(function(data) {
+                console.log(data);
+         //       $scope.$emit('UNLOAD')
+                //$location.path("/error");
+            });
+        $scope.redirectToIrctc  = function(){
+            window.location="https://www.irctc.co.in";
+        };
+        function diffrence(start, end) {
+            start = start.split(":");
+            end = end.split(":");
+            var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+            var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+            var diff = endDate.getTime() - startDate.getTime();
+            var hours = Math.floor(diff / 1000 / 60 / 60);
+            diff -= hours * 1000 * 60 * 60;
+            var minutes = Math.floor(diff / 1000 / 60);
+
+            // If using time pickers with 24 hours format, add the below line get exact hours
+            if (hours < 0)
+                hours = hours + 24;
+
+            return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+        }
+
+
+
+
+
+
+
     });
 
 

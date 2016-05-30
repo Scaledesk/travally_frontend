@@ -2,7 +2,7 @@ angular.module('Travally')
     .controller('SearchController', function(TrainBetweenStation,  $http, StationCode, $scope,$routeParams,$filter, $location) {
         $scope.checkboxModel = {
         };
-$scope.fareClass ="";
+        $scope.fareClass ="";
         $scope.master_stations = StationCode.get();
         $scope.source = {};
         $scope.destination = {};
@@ -28,28 +28,8 @@ $scope.fareClass ="";
                 $scope.destination.selected = station;
             }
         });
-        //$scope.journey_date =journey_date;
         $scope.no_of_passenger = no_of_passenger;
             $scope.results = [];
-        $scope.sortType     = "duration";
-        $scope.sortReverse  = false;
-        /*for(i=0;i<25;i++){
-            var temp = {
-                "train" : "dummy",
-                "source" : "bsvdsvc",
-                "destination" : "bdsvchs",
-                "quota" : "scdsvh",
-                "fareName" : "bvsv",
-                "farePrice": " 100",
-                "arrival_time" : "dvbhsbv",
-                "departure_time" :"dvnsvbshvds",
-                "journey_date" : " sdgvhgcs",
-                "duration" : "4:30",
-                "no_of_passenger" : no_of_passenger
-            };
-            $scope.results.push(temp);
-        }*/
-
         $scope.$emit('LOAD')
         TrainBetweenStation.get(source,destination,$scope.journey_date)
              .success(function(data) {
@@ -64,7 +44,7 @@ $scope.fareClass ="";
 
                      angular.forEach(data.fare, function(fare) {
                          //var duration = parseTime(record.dest_arrival_time) - parseTime(record.src_departure_time);
-                         var duration = diff(record.src_departure_time, record.dest_arrival_time);
+                         var duration = diffrence(record.src_departure_time, record.dest_arrival_time);
                          var temp = {
                              "train" : data.train,
                              "source" : data.from,
@@ -94,7 +74,7 @@ $scope.fareClass ="";
         $scope.redirectToIrctc  = function(){
             window.location="https://www.irctc.co.in";
         };
-        function diff(start, end) {
+        function diffrence(start, end) {
             start = start.split(":");
             end = end.split(":");
             var startDate = new Date(0, 0, 0, start[0], start[1], 0);
