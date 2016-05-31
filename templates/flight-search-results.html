@@ -162,68 +162,163 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-            <div  style=" margin-bottom :6px;margin-right: 160px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
-
-                <div class="col-md-2">
-                <p>Flight
-                <i style="margin-left: 2px" class="fa fa-plane"></i>
-                </p>
-                </div>
-                <div class="col-md-4">
-
-                    <p>{{flightData[0].Segments[0][0].Airline.AirlineName}}</p>
-                </div>
-                <div class="col-md-2">
-                    <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{flightData[0].Fare.PublishedFare}}</span>
-                </div>
-
-
-                <div class="col-md-2">
-                    {{flightData[0].Segments[0][0].Duration/60|number:2}} hour
-                    </div>
-                <div align="right" class="col-md-2">
-
-                    <a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
-                </div>
-
-
+            <div  style="margin-bottom :6px;" class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li style="margin-left: 80px" ng-class="{active:tab=='fastest'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Fastest Option</a>
+                    </li>
+                    <li ng-class="{active:tab=='cheepest'}"><a href="" data-toggle="tab" ng-click="sortType = 'offeredFare'">Cheapest Option</a>
+                    </li>
+                    <!--<li ng-class="{active:tab=='best_suggested'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Best/Suggested Option</a>-->
+                    <!--</li>-->
+                </ul>
             </div>
 
 
 
-                <div  style="margin-bottom :6px;margin-right: 160px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div ng-hide="results1.length==0"  style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
 
                 <div class="col-md-2">
-                    <p>Bus
-                        <i style="margin-left: 2px"class="fa fa-bus"></i>
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                    <p>Train
+                        <i style="margin-left: 2px;color: #46c9b6"class="fa fa-train"></i>
                     </p>
+                        </div>
                 </div>
-                    <div class="col-md-4">
+                <div class="col-md-3">
+                    <p>{{results1[0].train.name}}</p>
+                </div>
+                <div class="col-md-3">
+                    <span  style="font-size: small" class="booking-item-price">&#8377;{{results1[0].farePrice}}</span><span> /person</span>
+
+                </div>
+                <div  class="col-md-2">
+                    <B style="color:orange">{{results1[0].duration}} hour</B>
+                </div>
+                <div align="left" class="col-md-2">
+                    <a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Book Now</a>
+                </div>
+
+            </div>
+            <div ng-show="results1.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+
+                <div class="col-md-2">
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                    <p>Train
+                        <i style="margin-left: 2px ;color: #46c9b6" class="fa fa-train"></i>
+                    </p>
+                        </div>
+                </div>
+                <div align="center" class="col-md-10">
+                <B  class="text-center"> No Result found</B>
+            </div>
+                </div>
+
+
+
+
+
+
+            <div  ng-hide="flightData.length==0" style=" margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+
+                <div  class="col-md-2">
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                <p>Flight
+                <i style="margin-left: 2px;color: #46c9b6" class="fa fa-plane"></i>
+                </p>
+                        </div>
+                </div>
+                <div class="col-md-3">
+
+                    <p>{{flightData[0].Segments[0][0].Airline.AirlineName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{flightData[0].Fare.PublishedFare}}</span><span> /person</span>
+                </div>
+                <div class="col-md-2">
+
+                    <B style="color:orange">{{Math.floor(flightData[0].Segments[0][0].Duration/ 60) <= 9 ? "0" : ""}}{{Math.floor(flightData[0].Segments[0][0].Duration/ 60)}}:{{flightData[0].Segments[0][0].Duration% 60<= 9 ? "0" : ""}}{{flightData[0].Segments[0][0].Duration % 60}}&nbsp;hour</B>
+
+                    </div>
+                <div align="left" class="col-md-2">
+
+                    <a class="btn btn-primary" ng-click="bookingDetails(flightData[0])" href="">Book Now</a>
+                </div>
+            </div>
+
+
+            <div ng-show="flightData.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+
+                <div class="col-md-2">
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                    <p>Flight
+                        <i style="margin-left: 2px;color: #46c9b6"class="fa fa-plane"></i>
+                    </p>
+                        </div>
+                </div>
+                <div align="center" class="col-md-10">
+                    <B  class="text-center"> No Result found</B>
+                </div>
+            </div>
+
+
+
+
+
+
+                <div ng-hide="Bus_Result.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+
+                <div class="col-md-2">
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                    <p>Bus
+                        <i style="margin-left: 2px;color: #46c9b6"class="fa fa-bus"></i>
+                    </p>
+                        </div>
+                </div>
+                    <div class="col-md-3">
                         <p>{{Bus_Result[0].bus_type}}</p>
                     </div>
+                <div class="col-md-3">
+
+                   <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{Bus_Result[0].available_fares}}</span><span> /person</span>
+
+                </div>
                 <div class="col-md-2">
-
-                   <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{Bus_Result[0].available_fares}}</span>
+                   <B style="color:orange"> {{Bus_Result[0].duration}} hour</B>
+                </div>
+               <div align="left" class="col-md-2">
+              <a class="btn btn-primary" ng-click="showDetails(Bus_Result[0])" ng-href="">Book Now</a>
+               </div>
 
                 </div>
+
+
+            <div ng-show="Bus_Result.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+
                 <div class="col-md-2">
-                    {{Bus_Result[0].duration}} hour
+                    <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
+                    <p>Bus
+                        <i style="margin-left: 2px;color: #46c9b6"class="fa fa-bus"></i>
+                    </p>
+                        </div>
                 </div>
-        <div align="right" class="col-md-2">
-            <a class="btn btn-primary" ng-click="showDetails(Bus_Result[0])" ng-href="">Select</a>
-        </div>
-
+                <div align="center" class="col-md-10">
+                    <B  class="text-center"> No Result found</B>
                 </div>
+            </div>
 
 
 
@@ -236,21 +331,6 @@
 
 
 
-
-
-
-
-
-                <div class="tabbable">
-                    <ul class="nav nav-tabs" id="myTab">
-                        <li style="margin-left: 80px" ng-class="{active:tab=='fastest'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Fastest Option</a>
-                        </li>
-                        <li ng-class="{active:tab=='cheepest'}"><a href="" data-toggle="tab" ng-click="sortType = 'offeredFare'">Cheapest Option</a>
-                        </li>
-                        <!--<li ng-class="{active:tab=='best_suggested'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Best/Suggested Option</a>-->
-                        <!--</li>-->
-                    </ul>
-                </div>
         </div>
         <div class="col-md-7">
 <!--
@@ -403,7 +483,7 @@
                                         <div class="col-md-2">
                                             <h5>{{result.duration}} Hours</h5>
                                         </div>
-                                        <div class="col-md-3"><span class="booking-item-price">&#8377;{{result.farePrice*result.no_of_passenger}}</span><br/><span>for {{result.no_of_passenger}} person</span>
+                                        <div class="col-md-3"><span style="color:orange;" class="booking-item-price">&#8377;{{result.farePrice}}</span><br/>
                                             <p class="booking-item-flight-class">Class: {{result.fareName}}</p><a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Select</a>
                                         </div>
                                     </div>
@@ -446,11 +526,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <h5>{{flight.Segments[0][0].Duration/60|number:2}} hour</h5>
+                                                                    <h5>{{Math.floor(flight.Segments[0][0].Duration/ 60) <= 9 ? "0" : ""}}{{Math.floor(flight.Segments[0][0].Duration/ 60)}}:{{flight.Segments[0][0].Duration% 60 <= 9 ? "0" : ""}}{{flight.Segments[0][0].Duration % 60}} hour</h5>
                                                                     <p ng-hide="flight.Segments[0][0].StopOver">non stop</p>
                                                                     <p ng-show="flight.Segments[0][0].StopOver">{{flight.Segments[0][0].StopPoint}} stop</p>
                                                                 </div>
-                                                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{flight.Fare.PublishedFare}}</span><span></span>
+                                                                <div class="col-md-3"><span style="color: orange" class="booking-item-price">&#8377;{{flight.Fare.PublishedFare}}</span><span></span>
                                                                     <p class="booking-item-flight-class">Class: {{flight.Segments[0][0].Airline.FareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
                                                                 </div>
                                                             </div>
@@ -464,7 +544,7 @@
                                                                         <li>{{flight.Segments[0][0].Airline.AirlineName}} {{flight.Segments[0][0].Airline.FlightNumber}}</li>
                                                                         <li>{{flight.Segments[0][0].Airline.FareClass}} Class ({{flight.Segments[0][0].Airline.FareClass}}), {{flight.Segments[0][0].Origin.Airport.AirportName}} Terminal {{flight.Segments[0][0].Origin.Airport.Terminal}}</li>
                                                                         <li>Depart {{flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}} Arrive {{flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}</li>
-                                                                        <li>Duration: {{flight.Segments[0][0].Duration/60|number:2}}</li>
+                                                                        <li>Duration:{{Math.floor(flight.Segments[0][0].Duration/ 60) <= 9 ? "0" : ""}}{{Math.floor(flight.Segments[0][0].Duration/ 60)}}:{{flight.Segments[0][0].Duration% 60 <= 9 ? "0" : ""}}{{flight.Segments[0][0].Duration % 60}}</li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -508,9 +588,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <h5>{{busses.duration}} hour</h5>
+                                                    <h5 >{{busses.duration}} hour</h5>
                                                 </div>
-                                                <div class="col-md-3"><span class="booking-item-price">&#8377;{{busses.available_fares}}</span><span></span>
+                                                <div class="col-md-3"><span style="color: orange" class="booking-item-price">&#8377;{{busses.available_fares}}</span><span></span>
                                                     <p class="booking-item-flight-class">Class: {{busses.service_name}}</p><a class="btn btn-primary" ng-click="showDetails(busses)" ng-href="">Select</a>
                                                 </div>
                                             </div>
