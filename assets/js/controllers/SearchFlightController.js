@@ -525,6 +525,16 @@ angular.module('Travally')
              console.log(response);
              });*/
         };
+
+
+$scope.filter_result = function(){
+    //| orderBy:sortType:sortReverse
+    $scope.Bus_Result = $filter('orderBy')($scope.Bus_Result,{'duration':$scope.sortReverse})
+};
+
+
+
+
         function diff(start, end) {
             var date1 = new Date(start);
             var date2 = new Date(end);
@@ -561,7 +571,7 @@ angular.module('Travally')
             }
         });
         $scope.no_of_passenger = no_of_passenger;
-        $scope.results = [];
+        $scope.results1 = [];
        // $scope.$emit('LOAD')
         TrainBetweenStation.get(source,destination,$scope.journey_date)
             .success(function(data) {
@@ -590,7 +600,7 @@ angular.module('Travally')
                                     "duration" : duration,
                                     "no_of_passenger" : no_of_passenger
                                 };
-                                $scope.results.push(temp);
+                                $scope.results1.push(temp);
                                 $scope.$emit('UNLOAD')
 
                             });
