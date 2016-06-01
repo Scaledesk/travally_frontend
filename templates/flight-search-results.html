@@ -539,7 +539,7 @@
                                                                     <p ng-show="flight.Segments[0][0].StopOver">{{flight.Segments[0][0].StopPoint}} stop</p>
                                                                 </div>
                                                                 <div class="col-md-3"><span style="color: orange" class="booking-item-price">&#8377;{{flight.Fare.PublishedFare}}</span><span></span>
-                                                                    <p class="booking-item-flight-class">Class: {{flight.Segments[0][0].Airline.FareClass}}</p><a class="btn btn-primary" ng-click="bookingDetails(flight)" href="">Select</a>
+                                                                    <p class="booking-item-flight-class">Class: {{flight.Segments[0][0].Airline.FareClass}}</p><a class="btn btn-primary" ng-click="bookingDetailsFlight(flight)" href="">Select</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -651,7 +651,7 @@
                                                         </div>
                                                         <div class="fleft">
 
-                                                            <a class="btn btn-primary" ng-disabled="book_button_disabled" ng-click="bookingDetails(busses,TBSelectedSeatsPrice,TBSelectedSeats)" ng-href="">{{book_button_text}}</a>
+                                                            <a class="btn btn-primary" ng-disabled="book_button_disabled" ng-click="bookingDetailsBus(busses,TBSelectedSeatsPrice,TBSelectedSeats)" ng-href="">{{book_button_text}}</a>
 
                                                             {{book_response}}
                                                         </div>

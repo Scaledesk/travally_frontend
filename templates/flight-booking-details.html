@@ -1,5 +1,9 @@
 <div class="gap"></div>
-<div class="container">
+
+
+
+
+<div ng-hide="loading" class="container">
     <div class="row">
         <div class="col-md-8">
             <h3 ng-hide="isAuthenticated()">Customer</h3>
@@ -96,18 +100,7 @@
 
 
                 <li>
-                    <div class="row" ng-repeat="passenger in bookVal.Passenger">
-                        <!--<div class="col-md-3">
-                            <label>Sex</label>
-                            <div class="radio-inline radio-small">
-                                <label>
-                                    <input class="i-radio" type="radio" ng-model="first.Gender" name="passenger-2-sex" />Male</label>
-                            </div>
-                            <div class="radio-inline radio-small">
-                                <label>
-                                    <input class="i-radio" type="radio" name="passenger-2-sex" />Female</label>
-                            </div>
-                        </div>-->
+                    <div class="row" ng-repeat="passenger in bookVal.Passengers">
                         <div class="col-md-3">
                             <label>Title</label>
                             <div class="form-group">
@@ -134,31 +127,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-                    <!--<div class="row">
-                        <div class="col-md-3 col-md-offset-3">
-                            <div class="form-group">
-                                <label>Citizenship</label>
-                                <input class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Document Series</label>
-                                <input class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Expiry Date</label>
-                                <input class="date-pick-years form-control" type="text" />
-                            </div>
-                        </div>
-                    </div>-->
                 </li>
             </ul>
 
@@ -203,41 +171,37 @@
                         <!--<input class="btn btn-primary" type="button" ng-click="flightBooking()" value="Proceed Payment" /><br/><br/>-->
                         <!--<input class="btn btn-primary" type="button" ng-click="makePayment()" value="Proceed Payment" /><br/><br/>-->
                         <input class="btn btn-primary" type="button" ng-click="BookFlight()" value="Proceed Payment" /><br/><br/>
-
-
-                    <div ng-show="loading">
-
-                        <div id="floatingCirclesG">
-                            <div class="f_circleG" id="frotateG_01"></div>
-                            <div class="f_circleG" id="frotateG_02"></div>
-                            <div class="f_circleG" id="frotateG_03"></div>
-                            <div class="f_circleG" id="frotateG_04"></div>
-                            <div class="f_circleG" id="frotateG_05"></div>
-                            <div class="f_circleG" id="frotateG_06"></div>
-                            <div class="f_circleG" id="frotateG_07"></div>
-                            <div class="f_circleG" id="frotateG_08"></div>
-                        </div>
-
-                    </div>
-
-                    <div ng-hide="loading">
-                        {{Successful_Message}}<br/><br/>
-                    </div>
-
                 </div>
-                <div>
+                <!--<div>
                     <input class="btn btn-primary" type="button" ng-click="saveDetails()" value="Save Details" /><br/><br/>
-                </div>
+                </div>-->
 
             </div>
 
         </div>
+<!--
+
+        <div class="booking-item-details">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Flight Details</p>
+                    <h5 class="list-title">{{flight.Segments[0][0].Origin.Airport.CityName}}({{flight.FareRules.Origin}}) to {{flight.Segments[0][0].Destination.Airport.CityName}} ({{flight.FareRules.Destination}})</h5>
+                    <ul class="list">
+                        <li>{{flight.Segments[0][0].Airline.AirlineName}} {{flight.Segments[0][0].Airline.FlightNumber}}</li>
+                        <li>{{flight.Segments[0][0].Airline.FareClass}} Class ({{flight.Segments[0][0].Airline.FareClass}}), {{flight.Segments[0][0].Origin.Airport.AirportName}} Terminal {{flight.Segments[0][0].Origin.Airport.Terminal}}</li>
+                        <li>Depart {{flight.Segments[0][0].Origin.DepTime | date : 'h:mm a'}} Arrive {{flight.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}</li>
+                        <li>Duration:{{Math.floor(flight.Segments[0][0].Duration/ 60) <= 9 ? "0" : ""}}{{Math.floor(flight.Segments[0][0].Duration/ 60)}}:{{flight.Segments[0][0].Duration% 60 <= 9 ? "0" : ""}}{{flight.Segments[0][0].Duration % 60}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+-->
 
 
         <div class="col-md-4">
             <div class="booking-item-payment">
                 <header class="clearfix">
-                    <h5 class="mb0">{{flightData.sourceCityName}} - {{flightData.destinattionCityName}}</h5>
+                    <h5 class="mb0">{{finalResults.Segments[0][0].Origin.Airport.CityName}} - {{finalResults.Segments[0][0].Destination.Airport.CityName}}</h5>
                 </header>
                 <ul class="booking-item-payment-details">
                     <li>
@@ -247,32 +211,50 @@
                                 <div class="col-md-9">
                                     <div class="booking-item-flight-details">
                                         <div class="booking-item-departure"><i class="fa fa-plane"></i>
-                                            <h5>{{ flightData.departureTime | date : 'h:mm a'}}</h5>
-                                            <p class="booking-item-date">{{ flightData.departureTime | date : medium}}</p>
-                                            <p class="booking-item-destination">{{flightData.sourceCityName}}({{flightData.origin}})</p>
+                                            <h5>{{ finalResults.Segments[0][0].Origin.DepTime | date : 'h:mm a'}}</h5>
+                                            <!--<p class="booking-item-date">{{ flightData.Segments[0][0].Origin.DepTime | date : medium}}</p>-->
+                                            <p class="booking-item-destination">{{finalResults.Segments[0][0].Origin.Airport.CityName}}({{finalResults.FareRules.Origin}})</p>
                                         </div>
                                         <div class="booking-item-arrival"><i class="fa fa-plane fa-flip-vertical"></i>
-                                            <h5>{{ flightData.arrivalTime | date : 'h:mm a'}}</h5>
-                                            <p class="booking-item-date">{{ flightData.arrivalTime | date : medium}}</p>
-                                            <p class="booking-item-destination">{{flightData.destinattionCityName}} ({{flightData.destination}})</p>
+                                            <h5>{{ finalResults.Segments[0][0].Destination.ArrTime | date : 'h:mm a'}}</h5>
+                                            <!--<p class="booking-item-date">{{ flightData.Segments[0][0].Destination.ArrTime | date : medium}}</p>-->
+                                            <p class="booking-item-destination">{{finalResults.Segments[0][0].Destination.Airport.CityName}} ({{finalResults.FareRules.Destination}})</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="booking-item-flight-duration">
                                         <p>Duration</p>
-                                        <h5>{{flightData.duration}}h</h5>
+                                        <h5>{{Math.floor(finalResults.Segments[0][0].Duration/ 60) <= 9 ? "0" : ""}}{{Math.floor(finalResults.Segments[0][0].Duration/ 60)}}:{{finalResults.Segments[0][0].Duration% 60 <= 9 ? "0" : ""}}{{finalResults.Segments[0][0].Duration % 60}} hour</h5>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
-                <p class="booking-item-payment-total">Total: <span>&#8377;{{flightData.offeredFare}}</span>
+                <p class="booking-item-payment-total">Total: <span>&#8377;{{finalResults.Fare.PublishedFare}}</span>
                 </p>
             </div>
         </div>
     </div>
     <div class="gap"></div>
+</div>
+
+
+
+
+<div ng-show="loading">
+
+    <div id="floatingCirclesG">
+        <div class="f_circleG" id="frotateG_01"></div>
+        <div class="f_circleG" id="frotateG_02"></div>
+        <div class="f_circleG" id="frotateG_03"></div>
+        <div class="f_circleG" id="frotateG_04"></div>
+        <div class="f_circleG" id="frotateG_05"></div>
+        <div class="f_circleG" id="frotateG_06"></div>
+        <div class="f_circleG" id="frotateG_07"></div>
+        <div class="f_circleG" id="frotateG_08"></div>
+    </div>
+
 </div>
 

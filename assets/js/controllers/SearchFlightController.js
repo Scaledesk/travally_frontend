@@ -157,7 +157,7 @@ angular.module('Travally')
 
 
 
-        $scope.bookingDetails = function(data) {
+        $scope.bookingDetailsFlight = function(data) {
             $cookies.putObject('selectedFlight',data);
             $location.path('/bookingDetail');
             /*if (!data.IsLcc) {
@@ -423,7 +423,7 @@ angular.module('Travally')
 
         $scope.book_button_text = 'Book Seat';
         $scope.book_button_disabled = false;
-        $scope.bookingDetails = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
+        $scope.bookingDetailsBus = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
             console.log(TBSelectedSeatsPrice);
             console.log(TBSelectedSeats);
             var str = TBSelectedSeats;
