@@ -6,18 +6,9 @@ angular.module('Travally')
         Flight.getTransaction(id).then(function (Res) {
             console.log("booking response");
             $scope.result =  Res.data.data;
-            /*BusServices.BookBus($scope.result.booking_request).then(function (BookResponse) {
-             $scope.book_response = BookResponse.data;
-             console.log(BookResponse);
-                $scope.$emit('UNLOAD')
-             }).catch(function (response) {
-             $scope.book_response = response.data;
-             console.log(response);
-                $scope.$emit('UNLOAD')
-             });*/
             $scope.book();
             console.log($scope.result);
-            $scope.$emit('UNLOAD')
+            //$scope.$emit('UNLOAD')
         }).catch(function (response) {
             $scope.$emit('UNLOAD')
             console.log(response);
@@ -28,11 +19,11 @@ angular.module('Travally')
                 $scope.book_response = BookResponse.data;
                 console.log(BookResponse);
                 $scope.storeTicketDetails();
-                $scope.$emit('UNLOAD')
+                //$scope.$emit('UNLOAD')
             }).catch(function (response) {
                 $scope.book_response = response.data;
                 console.log(response);
-                $scope.$emit('UNLOAD')
+               // $scope.$emit('UNLOAD')
             });
         };
 

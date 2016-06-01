@@ -189,7 +189,7 @@
 
 
 
-            <div ng-hide="results1.length==0"  style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+            <div ng-hide="train_results.length==0"  style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -199,21 +199,20 @@
                         </div>
                 </div>
                 <div class="col-md-3">
-                    <p>{{results1[0].train.name}}</p>
+                    <p>{{train_results[0].train.name}}&nbsp;&nbsp;&nbsp;{{train_results[0].fareName}}</p>
                 </div>
                 <div class="col-md-3">
-                    <span  style="font-size: small" class="booking-item-price">&#8377;{{results1[0].farePrice}}</span><span> /person</span>
-
+                    <span  style="font-size: small" class="booking-item-price">&#8377;{{train_results[0].farePrice}}</span><span> /person</span>
                 </div>
                 <div  class="col-md-2">
-                    <B style="color:orange">{{results1[0].duration}} hour</B>
+                    <B style="color:orange">{{train_results[0].duration}} hour</B>
                 </div>
                 <div align="left" class="col-md-2">
-                    <a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Book Now</a>
+                    <a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Select</a>
                 </div>
 
             </div>
-            <div ng-show="results1.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+            <div ng-show="train_results.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -246,7 +245,7 @@
                     <p>{{flightData[0].Segments[0][0].Airline.AirlineName}}</p>
                 </div>
                 <div class="col-md-3">
-                    <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{flightData[0].Fare.PublishedFare}}</span><span> /person</span>
+                    <span style="font-size: small" class="booking-item-price">&#8377&nbsp;{{flightData[0].Fare.PublishedFare}}</span><span></span>
                 </div>
                 <div class="col-md-2">
 
@@ -255,7 +254,7 @@
                     </div>
                 <div align="left" class="col-md-2">
 
-                    <a class="btn btn-primary" ng-click="bookingDetails(flightData[0])" href="">Book Now</a>
+                    <a class="btn btn-primary" ng-click="bookingDetails(flightData[0])" href="">Select</a>
                 </div>
             </div>
 
@@ -300,12 +299,10 @@
                    <B style="color:orange"> {{Bus_Result[0].duration}} hour</B>
                 </div>
                <div align="left" class="col-md-2">
-              <a class="btn btn-primary" ng-click="showDetails(Bus_Result[0])" ng-href="">Book Now</a>
+              <a class="btn btn-primary" ng-click="showDetails(Bus_Result[0])" ng-href="">Select</a>
                </div>
 
                 </div>
-
-
             <div ng-show="Bus_Result.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
 
                 <div class="col-md-2">
@@ -452,44 +449,55 @@
                     <div ng-class="{'tab-pane fade in active':ss=='train'}" ng-show="ss=='train'" id="tab-1">
                         <div class="gap"></div>
 
-                        <div ng-show="results1.length==0" class="col-md-12 ">
+                        <div ng-show="train_results.length==0" class="col-md-12 ">
                             <p class="text-center"> No Result found</p>
                         </div>
-                        <div ng-show="results1.length>0" class="col-md-12">
-                            <div class="booking-item-container">
-                                <!--.type1 | filter:checkboxModel.type2 | filter:checkboxModel.type3 | filter:checkboxModel.type4-->
-                                <div class="booking-item">
-                                    <div class="row" dir-paginate="result in results1 | orderBy:sortType:sortReverse | filter:checkboxModel | itemsPerPage: 10" pagination-id="train">
-                                        <div class="col-md-2">
-                                            <div class="booking-item-airline-logo">
-                                                <img src="assets/theme/img/242px-IRCTC_Logo.svg.png" alt="Image Alternative text" title="Image Title" />
-                                                <p>{{result.train.name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="booking-item-flight-details">
-                                                <div class="booking-item-departure"><i class="fa fa-train"></i>
-                                                    <h5>{{result.departure_time}}</h5>
-                                                    <p class="booking-item-date">{{result.journey_date | date:'medium'}}</p>
-                                                    <p class="booking-item-destination">{{result.source.name}}</p>
-                                                </div>
-                                                <div class="booking-item-arrival"><i class="fa fa-train"></i>
-                                                    <h5>{{result.arrival_time}}</h5>
-                                                    <p class="booking-item-date">{{result.journey_date}}</p>
-                                                    <p class="booking-item-destination">{{result.destination.name}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <h5>{{result.duration}} Hours</h5>
-                                        </div>
-                                        <div class="col-md-3"><span style="color:orange;" class="booking-item-price">&#8377;{{result.farePrice}}</span><br/>
-                                            <p class="booking-item-flight-class">Class: {{result.fareName}}</p><a class="btn btn-primary" href="" ng-click="redirectToIrctc()">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div ng-show="train_results.length>0" class="col-md-12">
 
+                            <div class="panel-group" id="accordion">
+
+                                <ul class="booking-list">
+                                    <li ng-repeat="res in train_results | orderBy:sortType:sortReverse">
+                                        <div class="booking-item-container">
+                                            <div class="booking-item">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="booking-item-airline-logo">
+                                                            <img src="assets/theme/img/croatia.jpg" alt="Image Alternative text" title="Image Title" />
+                                                            <p>{{res.train.name}}</p>
+                                                            {{res.train.number}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="booking-item-flight-details">
+                                                            <div class="booking-item-departure"><i class="fa fa-train"></i>
+                                                                <h5>{{ res.departure_time | date : 'h:mm a'}}</h5>
+                                                                <p class="booking-item-destination">{{res.source.name}}</p>
+                                                            </div>
+                                                            <div class="booking-item-arrival"><i class="fa fa-train fa-flip-vertical"></i>
+                                                                <h5>{{ res.arrival_time | date : 'h:mm a'}}</h5>
+                                                                <p class="booking-item-destination">{{res.destination.name}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            Journey Date: {{res.journey_date}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <h5>{{res.duration}} hour</h5>
+                                                    </div>
+                                                    <div class="col-md-3"><span style="color: orange" class="booking-item-price">&#8377;{{res.farePrice}}</span><span></span>
+                                                        <p class="booking-item-flight-class">Class: {{res.fareName}}</p><a class="btn btn-primary" ng-click="redirectToIrctc()" href="">Select</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="booking-item-details">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
+
                         </div>
 
                         <div class="gap"></div>

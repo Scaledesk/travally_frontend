@@ -362,7 +362,7 @@ angular.module('Travally')
                 $scope.Bus_Result.push(busDetails);
             });
 
-            $scope.$emit('UNLOAD')
+            //$scope.$emit('UNLOAD')
         }).catch(function (response) {
             //$scope.$emit('UNLOAD')
             console.log(response);
@@ -572,22 +572,22 @@ $scope.filter_result = function(){
             }
         });
         $scope.no_of_passenger = no_of_passenger;
-        $scope.results1 = [];
+        $scope.train_results = [];
        // $scope.$emit('LOAD')
         TrainBetweenStation.get(source,destination,$scope.journey_date)
             .success(function(data) {
                 $scope.records = data.train;
                 $scope.total_train = $scope.records.length;
-                console.log($scope.records);
+                console.log('train result');
+                console.log(JSON.stringify($scope.records));
                 angular.forEach($scope.records, function(record){
+                    console.log('total train');
                     console.log(record);
-                    //var quota = "GN";
                     TrainBetweenStation.getFare(record.number,record.from.code,record.to.code,18,"GN",$scope.journey_date)
                         .success(function(data) {
-
                             angular.forEach(data.fare, function(fare) {
                                 //var duration = parseTime(record.dest_arrival_time) - parseTime(record.src_departure_time);
-                                var duration = diffrence(record.src_departure_time, record.dest_arrival_time);
+                                var duration = difference(record.src_departure_time, record.dest_arrival_time);
                                 var temp = {
                                     "train" : data.train,
                                     "source" : data.from,
@@ -601,13 +601,11 @@ $scope.filter_result = function(){
                                     "duration" : duration,
                                     "no_of_passenger" : no_of_passenger
                                 };
-                                $scope.results1.push(temp);
-                                $scope.$emit('UNLOAD')
-
+                                $scope.train_results.push(temp);
                             });
                         });
                 });
-                $scope.$emit('UNLOAD')
+                //$scope.$emit('UNLOAD')
             })
             .error(function(data) {
                 console.log(data);
@@ -617,7 +615,7 @@ $scope.filter_result = function(){
         $scope.redirectToIrctc  = function(){
             window.location="https://www.irctc.co.in";
         };
-        function diffrence(start, end) {
+        function difference(start, end) {
             start = start.split(":");
             end = end.split(":");
             var startDate = new Date(0, 0, 0, start[0], start[1], 0);
