@@ -189,9 +189,9 @@
 
             <div  style="margin-bottom :6px;" class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li style="margin-left: 80px" ng-class="{active:tab=='fastest'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Fastest Option</a>
+                    <li style="margin-left: 80px" ng-class="{active:tab=='fastest'}"><a href="" data-toggle="tab" ng-click="filter_result_fastest()">Fastest Option</a>
                     </li>
-                    <li ng-class="{active:tab=='cheepest'}"><a href="" data-toggle="tab" ng-click="sortType = 'offeredFare'">Cheapest Option</a>
+                    <li ng-class="{active:tab=='cheepest'}"><a href="" data-toggle="tab" ng-click="filter_result_cheapest()">Cheapest Option</a>
                     </li>
                     <!--<li ng-class="{active:tab=='best_suggested'}"><a href="" data-toggle="tab" ng-click="sortType = 'duration'">Best/Suggested Option</a>-->
                     <!--</li>-->
@@ -482,7 +482,7 @@
                             <div class="panel-group" id="accordion">
 
                                 <ul class="booking-list">
-                                    <li ng-repeat="res in train_results | orderBy:sortType:sortReverse">
+                                    <li ng-repeat="res in train_results | orderBy:sortTypeTrain">
                                         <div class="booking-item-container">
                                             <div class="booking-item">
                                                 <div class="row">
@@ -533,7 +533,7 @@
                             <div class="panel-group" id="accordion">
 
                                             <ul class="booking-list">
-                                                <li ng-repeat="flight in flightData | orderBy:sortType:sortReverse">
+                                                <li ng-repeat="flight in flightData | orderBy:sortTypeFlight">
                                                     <div class="booking-item-container">
                                                         <div class="booking-item">
                                                             <div class="row">
@@ -596,7 +596,7 @@
                         </div>
                         <div ng-show="Bus_Result.length>0" class="col-md-12">
                             <ul ng-hide="loading" class="booking-list">
-                                <li ng-repeat="busses in Bus_Result">
+                                <li ng-repeat="busses in Bus_Result | orderBy:sortTypeBus">
                                     <div class="booking-item-container">
                                         <div class="booking-item">
                                             <div class="row">

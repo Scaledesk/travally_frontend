@@ -1,6 +1,7 @@
 angular.module('Travally')
-    .controller('SearchFlightController', function($http, $scope,$cookies,$sce,TrainBetweenStation, $routeParams,BusServices, $filter, $location, Flight, $rootScope, serverConfig) {
+    .controller('SearchFlightController', function($http, $scope,$document,$cookies,$sce,TrainBetweenStation, $routeParams,BusServices, $filter, $location, Flight, $rootScope, serverConfig) {
         $scope.Math=Math;
+        $document.scrollTop(0);
         $scope.checkboxModel = {
             "fareClass":""
         };
@@ -14,7 +15,9 @@ angular.module('Travally')
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
         $scope.passenger = $routeParams.passenger;
-        $scope.sortType     = "duration";
+        $scope.sortTypeBus     = "duration";
+        $scope.sortTypeTrain     = "duration";
+        $scope.sortTypeFlight     = "Duration";
         $scope.sortReverse  = false;
         $scope.master_stations = [
             {
@@ -71,17 +74,17 @@ angular.module('Travally')
         $scope.ss='flight';
         var dddd = {
             "JourneyType": 1,
-            "AdultCount": 1,
+            "AdultCount": $scope.passenger,
             "ChildCount": 0,
             "InfantCount": 0,
             "DirectFlight": false,
             "OneStopFlight": false,
             "Segments": [
                 {
-                    "Origin": "DEL",
-                    "Destination": "BLR",
+                    "Origin": $scope.source,
+                    "Destination": $scope.destination,
                     "PreferredDepartureTime": $scope.departureDate,
-                    "PreferredArrivalTime": "2016-08-08T00:00:00",
+                    "PreferredArrivalTime": "",
                     "FlightCabinClass": "1"
                 }
             ],
@@ -123,6 +126,7 @@ angular.module('Travally')
             $scope.sessionId = d.data.SessionId;
             $rootScope.flightSearch = d;
             $scope.flightData = d.data.Results[0];
+            $scope.final_flight_result = $scope.flightData;
             console.log('search result');
             console.log(d);
             window.localStorage['flight_trace_id']=d.data.TraceId;
@@ -281,6 +285,8 @@ angular.module('Travally')
                 });
             }*/
         };
+
+
         $scope.filterFlightDetail=function(){
             $scope.flightResult = $filter('filter')($scope.flightResultData,{fareClass:$scope.checkboxModel.fareClass,stop:$scope.fareStop.stop})
         };
@@ -361,6 +367,7 @@ angular.module('Travally')
                     "seat_layout": {}
                 };
                 $scope.Bus_Result.push(busDetails);
+                $scope.final_bus_result = $scope.Bus_Result;
             });
 
             //$scope.$emit('UNLOAD')
@@ -529,11 +536,25 @@ angular.module('Travally')
         };
 
 
-$scope.filter_result = function(){
-    //| orderBy:sortType:sortReverse
-    $scope.Bus_Result = $filter('orderBy')($scope.Bus_Result,{'duration':$scope.sortReverse})
-};
+        $scope.filter_result_cheapest = function(){
+            console.log('cheapest');
+            $scope.sortTypeBus     = "available_fares";
+            $scope.sortTypeTrain     = "farePrice";
+            $scope.sortTypeFlight     = "fare.PublishedFare";
+            /*$scope.train_results = $filter('orderBy')($scope.final_train_result,{'farePrice':$scope.sortReverse})
+            $scope.flightData = $filter('orderBy')($scope.final_flight_result,{'PublishedFare':$scope.sortReverse})
+            $scope.Bus_Result = $filter('orderBy')($scope.final_bus_result,{'available_fares':$scope.sortReverse})*/
+        };
 
+        $scope.filter_result_fastest = function(){
+            console.log('fastest');
+            $scope.sortTypeBus     = "duration";
+            $scope.sortTypeTrain     = "duration";
+            $scope.sortTypeFlight     = "Segments[0][0].Duration";
+            /*$scope.train_results = $filter('orderBy')($scope.final_train_result,{'duration':$scope.sortReverse});
+            $scope.flightData = $filter('orderBy')($scope.final_flight_result,{'Duration':$scope.sortReverse});
+            $scope.Bus_Result = $filter('orderBy')($scope.final_bus_result,{'duration':$scope.sortReverse});*/
+        };
 
 
 
@@ -603,6 +624,7 @@ $scope.filter_result = function(){
                                     "no_of_passenger" : no_of_passenger
                                 };
                                 $scope.train_results.push(temp);
+                                $scope.final_train_result = $scope.train_results;
                             });
                         });
                 });
@@ -613,6 +635,8 @@ $scope.filter_result = function(){
          //       $scope.$emit('UNLOAD')
                 //$location.path("/error");
             });
+
+
         $scope.redirectToIrctc  = function(){
             window.location="https://www.irctc.co.in";
         };

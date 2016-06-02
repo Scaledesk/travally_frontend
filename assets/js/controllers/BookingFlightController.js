@@ -1,5 +1,6 @@
 angular.module('Travally')
-    .controller('BookingFlightController', function($http, $scope, $routeParams,$cookies, $auth, $rootScope,serverConfig, $filter, $location, Flight) {
+    .controller('BookingFlightController', function($http, $scope,$document, $routeParams,$cookies, $auth, $rootScope,serverConfig, $filter, $location, Flight) {
+        $document.scrollTop(0);
         $scope.selectedFlightDetails = $cookies.getObject('selectedFlight');
         $scope.flightData = $cookies.getObject('selectedFlight');
         var fareRequest = {
