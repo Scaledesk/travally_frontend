@@ -848,5 +848,101 @@ Fare Quote Response:
 <div class="gap"></div>
 
 
+<script type="text/javascript">
+    function AddRemoveSeat(test,seatno,htm,seatprice)
+    {
+
+        var routeId = $("#route_id").val();
+        if($('#'+routeId + '' + seatno))
+        {
+            var classOfDiv = $('#'+routeId + '' + seatno).attr("class");
+
+            console.log(classOfDiv);
+
+            if(classOfDiv.indexOf('s') == 0)
+            {
+                remove_seat(seatno,seatprice);
+                $('#'+routeId + '' + seatno).attr("class",classOfDiv.substring(1, classOfDiv.length));
+            }
+            else
+            {
+                if(add_seat(seatno,seatprice))
+                {
+                    $('#'+routeId + '' + seatno).attr("class","s" + classOfDiv);
+                }
+            }
+        }
+    }
+    function ClickReviewBook()
+    {
+        if(validate())
+        {
+            document.getElementById('CheckPost').value=true;
+            document.getElementById('SeatLayout').submit();
+        }
+    }
+
+    function add_seat(seatno,seatprice)
+    {
+
+        if($("#TBSelectedSeats").val())
+        {
+            $("#TBSelectedSeats").val($("#TBSelectedSeats").val()+","+seatno);
+            $("#TBSelectedSeats").trigger('input');
+        }
+        else
+        {
+            $("#TBSelectedSeats").val(seatno);
+            $("#TBSelectedSeats").trigger('input');
+        }
+
+        $("#TBSelectedSeatsPrice").val(parseFloat($("#TBSelectedSeatsPrice").val()) +  parseFloat(seatprice));
+        $("#TBSelectedSeatsPrice").trigger('input');
+        /*$('#selectedSeats').text($('#TBSelectedSeats').val());
+         $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());*/
+        return true;
+    }
+
+    function remove_seat(seatno,seatprice)
+    {
+        str = new String($("#TBSelectedSeats").val());
+        i = str.indexOf($.trim(seatno));
+        if(i >= 0)
+        {
+            inext = str.indexOf(',',i);
+            if(inext == -1 && i == 0)
+            {
+                $("#TBSelectedSeats").val("");
+                $("#TBSelectedSeats").trigger('input');
+            }
+            else if(i == 0)
+            {
+                $("#TBSelectedSeats").val(str.substring(inext+1));
+                $("#TBSelectedSeats").trigger('input');
+            }
+            else
+            {
+                if(inext == -1)
+                {
+                    $("#TBSelectedSeats").val(str.substring(0,i-1));
+                    $("#TBSelectedSeats").trigger('input');
+                }
+                else
+                {
+                    $("#TBSelectedSeats").val(str.substring(0,i-1) + str.substring(inext));
+                    $("#TBSelectedSeats").trigger('input');
+                }
+            }
+        }
+        $("#TBSelectedSeatsPrice").val(parseFloat($("#TBSelectedSeatsPrice").val()) - parseFloat(seatprice));
+        $("#TBSelectedSeatsPrice").trigger('input');
+        /*$('#selectedSeats').text($('#TBSelectedSeats').val());
+         $('#totalAmount').text("Rs." + $("#TBSelectedSeatsPrice").val());*/
+    }
+
+</script>
+
+
+
 
 

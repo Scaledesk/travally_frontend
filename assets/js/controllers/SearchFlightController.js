@@ -1,5 +1,5 @@
 angular.module('Travally')
-    .controller('SearchFlightController', function($http, $scope,$cookies,TrainBetweenStation, $routeParams,BusServices, $filter, $location, Flight, $rootScope, serverConfig) {
+    .controller('SearchFlightController', function($http, $scope,$cookies,$sce,TrainBetweenStation, $routeParams,BusServices, $filter, $location, Flight, $rootScope, serverConfig) {
         $scope.Math=Math;
         $scope.checkboxModel = {
             "fareClass":""
