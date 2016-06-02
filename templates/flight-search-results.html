@@ -1,31 +1,56 @@
 <div class="container">
-    <h3 class="booking-title">{{flightData.length;}} Flights from Mumbai to Delhi on  for  adult <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
+    <!--<h3 class="booking-title">{{flightData.length;}} Flights from Mumbai to Delhi on  for  adult <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>-->
     <form class="booking-item-dates-change mb30">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                     <label>From</label>
-                    <input class="typeahead form-control" placeholder="" type="text" />
+                    <!--<input class="typeahead form-control" placeholder="" type="text" />-->
+                    <ui-select ng-model="selectedSource.selected"
+                               theme="bootstrap"
+                               reset-search-input="true">
+                        <ui-select-match placeholder="Enter source station...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="source in sources track by $index"
+                                           refresh="refreshSources($select.search)"
+                                           refresh-delay="0">
+                            <div ng-bind-html="source.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                     <label>To</label>
-                    <input class="typeahead form-control" placeholder="" type="text" />
+                    <!--<input class="typeahead form-control" placeholder="" type="text" />-->
+                    <ui-select ng-model="selectedDestination.selected"
+                               theme="bootstrap"
+                               reset-search-input="true">
+                        <ui-select-match placeholder="Enter destination station..">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="destination in destinations track by $index"
+                                           refresh="refreshDestinations($select.search)"
+                                           refresh-delay="0">
+                            <div ng-bind-html="destination.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                     <label>Departing</label>
-                    <input class="date-pick form-control" data-date-format="MM d, D" type="text" />
+                    <!--<input class="date-pick form-control" data-date-format="MM d, D" type="text" />-->
+                    <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
+
+                        <input class="form-control" placeholder="Select departure date" ng-model="formData.date">
+
+                    </datepicker>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                     <label>Returning</label>
-                    <input class="date-pick form-control" data-date-format="MM d, D" type="text" />
+                    &lt;!&ndash;<input class="date-pick form-control" data-date-format="MM d, D" type="text" />&ndash;&gt;
                 </div>
-            </div>
+            </div>-->
             <div class="col-md-2">
                 <div class="form-group form-group-select-plus">
                     <label>Passengers</label>
@@ -189,7 +214,7 @@
 
 
 
-            <div ng-hide="train_results.length==0"  style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+            <div ng-hide="train_results.length==0 || loading"  style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -202,7 +227,7 @@
                     <p>{{train_results[0].train.name}}&nbsp;&nbsp;&nbsp;{{train_results[0].fareName}}</p>
                 </div>
                 <div class="col-md-3">
-                    <span  style="font-size: small" class="booking-item-price">&#8377;{{train_results[0].farePrice}}</span><span> /person</span>
+                    <span  style="font-size: small" class="booking-item-price">&#8377;{{train_results[0].farePrice}}</span><!--<span> /person</span>-->
                 </div>
                 <div  class="col-md-2">
                     <B style="color:orange">{{train_results[0].duration}} hour</B>
@@ -212,7 +237,7 @@
                 </div>
 
             </div>
-            <div ng-show="train_results.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+            <div ng-show="train_results.length==0 && !loading" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -231,7 +256,7 @@
 
 
 
-            <div  ng-hide="flightData.length==0" style=" margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+            <div  ng-hide="flightData.length==0 || loading" style=" margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
 
                 <div  class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -259,7 +284,7 @@
             </div>
 
 
-            <div ng-show="flightData.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+            <div ng-show="flightData.length==0 && !loading" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -278,7 +303,7 @@
 
 
 
-                <div ng-hide="Bus_Result.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
+                <div ng-hide="Bus_Result.length==0 || loading" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row" >
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">
@@ -303,7 +328,7 @@
                </div>
 
                 </div>
-            <div ng-show="Bus_Result.length==0" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
+            <div ng-show="Bus_Result.length==0 && !loading" style="margin-bottom :6px;margin-right: 50px; border: 1px solid rgba(44, 76, 35, 0.58);" class="row">
 
                 <div class="col-md-2">
                     <div align="center" style="margin:5px;background-color:rgba(71, 46, 0, 0.17)">

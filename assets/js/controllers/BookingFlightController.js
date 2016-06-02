@@ -22,6 +22,7 @@ angular.module('Travally')
         console.log('gat fare quote request ');
         console.log(JSON.stringify(fareRequest));
             console.log('get fare quote response');
+        $scope.$emit('LOAD')
             Flight.flightGetFareQuote(fareRequest).then(function(res){
                 console.log('success response');
                 console.log(JSON.stringify(res));
@@ -53,8 +54,10 @@ angular.module('Travally')
                         Seat:null
                     };
                     $scope.bookVal.Passengers.push(p);
+                    $scope.$emit('UNLOAD')
                 });
             }).catch(function(res){
+                $scope.$emit('UNLOAD')
                 console.log('error response');
                 console.log(JSON.stringify(res));
             });

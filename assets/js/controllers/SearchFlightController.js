@@ -8,65 +8,66 @@ angular.module('Travally')
             "stop":""
         };
         $scope.selectedSource = $cookies.getObject('source');
-        console.log('source');
-        console.log($scope.selectedSource);
         $scope.selectedDestination = $cookies.getObject('destination');
-        console.log('destination');
-        console.log($scope.selectedSource);
         $scope.formData = $cookies.getObject('formData');
-
         $scope.source = $routeParams.source;
         $scope.destination = $routeParams.destination;
         $scope.departureDate = $routeParams.departureDate;
         $scope.passenger = $routeParams.passenger;
         $scope.sortType     = "duration";
         $scope.sortReverse  = false;
-        /*var flightData = {
-            "Origin": $scope.source,
-            "Destination": $scope.destination,
-            "DepartureDate": $scope.departureDate,
-            "Type": 0,
-            "ReturnDate": "",
-            "CabinClass": 2,
-            "PreferredCarrier": "",
-            "AdultCount": $scope.passenger,
-            "ChildCount": 1,
-            "InfantCount": 1,
-            "SeniorCount": 0,
-            "PromotionalPlanType": 0,
-            "PromotionalCode": null,
-            "IsDirectFlight": false,
-            "FlightSegments": null,
-            "DepartureDateString":$filter('date')($scope.departureDate, 'dd/MM/yyyy'),
-            "ReturnDateString": "",
-            "MemberMobileNo": serverConfig.memberMobileNumber,
-            "MemberMobilePin": serverConfig.memberMobilePin
-        };*/
+        $scope.master_stations = [
+            {
+                "CityId":"2542",
+                "name":"Allahabad",
+                "SCode":"ALD",
+                "FCode":"IXD"
+            },
+            {
+                "CityId":"1337",
+                "name":"Lucknow",
+                "SCode":"LKO",
+                "FCode":"LKO"
+            },
+            {
+                "CityId":"1327",
+                "name":"Kanpur",
+                "SCode":"CNB",
+                "FCode":"KNU"
+            },
+            {
+                "CityId":"1492",
+                "name":"Delhi",
+                "SCode":"NDLS",
+                "FCode":"DEL"
+            },
+            {
+                "CityId":"1322",
+                "name":"Agra",
+                "SCode":"AGA",
+                "FCode":"AGR"
+            },
+            {
+                "CityId":"3",
+                "name":"Bangalore",
+                "SCode":"BNC",
+                "FCode":"BLR"
+            },
+            {
+                "CityId":"1333",
+                "name":"Bareilly",
+                "SCode":"BRY",
+                "FCode":"LKO"
+            }
+        ];
+        $scope.refreshSources = function(query){
+            console.log(query);
+            $scope.sources = $filter('filter')($scope.master_stations,{name:query})
+        };
+        $scope.refreshDestinations = function(query){
+            $scope.destinations = $filter('filter')($scope.master_stations,{name:query})
+        };
 
-        //"72a4eea8-46f3-45c7-80b0-4ef81fbe7ab1"
-        /*var dddd = {
-            "JourneyType": 1,
-            "AdultCount": 1,
-            "ChildCount": 0,
-            "InfantCount": 0,
-            "DirectFlight": false,
-            "OneStopFlight": false,
-            "Segments": [
-                {
-                    "Origin": "DEL",
-                    "Destination": "BLR",
-                    "PreferredDepartureTime": "2016-08-08T00:00:00",
-                    "PreferredArrivalTime": "2016-08-08T00:00:00",
-                    "FlightCabinClass": ""
-                }
-            ],
-            "EndUserIp": "127.0.0.1",
-            "TokenId": window.localStorage['token_id'],
-            "PreferredAirlines": null,
-            "Sources": null,
-            "MemberMobileNo": serverConfig.memberMobileNumber,
-            "MemberMobilePin": serverConfig.memberMobilePin
-        };*/
         $scope.ss='flight';
         var dddd = {
             "JourneyType": 1,
