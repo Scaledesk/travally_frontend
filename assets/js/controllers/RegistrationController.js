@@ -1,4 +1,4 @@
-angular.module('Travally').controller('RegistrationController', function ($rootScope,$scope, $auth, $location, Registration) {
+angular.module('Travally').controller('RegistrationController', function ($rootScope,$scope,Profile, $auth, $location, Registration) {
 
     if($auth.isAuthenticated())
     {
@@ -43,11 +43,47 @@ angular.module('Travally').controller('RegistrationController', function ($rootS
         }
         $scope.disabled = true;
         $scope.reg_text = 'Please Wait...';
+        var email = $scope.registration.email;
+        var pass = $scope.registration.password;
         $scope.registration.$save(function (data) {
-                $scope.disabled = false;
+                //$scope.disabled = false;
                 console.log('successfully registration');
-                $scope.sign_up_successful = true;
-                $scope.reg_text = 'Sign Up';
+                //$scope.sign_up_successful = true;
+                //$scope.reg_text = 'Sign Up';
+
+
+                var user = {
+                    username: email,
+                    password: pass,
+                    client_id:"client_user",
+                    client_secret:"client_secret",
+                    grant_type:"password"
+                };
+                $auth.login(user)
+                    .then(function(response) {
+                        $scope.social_user = false;
+                        Profile.get().then(function(d){
+                            $rootScope.user_profile = d.data.data;
+                            if($rootScope.user_profile.Image ==''){
+                                $rootScope.user_profile.Image="assets/theme/img/BlankImages.png";
+                            }
+                            $location.path('/');
+                        });
+                    })
+                    .catch(function(response) {
+                        //Handle errors here, such as displaying a notification
+                        //for invalid email and/or password.
+                        $scope.error = true;
+                        $scope.login_text = 'Sign In';
+                        $scope.disabled = false;
+                        console.log('error login');
+                    });
+
+
+
+
+
+
             },
             function (response) {
                 $scope.disabled = false;

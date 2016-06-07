@@ -113,7 +113,7 @@ angular.module('Travally').controller('AuthenticationController', function ($roo
                     });
 
             }).catch(function(response){
-                console.log('error')
+                console.log('error');
             });
     };
 });
