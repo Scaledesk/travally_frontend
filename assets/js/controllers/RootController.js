@@ -9,14 +9,12 @@ angular.module('Travally')
         $rootScope.getFareQuoteResponse = {};
         $rootScope.ticketRequest = {};
         $rootScope.ticketResponse = {};
-
         $rootScope.TokenId = "";
-
         $.get("http://ipinfo.io", function(response) {
             console.log('ip address');
-            console.log(response);
+            console.log(response.ip);
+            window.localStorage['ip_address'] = response.ip;
         }, "jsonp");
-
         $scope.logout = function() {
             $auth.logout();
             $rootScope.user_profile = null;

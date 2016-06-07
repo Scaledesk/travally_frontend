@@ -125,18 +125,32 @@
 
                                                     <div class="row">
 
-                                                        <div class="col-md-4 pl0">
+                                                        <div class="col-md-2 pl0">
 
                                                                  <div class="form-group form-group-lg form-group-icon-left passenger-box"><i class="fa fa-user input-icon input-icon-highlight "></i>
                                                                     <label>Number of Passengers</label>
-                                                                <input type="number" class="form-control" ng-model="formData.passenger" placeholder="Enter Number of Passenger">
+                                                                <input type="number" class="form-control" ng-model="formData.passenger=formData.adult+formData.children+formData.infant" readonly ng-click="show_box=!show_box">
                                                                  </div>
+                                                        </div>
+
+                                                        <div ng-show="show_box" class="col-md-2 pl0">
+                                                            <div class="form-group">
+                                                                <label>Adult</label>
+                                                                <input type="number" class="form-control" ng-model="formData.adult">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Children</label>
+                                                                <input type="number" class="form-control" ng-model="formData.children">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Infant</label>
+                                                                <input type="number" class="form-control" ng-model="formData.infant">
+                                                            </div>
                                                         </div>
 
                                                         <div class="col-md-2 mt40 search-text"  >
                                                             Search for :
                                                         </div>
-
                                                         <div class="col-md-2 mt40">
                                                             <select class="form-control">
                                                                 <option selected>All</option>

@@ -74,9 +74,9 @@ angular.module('Travally')
         $scope.ss='flight';
         var dddd = {
             "JourneyType": 1,
-            "AdultCount": $scope.passenger,
-            "ChildCount": 0,
-            "InfantCount": 0,
+            "AdultCount": $scope.formData.adult,
+            "ChildCount": $scope.formData.children,
+            "InfantCount": $scope.formData.infant,
             "DirectFlight": false,
             "OneStopFlight": false,
             "Segments": [

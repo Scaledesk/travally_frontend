@@ -2,12 +2,12 @@ angular.module('Travally')
 // inject the Activation service into our controller
     .controller('HomeController', function(TrainBetweenStation, Hotel,$cookies, StationCode,serverConfig, $http, $scope, $location,$filter, Flight, BusServices,$rootScope ) {
         //var d = $location.search().code;
+        $scope.show_box = false;
         var auth = {
             "EndUserIp":"127.0.0.1",
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
         };
-        //122.177.44.72
         Flight.authentication(auth).then(function(res){
             console.log('token id gsdh');
             console.log(res);
