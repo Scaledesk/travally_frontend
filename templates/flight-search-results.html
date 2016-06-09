@@ -382,7 +382,7 @@
 
 -->
 
-
+            <input type="text" id="route_id" style="display: none;" ng-model="route_id"/>
             <div ng-show="loading">
 
                 <div id="floatingCirclesG">
@@ -855,6 +855,8 @@ Fare Quote Response:
         var routeId = $("#route_id").val();
         if($('#'+routeId + '' + seatno))
         {
+            console.log('inside routeid');
+            console.log(routeId);
             var classOfDiv = $('#'+routeId + '' + seatno).attr("class");
 
             console.log(classOfDiv);

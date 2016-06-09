@@ -488,7 +488,7 @@ angular.module('Travally')
                 "MemberMobilePin":serverConfig.memberMobilePin
             };
 
-            $scope.book_button_text = 'Booking.....';
+            $scope.book_button_text = 'Booking....';
             $scope.book_button_disabled = true;
 
             angular.forEach(res, function (seat, key) {
@@ -515,9 +515,13 @@ angular.module('Travally')
                 console.log(PaymentResponse);
                 window.location.assign("http://localhost:8000/bookingPayment/"+PaymentResponse.data.data.id+"?access_token="+$auth.getToken());
                 $scope.$emit('UNLOAD')
+                $scope.book_button_disabled = false;
+                $scope.book_button_text = 'Book Seat';
             }).catch(function (response) {
                 $scope.$emit('UNLOAD')
                 console.log(response);
+                $scope.book_button_disabled = false;
+                $scope.book_button_text = 'Book Seat';
             });
 
 
