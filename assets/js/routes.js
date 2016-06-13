@@ -61,5 +61,8 @@ angular.module('Travally').config(function($routeProvider){
       }).when('/flight_booking_payment_success/:id', {
         templateUrl: "templates/FlightPaymentSuccess.html",
         controller: "FlightPaymentSuccessController"
-      });
+      }).when('/bus_booking_details', {
+    templateUrl: "templates/bus_booking_details.html",
+    controller: "BusBookingDetailsCtrl"
+  });
 });

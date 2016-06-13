@@ -150,7 +150,10 @@ var d = {
 
 
         $scope.BookFlight = function(){
-
+            $scope.submitted = true;
+               if($scope.passenger.$invalid){
+                   return;
+               }
                 if($auth.isAuthenticated()){
                     $scope.flightBooking();
                  }

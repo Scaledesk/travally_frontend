@@ -503,13 +503,22 @@ angular.module('Travally')
             });
             console.log($scope.book);
 
+            $cookies.putObject('bookBus',$scope.book);
+            window.localStorage['totalBusFare']=TBSelectedSeatsPrice;
+            window.localStorage['selectedSeat']=TBSelectedSeats;
 
+
+            $location.path('/bus_booking_details');
+
+
+/*
             var t ={
                 "type":"Bus Booking",
                 "amount":TBSelectedSeatsPrice,
                 "status":"pending",
                 "booking_request":$scope.book
             };
+
             Flight.AddTransaction(t).then(function (PaymentResponse) {
                 console.log("transaction response");
                 console.log(PaymentResponse);
@@ -523,6 +532,7 @@ angular.module('Travally')
                 $scope.book_button_disabled = false;
                 $scope.book_button_text = 'Book Seat';
             });
+*/
 
 
 
