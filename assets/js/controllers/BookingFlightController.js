@@ -31,11 +31,12 @@ angular.module('Travally')
                 angular.forEach(res.data.Results.FareBreakdown, function (f, key) {
                     console.log('fare breakdown');
                     console.log(f);
+
                    var p =  {
                         title: "Mr",
                         FirstName: "Trivedi",
                         LastName: "Nupoora",
-                        PaxType: "1",
+                        PaxType: f.PassengerType,
                         DateOfBirth: "2003-06-19T00:00:00",
                         Gender: "Male",
                         PassportNo: "",

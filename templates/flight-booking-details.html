@@ -101,6 +101,8 @@
 
                 <li>
                     <div class="row" ng-repeat="passenger in bookVal.Passengers">
+                      <span ng-if="passenger.PaxType==1" class="pull-left">Adult</span>
+                      <span ng-if="passenger.PaxType==2" class="pull-left">Child</span><br/>
                         <div class="col-md-3">
                             <label>Title</label>
                             <div class="form-group">
