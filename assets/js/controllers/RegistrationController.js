@@ -67,7 +67,13 @@ angular.module('Travally').controller('RegistrationController', function ($rootS
                             if($rootScope.user_profile.Image ==''){
                                 $rootScope.user_profile.Image="assets/theme/img/BlankImages.png";
                             }
-                            $location.path('/');
+                            if(window.localStorage['url']!=''){
+                                var url = window.localStorage['url'];
+                                window.localStorage['url'] =  '';
+                                $location.path(url);
+                            }else {
+                                $location.path('/');
+                            }
                         });
                     })
                     .catch(function(response) {

@@ -158,7 +158,8 @@ var d = {
                     $scope.flightBooking();
                  }
                 else{
-
+                    window.localStorage['url'] =$location.url();
+                    $location.path('/login');
                 }
         };
         $scope.flightBooking = function(){

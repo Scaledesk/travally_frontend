@@ -102,7 +102,13 @@ angular.module('Travally').controller('AuthenticationController', function ($roo
                             if($rootScope.user_profile.Image ==''){
                                 $rootScope.user_profile.Image="assets/theme/img/BlankImages.png";
                             }
-                            $location.path('/');
+                            if(window.localStorage['url']!=''){
+                                var url = window.localStorage['url'];
+                                window.localStorage['url'] =  '';
+                                $location.path(url);
+                            }else {
+                                $location.path('/');
+                            }
                         });
                            /* .catch(function(response) {
                                 console.log('error login');
