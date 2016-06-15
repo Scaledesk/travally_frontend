@@ -39,16 +39,17 @@ console.log($routeParams.target);
 
     $scope.cancelBooking = function(f){
         $scope.getBooking = {
+            "EndUserIp":"127.0.0.1",
+            "TokenId":window.localStorage['flight_token_id'],
             "BookingId": f.booking_id,
-            "Pnr": f.pnr,
-            "Source": f.source_value,
-            "LastName":"",
-            "TicketId":0,
+            "PNR": f.pnr,
+            "TraceId":"",
             "MemberMobileNo":serverConfig.memberMobileNumber,
             "MemberMobilePin":serverConfig.memberMobilePin
         };
         Flight.GetBooking($scope.getBooking).then(function(response){
             console.log('true');
+            console.log(response);
             $scope.BookingResponse = response.data;
             $scope.cancelFlightBooking();
             //console.log(response.data);

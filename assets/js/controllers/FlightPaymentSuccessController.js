@@ -2,6 +2,7 @@ angular.module('Travally')
     .controller('FlightPaymentSuccessController', function($http, $scope,Flight,$auth, $routeParams, serverConfig, BusServices, $sce) {
         $scope.$emit('LOAD')
         $scope.s = false;
+        var trace_id = '';
         id = $routeParams.id;
         Flight.getTransaction(id).then(function (Res) {
             console.log("booking response");
@@ -21,6 +22,7 @@ angular.module('Travally')
                         console.log("ticket response");
                         $scope.ticketResponse = ticketResponse.data.Response;
                         console.log(ticketResponse.data);
+                        trace_id = ticketResponse.data.TraceId;
                         if($scope.ticketResponse!=null){
                             $scope.storeFlightBookingDetails();
                         }
@@ -67,6 +69,7 @@ angular.module('Travally')
                             console.log(ticket);
                             Flight.flightTicket(ticket).then(function (ticketResponse) {
                                 $scope.ticketResponse = ticketResponse.data.Response;
+                                 trace_id = ticketResponse.data.TraceId;
                                 console.log($scope.ticketResponse);
                                 if ($scope.ticketResponse!=null) {
                                     $scope.storeFlightBookingDetails();
@@ -98,14 +101,14 @@ angular.module('Travally')
               //  "ssr_prod_type":$scope.ticketResponse.ProdType,
             //    "confirmation_no":$scope.ticketResponse.ConfirmationNumber,
             //    "payment_reference_no":$scope.ticketResponse.PaymentReferenceNumber,
-             //   "ref_id":$scope.ticketResponse.Status.RefId,
-                "status_code":$scope.ticketResponse.FlightItinerary.Status,
+                "ref_id":trace_id,
+                "status_code":$scope.ticketResponse.TicketStatus,
                 //"status_description":$scope.ticketResponse.Status.Description,
                 //"status_category":$scope.ticketResponse.Status.Category,
-                "source":$scope.ticketResponse.FlightItinerary.Segments[0].Origin.CityName,
-                "destination":$scope.ticketResponse.FlightItinerary.Segments[0].Destination.CityName,
+                "source":$scope.ticketResponse.FlightItinerary.Segments[0].Origin.Airport.CityName,
+                "destination":$scope.ticketResponse.FlightItinerary.Segments[0].Destination.Airport.CityName,
                 "source_value" : $scope.ticketResponse.Source,
-                "departure_date":$scope.ticketResponse.FlightItinerary.Segments[0].Origin.DepTIme
+                "departure_date":$scope.ticketResponse.FlightItinerary.Segments[0].Origin.DepTime
             };
             console.log(saveData);
             Flight.saveDetails(saveData).then(function (dd) {
