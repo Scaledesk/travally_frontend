@@ -2,10 +2,16 @@ angular.module('Travally')
     .controller('BusBookingDetailsCtrl', function($http, $scope,$document,$cookies, $auth, $rootScope,serverConfig, $filter, $location, Flight) {
         $document.scrollTop(0);
         $scope.book = $cookies.getObject('bookBus');
+        $scope.selected_bus = $cookies.getObject('selected_bus');
         $scope.TBSelectedSeatsPrice=window.localStorage['totalBusFare'];
         $scope.TBSelectedSeats=window.localStorage['selectedSeat'];
         console.log('hfhdbvfdbgvfdgvdgvfchdvcghdgvchgdvcgdvghcd');
+
+        console.log($scope.TBSelectedSeatsPrice);
+        console.log($scope.TBSelectedSeats);
         console.log($scope.book);
+        console.log($scope.selected_bus);
+
         $scope.busBook = function(){
             var t ={
                 "type":"Bus Booking",

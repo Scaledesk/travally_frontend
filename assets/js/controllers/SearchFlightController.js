@@ -377,8 +377,6 @@ angular.module('Travally')
         });
         $scope.showDetails =function(busses){
             $scope.book_response = "";
-
-
             if($scope.route_id == busses.route_id){
                 $scope.route_id = "";
             }
@@ -427,8 +425,6 @@ angular.module('Travally')
         $scope.renderHtml = function (htmlCode) {
             return $sce.trustAsHtml(htmlCode);
         };
-
-
         $scope.book_button_text = 'Book Seat';
         $scope.book_button_disabled = false;
         $scope.bookingDetailsBus = function(data,TBSelectedSeatsPrice,TBSelectedSeats) {
@@ -436,14 +432,13 @@ angular.module('Travally')
             console.log(TBSelectedSeats);
             var str = TBSelectedSeats;
             var res = str.split(",");
-
             $scope.book = {
                 "BusId":data.bus_id,
-                "SourceId":$scope.SourceId,
-                "DestinationId":$scope.DestinationId,
-                "SourceName":$scope.SourceName,
-                "DestinationName":$scope.DestinationName,
-                "DateOfJourney":$scope.DateOfJourney,
+                "SourceId":$scope.selectedSource.selected.CityId,
+                "DestinationId": $scope.selectedDestination.selected.CityId,
+                "SourceName":data.source_name,
+                "DestinationName":data.destination_name,
+                "DateOfJourney":data.date_of_journey,
                 "BusSource":data.bus_source,
                 "IsDomestic":true,
                 "RouteId":data.route_id,
@@ -487,10 +482,8 @@ angular.module('Travally')
                 "MemberMobileNo":serverConfig.memberMobileNumber,
                 "MemberMobilePin":serverConfig.memberMobilePin
             };
-
             $scope.book_button_text = 'Booking....';
             $scope.book_button_disabled = true;
-
             angular.forEach(res, function (seat, key) {
                 console.log(seat);
                 angular.forEach(data.seat_layout.data.BTNewSeatLayoutDetails.BTSeatLayoutStructure.objStructSeatDetails, function (seatDetails, key) {
@@ -502,15 +495,13 @@ angular.module('Travally')
                 });
             });
             console.log($scope.book);
-
+            console.log(data);
+            $scope.selected_bus = data;
             $cookies.putObject('bookBus',$scope.book);
+            $cookies.putObject('selected_bus',data);
             window.localStorage['totalBusFare']=TBSelectedSeatsPrice;
             window.localStorage['selectedSeat']=TBSelectedSeats;
-
-
             $location.path('/bus_booking_details');
-
-
 /*
             var t ={
                 "type":"Bus Booking",
