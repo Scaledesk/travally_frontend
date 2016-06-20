@@ -1,0 +1,74 @@
+<div class="gap"></div>
+<div ng-hide="loading" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <p ng-hide="isAuthenticated()">Sign in to your <a href="">Travally account</a> for fast booking.</p>
+            <div class="gap gap-small"></div>
+            <h3>Passengers</h3>
+            <ul class="list booking-item-passengers">
+                <li>
+                    <form name="passenger" ng-submit="BookFlight()" novalidate>
+                        <div class="row">
+                                <div class="col-md-3">
+                                    <label>Title</label>
+                                    <div class="form-group">
+                                        <input class="form-control" ng-model="passenger.Title" type="text" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input class="form-control" ng-model="passenger.FirstName" name="fname" type="text" required />
+                                        <span class="text-danger" ng-show="repeatForm.fname.$error.required && submitted">First Name Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Surname</label>
+                                        <input class="form-control" ng-model="passenger.LastName" name="lname" type="text" required />
+                                        <span class="text-danger" ng-show="repeatForm.lname.$error.required && submitted">Last Name Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input class="form-control" ui-date ui-date-format=" yy-mm-dd" name="bdate" ng-model="passenger.DateOfBirth">
+                                        <span class="text-danger" ng-show="repeatForm.bdate.$error.required && submitted">Date of birth required</span>
+                                        <!--<input class="date-pick-years form-control" ng-model="passenger.DateOfBirth" type="text" />-->
+                                    </div>
+                                </div>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Proceed Payment" /><br/><br/>
+                    </form>
+                </li>
+            </ul>
+
+            <div class="gap gap-small"></div>
+            <div class="row">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="gap"></div>
+</div>
+
+
+
+
+<div ng-show="loading">
+
+    <div id="floatingCirclesG">
+        <div class="f_circleG" id="frotateG_01"></div>
+        <div class="f_circleG" id="frotateG_02"></div>
+        <div class="f_circleG" id="frotateG_03"></div>
+        <div class="f_circleG" id="frotateG_04"></div>
+        <div class="f_circleG" id="frotateG_05"></div>
+        <div class="f_circleG" id="frotateG_06"></div>
+        <div class="f_circleG" id="frotateG_07"></div>
+        <div class="f_circleG" id="frotateG_08"></div>
+    </div>
+
+</div>
+

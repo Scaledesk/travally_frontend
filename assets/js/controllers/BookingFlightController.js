@@ -7,7 +7,7 @@ angular.module('Travally')
             EndUserIP:"127.0.0.1",
             TokenId:window.localStorage['flight_token_id'],
             TraceId:window.localStorage['flight_trace_id'],
-            ResultIndex:$scope.flightData.ResultIndex,
+            ResultIndex:window.localStorage['ResultIndex'],
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin
         };
@@ -15,7 +15,7 @@ angular.module('Travally')
             EndUserIP: "127.0.0.1",
             TokenId: window.localStorage['flight_token_id'],
             TraceId: window.localStorage['flight_trace_id'],
-            ResultIndex: $scope.selectedFlightDetails.ResultIndex,
+            ResultIndex: window.localStorage['ResultIndex'],
             Passengers: [],
             "MemberMobileNo": serverConfig.memberMobileNumber,
             "MemberMobilePin": serverConfig.memberMobilePin

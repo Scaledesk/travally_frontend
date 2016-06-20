@@ -164,6 +164,7 @@ angular.module('Travally')
 
         $scope.bookingDetailsFlight = function(data) {
             $cookies.putObject('selectedFlight',data);
+            window.localStorage['ResultIndex'] = data.ResultIndex;
             $location.path('/bookingDetail');
             /*if (!data.IsLcc) {
                 angular.forEach($scope.flightData, function (flight, key) {

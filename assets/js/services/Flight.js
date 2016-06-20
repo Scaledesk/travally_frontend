@@ -21407,7 +21407,7 @@ angular.module('Travally').factory('Flight', function($http, serverConfig) {
                 },
                     data:{
                         method: 'POST',
-                        url: 'UpdatedAirlineBooking/GetBookingDetails',
+                        url: 'UpdatedAirlineBooking/GetBookingDetail',
                         payload:bookData
                     }
             });

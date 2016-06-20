@@ -40,29 +40,17 @@ angular.module('Travally')
                     console.log(JSON.stringify($scope.result.booking_request));
                     Flight.flightBooking($scope.result.booking_request).then(function (bookingResponse) {
                         console.log('booking Details');
+                        console.log(bookingResponse.data);
 
                         $scope.bookingResponse = bookingResponse.data;
-                        if ($scope.bookingResponse.BookingId != null) {
+                        if ($scope.bookingResponse.Response.BookingId != null) {
                             console.log('if');
                             var ticket = {
-                                "BookingID": $scope.bookingResponse.BookingId,
-                                "Origin": $scope.result.booking_request.Origin,
-                                "Destination": $scope.result.booking_request.Destination,
-                                "Segment": $scope.result.booking_request.Segment,
-                                "FareType": $scope.result.booking_request.FareType,
-                                "FareRule": $scope.result.booking_request.FareRule,
-                                "Fare": $scope.result.booking_request.Fare,
-                                "Passenger": $scope.result.booking_request.Passenger,
-                                "Remarks": $scope.result.booking_request.Remarks,
-                                "InstantTicket": $scope.result.booking_request.InstantTicket,
-                                "PaymentInformation": $scope.result.booking_request.PaymentInformation,
-                                "Source": $scope.result.booking_request.Source,
-                                "SessionId": $scope.result.booking_request.SessionId,
-                                "IsOneWayBooking": true,
-                                "CorporateCode": "",
-                                "TourCode": "",
-                                "Endorsement": "",
-                                "PromotionalPlanType": $scope.result.booking_request.PromotionalPlanType,
+                                "EndUserIp": "127.0.0.1",
+                                "TokenId": window.localStorage['flight_token_id'],
+                                "TraceId": $scope.bookingResponse.TraceId,
+                                "PNR": $scope.bookingResponse.Response.PNR,
+                                "BookingID": $scope.bookingResponse.Response.BookingId,
                                 "MemberMobileNo": $scope.result.booking_request.MemberMobileNo,
                                 "MemberMobilePin": $scope.result.booking_request.MemberMobilePin
                             };
@@ -77,6 +65,8 @@ angular.module('Travally')
                                 //$scope.$emit('UNLOAD')
                             }).catch(function (response) {
                                 //$scope.$emit('UNLOAD')
+                                $scope.ticketResponse =  bookingResponse.data.Response;
+                                $scope.storeFlightBookingDetails();
                                 console.log(response);
                             });
                         }
