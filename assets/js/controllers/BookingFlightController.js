@@ -163,7 +163,7 @@ var d = {
                 }
         };
         $scope.flightBooking = function(){
-            if($scope.flightData.IsLCC){
+            if($scope.finalResults.IsLCC){
                 $scope.$emit('LOAD')
                 /*$scope.ticket = {
                     "BookingID": "",

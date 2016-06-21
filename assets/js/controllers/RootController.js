@@ -31,6 +31,8 @@ angular.module('Travally')
                 if($scope.user_profile.Image==''){
                     $scope.user_profile.Image="assets/theme/img/BlankImages.png";
                 }
+            }).catch(function(data){
+                $scope.logout();
             });
         }
     });

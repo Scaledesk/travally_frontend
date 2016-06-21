@@ -13,6 +13,16 @@ angular.module('Travally')
         console.log($scope.selected_bus);
 
         $scope.busBook = function(){
+
+            $scope.submitted = true;
+            if($scope.pax.$invalid){
+                return false;
+            }
+            if(!$auth.isAuthenticated()){
+                window.localStorage['url'] =$location.url();
+                $location.path('/login');
+                return;
+            }
             var t ={
                 "type":"Bus Booking",
                 "amount":$scope.TBSelectedSeatsPrice,

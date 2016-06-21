@@ -499,12 +499,11 @@ angular.module('Travally')
             console.log(data);
             $scope.selected_bus = data;
             $cookies.putObject('bookBus',$scope.book);
-            $cookies.putObject('selected_bus',data);
+            $cookies.putObject('selected_bus',$scope.selected_bus);
             window.localStorage['totalBusFare']=TBSelectedSeatsPrice;
             window.localStorage['selectedSeat']=TBSelectedSeats;
             $location.path('/bus_booking_details');
-/*
-            var t ={
+         /*   var t ={
                 "type":"Bus Booking",
                 "amount":TBSelectedSeatsPrice,
                 "status":"pending",
@@ -524,11 +523,10 @@ angular.module('Travally')
                 $scope.book_button_disabled = false;
                 $scope.book_button_text = 'Book Seat';
             });
-*/
 
 
 
-            /*BusServices.BookBus($scope.book).then(function (BookResponse) {
+            BusServices.BookBus($scope.book).then(function (BookResponse) {
              $scope.book_response = BookResponse.data;
              $scope.book_button_text = 'Book Seat';
              $scope.book_button_disabled = false;

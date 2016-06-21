@@ -80,16 +80,22 @@ console.log($routeParams.target);
 
     $scope.cancelFlightBooking = function(){
         //$scope.ticketId = $scope.BookingResponse.Ticket.TicketNumber;
-        /*angular.forEach($scope.BookingResponse.Ticket, function (t, key) {
-            $scope.ticketId.push(t.TicketId);
-        });*/
+        $scope.tt = "";
+        angular.forEach($scope.BookingResponse.FlightItinerary.Passenger, function (t, key) {
+            if($scope.tt==""){
+                $scope.tt = t.Ticket.TicketId;
+            }else {
+                $scope.tt =    $scope.tt+','+t.Ticket.TicketId;
+            }
+        });
+
         $scope.cancel = {
             "EndUserIp":"127.0.0.1",
             "TokenId":window.localStorage['flight_token_id'],
             "BookingId":$scope.BookingResponse.BookingId,
             "RequestType":1,
             "CancellationType":0,
-            "TicketId":$scope.BookingResponse.FlightItinerary.Passenger[0].Ticket.TicketId,
+            "TicketId":$scope.tt,
             "Remarks":"TEST",
             "PNR":$scope.BookingResponse.PNR,
             "MemberMobileNo":serverConfig.memberMobileNumber,

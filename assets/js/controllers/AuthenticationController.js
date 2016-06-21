@@ -63,6 +63,8 @@ angular.module('Travally').controller('AuthenticationController', function ($roo
 
                 Profile.get().then(function(d){
                     $rootScope.user_profile = d.data.data;
+                    console.log('user profile');
+                    console.log($rootScope.user_profile);
                     if($rootScope.user_profile.Image ==''){
                         $rootScope.user_profile.Image="assets/theme/img/BlankImages.png";
                     }
@@ -105,6 +107,8 @@ angular.module('Travally').controller('AuthenticationController', function ($roo
                         $scope.social_user = true;
                         Profile.get().then(function(d){
                             $rootScope.user_profile = d.data.data;
+                            console.log('user profile');
+                            console.log($rootScope.user_profile);
                             if($rootScope.user_profile.Image ==''){
                                 $rootScope.user_profile.Image="assets/theme/img/BlankImages.png";
                             }
